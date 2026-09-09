@@ -62,6 +62,9 @@ def baja_celda(x0, y0, intentos=4):
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--zona", default="paradanta")
+    ap.add_argument("--trozo", default="0/1",
+                    help="i/n: descarga las celdas con indice %% n == i. Con n>1 "
+                         "NO agrega: relanzar sin --trozo cuando esten todas")
     args = ap.parse_args()
     suf = "" if args.zona == "paradanta" else "_" + args.zona
     CELDAS.mkdir(parents=True, exist_ok=True)
@@ -93,6 +96,12 @@ if __name__ == "__main__":
     print(f"{len(celdas)} celdas de {LADO} m tocan faixa en {args.zona} "
           f"(de {len(rejilla)} de la rejilla)", flush=True)
 
+    trozo_i, trozo_n = (int(v) for v in args.trozo.split("/"))
+    todas = celdas
+    if trozo_n > 1:
+        celdas = [c for k, c in enumerate(celdas) if k % trozo_n == trozo_i]
+        print(f"  trozo {args.trozo}: {len(celdas)} celdas", flush=True)
+
     t0 = time.perf_counter()
     for k, (x, y) in enumerate(celdas, 1):
         ruta = CELDAS / f"{x}_{y}.gpkg"
@@ -109,7 +118,13 @@ if __name__ == "__main__":
     # DENTRO de Pontevedra), igual que la de los CHM. Un glob("*.gpkg") mezclaria
     # las celdas de todas las zonas descargadas hasta ahora y cambiaria en
     # silencio el resultado del piloto. Se agregan solo las celdas de esta zona.
-    rutas = [CELDAS / f"{x}_{y}.gpkg" for x, y in celdas]
+    if trozo_n > 1:
+        raise SystemExit(
+            f"trozo {args.trozo} descargado. El agregado NO se hace por trozos "
+            "(escribirian el mismo fichero a la vez): relanzar sin --trozo cuando "
+            "terminen todos.")
+
+    rutas = [CELDAS / f"{x}_{y}.gpkg" for x, y in todas]
     partes = [gpd.read_file(r) for r in rutas if r.exists()]
     todo = gpd.GeoDataFrame(pd.concat(partes, ignore_index=True),
                             crs="EPSG:25829")
