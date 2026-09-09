@@ -35,6 +35,13 @@ VACIA = gpd.GeoDataFrame(geometry=[], crs="EPSG:25829")
 
 
 def baja_celda(x0, y0, intentos=4):
+    """La celda, o None si el servicio no responde tras `intentos`.
+
+    Devuelve None en vez de propagar: el WFS del Catastro es un servicio publico
+    y bajo carga da ReadTimeout. Que un timeout tumbe una corrida de horas es
+    absurdo teniendo reanudacion — la celda se salta, NO se escribe su GPKG, y
+    la siguiente pasada la reintenta.
+    """
     for t in range(1, intentos + 1):
         try:
             r = requests.get(URL, timeout=120, params={
@@ -45,9 +52,11 @@ def baja_celda(x0, y0, intentos=4):
             r.raise_for_status()
         except Exception as e:
             if t == intentos:
-                raise
+                print(f"    ({type(e).__name__}) celda {x0}_{y0} SALTADA tras "
+                      f"{intentos} intentos", flush=True)
+                return None
             print(f"    ({type(e).__name__}, reintento {t})", flush=True)
-            time.sleep(10 * t)
+            time.sleep(20 * t)
             continue
         if b"ExceptionReport" in r.content[:500]:
             # celda sin edificios: el servicio devuelve excepcion vacia
@@ -103,11 +112,15 @@ if __name__ == "__main__":
         print(f"  trozo {args.trozo}: {len(celdas)} celdas", flush=True)
 
     t0 = time.perf_counter()
+    saltadas = []
     for k, (x, y) in enumerate(celdas, 1):
         ruta = CELDAS / f"{x}_{y}.gpkg"
         if ruta.exists():
             continue
         g = baja_celda(x, y)
+        if g is None:
+            saltadas.append((x, y))
+            continue
         cols = [c for c in ("gml_id",) if c in g.columns]
         g[cols + ["geometry"]].to_file(ruta, driver="GPKG")
         if k % 15 == 0 or k == len(celdas):
@@ -118,6 +131,12 @@ if __name__ == "__main__":
     # DENTRO de Pontevedra), igual que la de los CHM. Un glob("*.gpkg") mezclaria
     # las celdas de todas las zonas descargadas hasta ahora y cambiaria en
     # silencio el resultado del piloto. Se agregan solo las celdas de esta zona.
+    if saltadas:
+        print()
+        print(f"AVISO: {len(saltadas)} celdas saltadas por fallo del servicio. "
+              "Relanzar para reintentarlas antes de fiarse del agregado.",
+              flush=True)
+
     if trozo_n > 1:
         raise SystemExit(
             f"trozo {args.trozo} descargado. El agregado NO se hace por trozos "
