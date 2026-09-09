@@ -167,7 +167,19 @@ if __name__ == "__main__":
         baja_bloque(b)
         media = (time.perf_counter() - t0) / k
         if k % 10 == 0 or k == len(pendientes):
-            mb = sum(p.stat().st_size for p in ORTO25.glob("*.tif")) / 1e6
+            # OJO: no contar los .tmp<pid>.tif de los OTROS procesos. Con
+            # varios --trozo en paralelo, uno hace su os.replace entre el glob
+            # y el stat y el temporal ya no existe: FileNotFoundError que mata
+            # una descarga de horas por un contador de progreso.
+            mb = 0
+            for q in ORTO25.glob("PNOA-*.tif"):
+                if ".tmp" in q.name:
+                    continue
+                try:
+                    mb += q.stat().st_size
+                except FileNotFoundError:
+                    pass
+            mb /= 1e6
             print(f"  {k}/{len(pendientes)}  {media:.0f} s/bloque  {mb:.0f} MB",
                   flush=True)
     print(f"-> {ORTO25.relative_to(RAIZ)}")
