@@ -17,6 +17,33 @@ excepciones que el LiDAR no puede evaluar, y exime a las frondosas no listadas.
 
 ---
 
+## Resultado
+
+**La provincia de Pontevedra, entera.** 3.197 bloques LiDAR de 1×1 km procesados en un
+portátil de ocho años, con datos que cuestan 0 €.
+
+| | |
+|---|---|
+| Franja de protección medida | **38.601 ha**, en 60 concellos |
+| Con arbolado (umbral calibrado, 5,5 m) | 12.709 ha |
+| Con arbolado de especie prohibida | **[4.493 – 8.288] ha** |
+| Tasa de falsos positivos, fuera de muestra | **20,1 %**, IC95 [12,8 – 28,0] |
+| Sensibilidad | 90,1 % [83,6 – 96,5] |
+
+Encabezan Ponteareas (350–593 ha), A Estrada (253–538) y Salvaterra de Miño (248–388).
+
+El rango no es imprecisión sin cuantificar: **sale de una tasa de error medida**, sobre
+150 puntos fotointerpretados a ciegas en territorio que el modelo no había visto. Cada
+cifra de este repositorio lleva la suya, incluida la del propio fotointérprete consigo
+mismo. Detalle en [Del piloto al producto](#del-piloto-al-producto-fase-7).
+
+También se publican los métodos que **no** funcionaron, con los números por los que se
+descartaron: un clasificador de especie con Sentinel-2 (AUC 0,746 fuera de muestra, y
+entre 0,30 y 0,93 según la zona) y una regla temporal para detectar cortas (la corta
+gallega rebrota en un año, así que la regla pierde 12 de cada 16 eventos reales).
+
+---
+
 ## Documentación
 
 | Documento | Para qué |
