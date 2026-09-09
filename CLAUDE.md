@@ -634,9 +634,16 @@ byte contra el piloto** (los CSV del piloto salen idénticos):
 150 puntos anotados: 134 por el usuario (anotador prefiltrado) + **16
 delegados al prefiltro de Claude** («no» claros; propiedad de asimetría
 medida en el piloto de la fase 6 — se declara en la publicación, no es
-verificable en esta muestra porque el humano no los vio). La fusión la hizo
-`scratchpad/fusiona.py`: `anotacion.csv` = 150 filas (los delegados con
-`ms=0`), la descarga cruda quedó en `anotacion_humana.csv`.
+verificable en esta muestra porque el humano no los vio). La fusión la hace
+`fusiona_prefiltro.py`: `anotacion.csv` = 150 filas en el orden de la muestra
+(los delegados con `ms=0`), la descarga cruda queda en `anotacion_humana.csv`.
+**Vivió en el scratchpad hasta el 09-09 y estuvo a punto de perderse**: sin ese
+paso la tasa de FP provincial no es reproducible desde los CSV crudos, que es
+justo lo que se le exige al resto del proyecto. Reconstruido y verificado —
+reproduce `anotacion.csv` byte a byte y `resumen_producto.csv` sin cambiar un
+dígito. El orden de filas no es cosmético: los bordes del IC bootstrap dependen
+de él. Lleva tres guardias que abortan (el humano invade un delegado, faltan
+puntos por anotar, ids ajenos a la muestra).
 
 - **Tasa de FP provincial: 20,1 % [12,8–28,0]** — compatible con la fase 2
   (24,2 %) y MEJOR que la del producto del piloto (33,5 %). Sensibilidad
@@ -668,8 +675,9 @@ python scripts/especie_faixas.py  --zona pontevedra
 python scripts/ranking_final.py   --zona pontevedra
 python scripts/muestra_producto.py --zona pontevedra --n 150
 python scripts/chips_producto.py   --dir validacion_pontevedra
-python scripts/anotador.py         --dir validacion_pontevedra --sin-tipo
-python scripts/valida_producto.py  --dir validacion_pontevedra
+python scripts/anotador_prefiltrado.py --dir validacion_pontevedra
+python scripts/fusiona_prefiltro.py    --dir validacion_pontevedra
+python scripts/valida_producto.py      --dir validacion_pontevedra
 ```
 
 Lo único que NO puede hacer la máquina sola: **anotar los ~150 puntos**. Y sin
