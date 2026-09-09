@@ -754,9 +754,41 @@ No-regresión verificada con el piloto en todo lo tocado: `serie_ndvi_rodal.csv`
 idénticos. **`aplica_copas.py` es el único cuya lógica cambió sin verificar**
 (pisaría `disperso_clasificado.csv`): comprobar la no-regresión antes de usarlo.
 
-Decisión pendiente al escalar: `muestra_copas.py` sigue capando a 8.000 copas
-por clase (`CAP`). Para una provincia con costa e interior puede quedarse corto,
-pero subirlo cambia el entrenamiento y habría que revalidar.
+### Resultado de la fase 5 en Pontevedra (10-09-2026)
+
+**Persistencia provincial: 98,2 %** del rodal-en-faixa (12.300 de 12.520 ha,
+3.363 rodales que tocan faixa). El piloto dio 97,4 %: la comarca no era atípica
+y **el IFN 2010 aguanta también en la provincia**. 126 rodales con evento,
+219,7 ha. Impacto sobre la etiqueta: 81 rodales a desconocida (142 ha) y 45 de
+rebrote de eucalipto (77,7 ha, siguen prohibidos).
+
+**Diagnóstico de deriva limpio** en los dos tiles que importan: 29TNG y 29TNH
+entre 0,695 y 0,793, sin escalón en 2022. 29TMG y 29TMH salen a 0,00–0,19
+porque son franjas de ~1,7 km sobre la ría: correcto, no es un fallo.
+
+**Los dos picos de eventos reproducen los del piloto, incluido el malo:** 53
+rodales en 2018 (cicatrices de los incendios de octubre de 2017, validación
+natural) y **21 en 2026, que son la firma de la sequía de agosto** — en el
+piloto se midió 0/8 confirmados en ese año. Esas 28,6 ha no son cortas. Igual
+que allí, el listado de eventos y el aviso de vigencia (14 rodales post-LiDAR;
+en el piloto solo 1 de 13 se confirmó) **no se publican como hecho**: lo que
+entra en el ranking es la persistencia.
+
+10.857 de 11.472 rodales con serie (94,6 %).
+
+### Entrenamiento de la fase 6 en Pontevedra
+
+1,85 M de copas dentro de rodal puro persistente, frente a ~150.000 del piloto.
+La muestra sigue capada a 8.000 por clase y ahora cubre **135 zonas de
+eucalipto, 110 de frondosa y 162 de pino** (piloto: 18, 14 y 19), sobre
+427/304/696 rodales.
+
+**Decisión pendiente: `CAP` sigue en 8.000.** Con el pool 12 veces mayor, esas
+8.000 copas por clase se reparten ahora entre cientos de zonas —unas 60 por
+zona, frente a 444 en el piloto—. Más diversidad y más grupos para el
+GroupKFold, pero menos densidad por zona. Se mantiene el valor validado en esta
+pasada a propósito; si el AUC provincial se queda corto, subirlo es lo primero
+que probar, y entonces hay que revalidar.
 
 ## Cuestiones abiertas
 
