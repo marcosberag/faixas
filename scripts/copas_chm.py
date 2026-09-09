@@ -39,23 +39,30 @@ SIGMA = 1.0       # px, suavizado del CHM antes de buscar apices
 DIST_MIN = 2      # px, separacion minima entre apices
 AREA_MIN = 3      # px (m2), copa minima
 
+# Un bloque puede no tener ni una copa (mar, roca, suelo urbano). En
+# A Paradanta no pasaba y el DataFrame vacio escribia un CSV SIN CABECERA,
+# que luego revienta a quien lo lea. Fuera de la comarca si pasa: se declaran
+# las columnas para que el fichero vacio siga siendo un CSV legible.
+COLS = ["x", "y", "h_max", "h_media", "area_m2"]
+
 
 def copas_bloque(ruta_chm):
     with rasterio.open(ruta_chm) as s:
         chm = s.read(1)
         tr = s.transform
+    vacio = pd.DataFrame(columns=COLS)
     chm = np.where(np.isfinite(chm) & (chm > -1000), chm, 0).astype("float32")
     chm[chm < 0] = 0
 
     suave = ndi.gaussian_filter(chm, sigma=SIGMA)
     masa = suave > UMBRAL
     if not masa.any():
-        return pd.DataFrame()
+        return vacio
 
     picos = peak_local_max(suave, min_distance=DIST_MIN, labels=masa,
                            exclude_border=False)
     if not len(picos):
-        return pd.DataFrame()
+        return vacio
     semillas = np.zeros(chm.shape, dtype="int32")
     semillas[tuple(picos.T)] = np.arange(1, len(picos) + 1)
     etiquetas = watershed(-suave, semillas, mask=masa)
@@ -98,6 +105,11 @@ if __name__ == "__main__":
                   f"{total:,} copas nuevas", flush=True)
 
     csvs = sorted(COPAS.glob("PNOA-*.csv"))
-    n = sum(len(pd.read_csv(c, usecols=["x"])) for c in csvs)
+    def filas(c):
+        try:
+            return len(pd.read_csv(c, usecols=["x"]))
+        except pd.errors.EmptyDataError:
+            return 0
+    n = sum(filas(c) for c in csvs)
     print()
     print(f"{n:,} copas en {len(csvs):,} bloques -> {COPAS.relative_to(RAIZ)}")
