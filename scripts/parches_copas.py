@@ -11,6 +11,7 @@ descartan y se anota cuantos.
 Uso:
     python scripts/parches_copas.py
 """
+import argparse
 import pathlib
 
 import numpy as np
@@ -42,7 +43,12 @@ def parches_de_bloque(ruta_tif, sub):
 
 
 if __name__ == "__main__":
-    m = pd.read_csv(COPAS / "entrenamiento.csv", encoding="utf-8-sig")
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--zona", default="paradanta")
+    args = ap.parse_args()
+    suf = "" if args.zona == "paradanta" else "_" + args.zona
+
+    m = pd.read_csv(COPAS / f"entrenamiento{suf}.csv", encoding="utf-8-sig")
     faltan_orto = sorted(b for b in m.bloque.unique()
                          if not (ORTO25 / f"{b}.tif").exists())
     if faltan_orto:
@@ -64,9 +70,9 @@ if __name__ == "__main__":
     print(f"\n{int((~vale).sum())} parches descartados por borde negro")
     parches, indice = parches[vale], indice[vale].reset_index(drop=True)
 
-    np.save(COPAS / "parches_entrenamiento.npy", parches)
-    indice.to_csv(COPAS / "indice_entrenamiento.csv", index=False,
+    np.save(COPAS / f"parches_entrenamiento{suf}.npy", parches)
+    indice.to_csv(COPAS / f"indice_entrenamiento{suf}.csv", index=False,
                   encoding="utf-8-sig")
     print(f"{len(indice):,} parches de {PX}x{PX} px "
           f"({parches.nbytes / 1e6:.0f} MB)")
-    print(f"-> {(COPAS / 'parches_entrenamiento.npy').relative_to(RAIZ)}")
+    print(f"-> {(COPAS / ('parches_entrenamiento' + suf + '.npy')).relative_to(RAIZ)}")
