@@ -19,6 +19,7 @@ metricas_parroquia_especie_copas.csv, que ranking_final.py preferira.
 Uso:
     python scripts/aplica_copas.py
 """
+import argparse
 import pathlib
 import subprocess
 import sys
@@ -49,8 +50,13 @@ def jeffreys(k, n):
 
 
 if __name__ == "__main__":
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--zona", default="paradanta")
+    args = ap.parse_args()
+    suf = "" if args.zona == "paradanta" else "_" + args.zona
+
     # ---- zonas validadas: AUC binario OOS por zona, del propio OOS ----------
-    oos = pd.read_csv(COPAS / "oos_predicciones.csv", encoding="utf-8-sig")
+    oos = pd.read_csv(COPAS / f"oos_predicciones{suf}.csv", encoding="utf-8-sig")
     oos["y_pro"] = oos.grupo.isin(("eucalipto", "pino")).astype(int)
     oos["p_pro"] = oos.p_eucalipto + oos.p_pino
     from sklearn.metrics import roc_auc_score
@@ -75,18 +81,42 @@ if __name__ == "__main__":
           f"  fnr {fnr:.3f} [{fnr_lo:.3f}-{fnr_hi:.3f}]")
 
     # ---- el disperso en faixa ----------------------------------------------
-    todos = pd.concat([pd.read_csv(p).assign(bloque=p.stem)
-                       for p in sorted(COPAS.glob("PNOA-*.csv"))],
-                      ignore_index=True)
-    g = gpd.GeoDataFrame(todos, geometry=gpd.points_from_xy(todos.x, todos.y),
-                         crs="EPSG:25829")
     fx = gpd.GeoDataFrame(pd.concat(
-        [gpd.read_file(PROC / f"faixas_{n}_paradanta_ok.gpkg")
+        [gpd.read_file(PROC / f"faixas_{n}_{args.zona}_ok.gpkg")
          for n in ("nucleos", "illadas")], ignore_index=True), crs="EPSG:25829")
-    en_fx = gpd.sjoin(g, fx[["NOMECONCEL", "PARROQUIA", "geometry"]],
-                      how="inner", predicate="within")
-    en_fx = en_fx[~en_fx.index.duplicated(keep="first")].drop(columns="index_right")
-    ifn = gpd.read_file(PROC / "ifn_especies_paradanta.gpkg")
+    fx_cols = fx[["NOMECONCEL", "PARROQUIA", "geometry"]]
+
+    # Las copas de todas las zonas comparten carpeta (A Paradanta esta DENTRO de
+    # Pontevedra): se filtran por la malla de la zona, igual que los CHM. Y el
+    # cruce va bloque a bloque en vez de concatenar los 12,9 M de copas de la
+    # provincia para quedarse con el ~9 % que cae en faixa. sjoin conserva el
+    # orden del lado izquierdo, asi que concatenar despues da el mismo resultado.
+    malla = pd.read_csv(PROC / f"malla_lidar_{args.zona}.csv",
+                        encoding="utf-8-sig")
+    nombres = sorted({pathlib.Path(b).stem for b in malla.bloque})
+    trozos, leidas = [], 0
+    for nom in nombres:
+        ruta = COPAS / f"{nom}.csv"
+        if not ruta.exists():
+            continue
+        try:
+            c = pd.read_csv(ruta)
+        except pd.errors.EmptyDataError:
+            continue
+        if not len(c):
+            continue
+        leidas += len(c)
+        gb = gpd.GeoDataFrame(c.assign(bloque=nom),
+                              geometry=gpd.points_from_xy(c.x, c.y),
+                              crs="EPSG:25829")
+        d = gpd.sjoin(gb, fx_cols, how="inner", predicate="within")
+        if len(d):
+            trozos.append(d[~d.index.duplicated(keep="first")].drop(
+                columns="index_right"))
+    en_fx = gpd.GeoDataFrame(pd.concat(trozos, ignore_index=True),
+                             crs="EPSG:25829")
+    print(f"{leidas:,} copas leidas, {len(en_fx):,} dentro de faixa", flush=True)
+    ifn = gpd.read_file(PROC / f"ifn_especies_{args.zona}.gpkg")
     con_rodal = gpd.sjoin(en_fx, ifn[["geometry"]], how="left",
                           predicate="within")
     con_rodal = con_rodal[~con_rodal.index.duplicated(keep="first")]
@@ -100,7 +130,7 @@ if __name__ == "__main__":
     # de 5,5 m del CHM y el watershed lo delinea como "copa". En agregado ya
     # lo paga la tasa de FP; aqui se quita del mapa y de la fraccion del
     # disperso, que es donde ensucia.
-    edif = gpd.read_file(PROC / "edificios_catastro.gpkg")
+    edif = gpd.read_file(PROC / f"edificios_catastro{suf}.gpkg")
     edif = gpd.GeoDataFrame(geometry=edif.buffer(1.0), crs=edif.crs)
 
     def sin_edificios(df):
@@ -120,9 +150,9 @@ if __name__ == "__main__":
 
     # ---- parches + embeddings + prediccion (solo zona validada) -------------
     dv = disp[disp.validada].reset_index(drop=True)
-    ruta_p = COPAS / "parches_disperso.npy"
-    ruta_i = COPAS / "indice_disperso.csv"
-    ruta_e = COPAS / "embeddings_disperso.npy"
+    ruta_p = COPAS / f"parches_disperso{suf}.npy"
+    ruta_i = COPAS / f"indice_disperso{suf}.csv"
+    ruta_e = COPAS / f"embeddings_disperso{suf}.npy"
     if not ruta_p.exists():
         trozos, indices = [], []
         for b, sub in dv.groupby("bloque"):
@@ -155,7 +185,7 @@ if __name__ == "__main__":
     X = rasgos(parches, indice)
     X = pd.concat([X, pd.DataFrame(emb, columns=[f"e{i}" for i in range(emb.shape[1])])],
                   axis=1)
-    guardado = joblib.load(COPAS / "modelo_especie_copas.joblib")
+    guardado = joblib.load(COPAS / f"modelo_especie_copas{suf}.joblib")
     mod, clases = guardado["modelo"], guardado["clases"]
     assert list(X.columns) == guardado["rasgos"], "rasgos desalineados con el modelo"
     prob = mod.predict_proba(X)
@@ -163,7 +193,7 @@ if __name__ == "__main__":
     indice["pred_prohibida"] = (p_pro > 0.5).astype(int)
     for c in clases:
         indice[f"p_{c}"] = np.round(prob[:, clases.index(c)], 4)
-    indice.to_csv(COPAS / "disperso_clasificado.csv", index=False,
+    indice.to_csv(COPAS / f"disperso_clasificado{suf}.csv", index=False,
                   encoding="utf-8-sig")
 
     w = indice.area_m2.to_numpy(float)
@@ -178,15 +208,16 @@ if __name__ == "__main__":
         return (float(np.clip(min(esquinas), 0, 1)),
                 float(np.clip(max(esquinas), 0, 1)))
 
-    base = pd.read_csv(MET / "metricas_parroquia_especie.csv", encoding="utf-8-sig")
+    base = pd.read_csv(MET / f"metricas_parroquia_especie{suf}.csv",
+                       encoding="utf-8-sig")
     con_dispersa = base[base.ha_dispersa > 0]
     p_mal_d = float(((con_dispersa.ha_prohibida_hi - con_dispersa.ha_prohibida)
                      / con_dispersa.ha_dispersa).median())
     print(f"p_mal_d recuperado de la base: {p_mal_d:.3f}")
 
-    verdades = MET / "metricas_parroquia_especie_verdades.csv"
+    verdades = MET / f"metricas_parroquia_especie_verdades{suf}.csv"
     e = pd.read_csv(verdades if verdades.exists()
-                    else MET / "metricas_parroquia_especie.csv",
+                    else MET / f"metricas_parroquia_especie{suf}.csv",
                     encoding="utf-8-sig")
 
     # por parroquia: fraccion del area dispersa que esta en zona validada, y
@@ -216,7 +247,7 @@ if __name__ == "__main__":
     for c, n in (("ha_prohibida", "pct_prohibida_lo"),
                  ("ha_prohibida_hi", "pct_prohibida_hi")):
         e[n] = (100 * e[c] / e.ha_faixa).round(2)
-    ruta = MET / "metricas_parroquia_especie_copas.csv"
+    ruta = MET / f"metricas_parroquia_especie_copas{suf}.csv"
     e.round(3).to_csv(ruta, index=False, encoding="utf-8-sig")
     print(f"{ajustadas} parroquias ajustadas")
     print(f"-> {ruta.relative_to(RAIZ)}  (ranking_final.py lo prefiere)")

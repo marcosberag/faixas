@@ -81,6 +81,7 @@ def rasgos(parches, indice):
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
+    ap.add_argument("--zona", default="paradanta")
     ap.add_argument("--cnn", action="store_true",
                     help="anhade el embedding de embeddings_copas.py")
     ap.add_argument("--gw", action="store_true",
@@ -88,20 +89,22 @@ if __name__ == "__main__":
                          "iluminacion entre pasadas del mosaico PNOA)")
     args = ap.parse_args()
 
-    parches = np.load(COPAS / "parches_entrenamiento.npy")
+    suf = "" if args.zona == "paradanta" else "_" + args.zona
+    parches = np.load(COPAS / f"parches_entrenamiento{suf}.npy")
     if args.gw:
         x = parches.astype("float32")
         medias = x.mean(axis=(1, 2), keepdims=True)
         parches = np.clip(x * (110.0 / np.maximum(medias, 1.0)),
                           0, 255).astype("uint8")
         print("gray-world aplicado por parche")
-    indice = pd.read_csv(COPAS / "indice_entrenamiento.csv", encoding="utf-8-sig")
+    indice = pd.read_csv(COPAS / f"indice_entrenamiento{suf}.csv",
+                         encoding="utf-8-sig")
     print(f"{len(indice):,} parches; clases:")
     print(indice.grupo.value_counts().to_string(), "\n")
 
     X = rasgos(parches, indice)
     if args.cnn:
-        emb = np.load(COPAS / "embeddings_entrenamiento.npy")
+        emb = np.load(COPAS / f"embeddings_entrenamiento{suf}.npy")
         assert len(emb) == len(indice), "embeddings desalineados: regenerar"
         X = pd.concat([X, pd.DataFrame(
             emb, columns=[f"e{i}" for i in range(emb.shape[1])])], axis=1)
@@ -160,11 +163,12 @@ if __name__ == "__main__":
     oos = indice[["x", "y", "bloque", "grupo", "zona", "OBJECTID_12"]].copy()
     for i, c in enumerate(CLASES):
         oos[f"p_{c}"] = np.round(prob_oos[:, i], 4)
-    oos.to_csv(COPAS / "oos_predicciones.csv", index=False, encoding="utf-8-sig")
+    oos.to_csv(COPAS / f"oos_predicciones{suf}.csv", index=False,
+               encoding="utf-8-sig")
 
     final = modelo_nuevo().fit(X, y)
     joblib.dump({"modelo": final, "clases": list(final.classes_),
                  "rasgos": list(X.columns)},
-                COPAS / "modelo_especie_copas.joblib")
+                COPAS / f"modelo_especie_copas{suf}.joblib")
     print(f"\n-> {(COPAS / 'oos_predicciones.csv').relative_to(RAIZ)}")
-    print(f"-> {(COPAS / 'modelo_especie_copas.joblib').relative_to(RAIZ)}")
+    print(f"-> {(COPAS / ('modelo_especie_copas' + suf + '.joblib')).relative_to(RAIZ)}")

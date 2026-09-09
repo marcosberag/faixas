@@ -692,6 +692,72 @@ Aún sin hacer, por si sobra tiempo: banda infrarroja del PNOA para rescatar las
 dos zonas del este donde el clasificador de copas no valida, y auditoría de los
 «exenta» con el prefiltro de Claude.
 
+## Fases 5 y 6 a escala provincial (09/10-09-2026, EN MARCHA)
+
+Decisión del usuario: llevar persistencia y clasificador de copas a Pontevedra,
+que en el ranking provincial no estaban (salía de FP × fracción IFN).
+
+**El orden está forzado**: `muestra_copas.py` entrena solo con rodales puros
+**y persistentes**, así que la fase 5 va antes que la 6, no en paralelo.
+
+**LA COMPOSICIÓN DE S2 TIENE QUE SER POR TILE.** A Paradanta cabía entera en
+29TNG y por eso `compuesta_verano` podía coger las 3 escenas menos nubladas de
+todo el bbox. Pontevedra son 8.500 km² (17× el piloto) y **cuatro tiles**:
+29TNG, 29TMG, 29TNH, 29TMH. Con el método viejo las tres escenas podían salir
+del mismo tile y el compuesto tendría dato en un cuarto de la provincia y NaN
+en el resto — **sin avisar, porque un NaN no es un error**: se propaga a la
+media del rodal y de ahí al detector. Ahora se compone por tile sobre su
+intersección con la zona y las medias por rodal se acumulan como suma y cuenta
+de píxeles válidos (un rodal en el solape recibe la media ponderada, que es lo
+que se quiere). 29TMG y 29TMH aportan franjas de ~1,7 km en el borde oeste,
+sobre la ría, con NDVI ~0: es correcto, la malla MGRS corta ahí.
+
+**La trampa del overlay disuelto apareció en TRES sitios nuevos**, y ya van
+seis. Regla: si un script cruza capas provinciales, mirar esto ANTES.
+- `descarga_orto25.py`: marcos de bloque contra `union_all()` de las faixas.
+- `detecta_eventos.py`: 11.472 rodales contra ese mismo multipolígono.
+- `descarga_catastro.py`: peor, evaluándolo celda a celda en un bucle Python
+  de ~8.600 iteraciones.
+Los tres van ya por `sjoin` pieza a pieza. **Y en `detecta_eventos.py` hay un
+matiz que no se puede perder: núcleos e illadas SE SOLAPAN**, así que las áreas
+de intersección no se suman — se unen las (pocas) piezas que tocan cada rodal y
+se interseca contra esa unión. Sumarlas contaría dos veces la zona común.
+
+**Las carpetas compartidas entre zonas vuelven a morder.** Ya estaba documentado
+para los CHM; pasa igual con `copas/` y con `catastro_celdas/`. El agregado
+final de `descarga_catastro.py` hacía `glob("*.gpkg")` y habría mezclado las
+celdas de Pontevedra en el resultado del piloto. Se filtra por la malla de la
+zona, o por la lista de celdas de la zona.
+
+**No concatenar antes de filtrar.** `muestra_copas.py` y `aplica_copas.py`
+juntaban las copas de todos los bloques y filtraban después: en la provincia son
+**12,9 M de copas**, varios GB para tirar el 90-99 %. Ahora cruzan bloque a
+bloque, lo que da **exactamente el mismo orden** porque `sjoin` conserva el del
+lado izquierdo (verificado: `entrenamiento.csv` sale idéntico).
+
+Tres fallos pequeños que costaron una corrida cada uno:
+- **Un bloque sin arbolado escribía un CSV sin cabecera.** En A Paradanta no
+  pasaba; en la provincia hay bloques de mar, roca y suelo urbano. `copas_chm.py`
+  reventó al cerrar, con los 2.934 bloques ya hechos. Se declaran las columnas.
+- **La columna `bloque` de la malla trae el nombre con extensión `.LAZ`.**
+- **`cx` es el indexador de coordenadas de GeoPandas**: una columna llamada así
+  no se puede leer como atributo.
+
+Medido en esta corrida: `copas_chm.py` 1,0 s/bloque; `descarga_orto25.py` 16-20
+s/bloque y **5 MB/bloque** (los 2.919 pendientes son 14,6 GB y 16 h en serie, o
+4 h con `--trozo i/4`, para lo que ya estaba pensado). Catastro: 3.197 celdas de
+1 km de las 8.658 de la rejilla. **El disco es el límite real, no el tiempo.**
+
+No-regresión verificada con el piloto en todo lo tocado: `serie_ndvi_rodal.csv`
+(658 rodales), `persistencia_ifn.csv` (70 eventos), `edificios_catastro.gpkg`
+(263 celdas, 13.452 edificios) y `entrenamiento.csv` (24.000 copas) salen
+idénticos. **`aplica_copas.py` es el único cuya lógica cambió sin verificar**
+(pisaría `disperso_clasificado.csv`): comprobar la no-regresión antes de usarlo.
+
+Decisión pendiente al escalar: `muestra_copas.py` sigue capando a 8.000 copas
+por clase (`CAP`). Para una provincia con costa e interior puede quedarse corto,
+pero subirlo cambia el entrenamiento y habría que revalidar.
+
 ## Cuestiones abiertas
 
 - **Umbral de altura** para considerar "arbolado". Sin fijar. La maquinaria de
