@@ -1,0 +1,465 @@
+﻿tipo,x,y,ha,certeza,nota,id_punto,NOMECONCEL,PARROQUIA,puesto_concello
+rodal_ifn,558641.5,4669490.5,26.5,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 67%",103,A Cañiza,Valeixe (Santa Cristina),1
+rodal_ifn,559661.5,4667105.5,21.44,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 89%",111,A Cañiza,Valeixe (Santa Cristina),2
+rodal_ifn,559885.5,4674405.5,15.88,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 90%",85,A Cañiza,A Cañiza (Santa Teresa),3
+rodal_ifn,562242.5,4670561.5,13.56,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 78%",119,A Cañiza,O Couto (San Bartolomeu),4
+rodal_ifn,558586.5,4673330.5,12.51,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 100%",91,A Cañiza,As Achas (San Sebastián),5
+rodal_ifn,560840.5,4669223.5,10.79,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 89%",120,A Cañiza,Valeixe (Santa Cristina),6
+rodal_ifn,562781.5,4671507.5,8.82,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 67%",122,A Cañiza,O Couto (San Bartolomeu),7
+rodal_ifn,561979.5,4675486.5,8.74,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 62%",82,A Cañiza,Oroso (Santa María),8
+rodal_ifn,558554.5,4675622.5,8.58,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 70%",87,A Cañiza,Petán (San Xián),9
+rodal_ifn,563185.5,4673953.5,8.33,media-alta,"Eucalyptus_globulus (IFN 2010, persistente), f_prohibida 100%",130,A Cañiza,Oroso (Santa María),10
+rodal_ifn,558122.5,4667874.5,7.43,media-alta,"Eucalyptus_globulus (IFN 2010, persistente), f_prohibida 60%",105,A Cañiza,Valeixe (Santa Cristina),11
+rodal_ifn,557208.5,4667452.5,6.94,media-alta,"Eucalyptus_globulus (IFN 2010, persistente), f_prohibida 90%",135,A Cañiza,Luneda (Santa María),12
+rodal_ifn,557608.5,4673253.5,6.51,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 100%",90,A Cañiza,As Achas (San Sebastián),13
+rodal_ifn,556193.5,4667677.5,5.1,media-alta,"Eucalyptus_globulus (IFN 2010, persistente), f_prohibida 100%",134,A Cañiza,Luneda (Santa María),14
+rodal_ifn,560109.5,4673153.5,4.09,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 67%",88,A Cañiza,A Cañiza (Santa Teresa),15
+rodal_ifn,561560.5,4673895.5,3.8,media-alta,"Eucalyptus_globulus (IFN 2010, persistente), f_prohibida 100%",124,A Cañiza,Oroso (Santa María),16
+rodal_ifn,560662.5,4673906.5,3.54,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 70%",84,A Cañiza,A Cañiza (Santa Teresa),17
+rodal_ifn,559922.5,4671266.5,3.41,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 80%",99,A Cañiza,A Cañiza (Santa Teresa),18
+rodal_ifn,561414.5,4673188.5,2.61,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 89%",115,A Cañiza,Oroso (Santa María),19
+rodal_ifn,559491.5,4676480.5,2.07,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 80%",86,A Cañiza,Petán (San Xián),20
+rodal_ifn,558294.5,4671400.5,1.94,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 75%",104,A Cañiza,As Achas (San Sebastián),21
+rodal_ifn,561191.5,4668341.5,1.56,media-alta,"Eucalyptus_globulus (IFN 2010, persistente), f_prohibida 100%",138,A Cañiza,Valeixe (Santa Cristina),22
+rodal_ifn,562343.5,4669826.5,1.49,media-alta,"Eucalyptus_globulus (IFN 2010, persistente), f_prohibida 78%",164,A Cañiza,O Couto (San Bartolomeu),23
+disperso_copas,557373.5,4668962.5,1.45,media,"124 copas prohibidas (clasificador fase 6, zona validada)",336,A Cañiza,Parada das Achas (Santiago),24
+rodal_ifn,563313.5,4671666.5,1.3,media-alta,"Eucalyptus_globulus (IFN 2010, persistente), f_prohibida 89%",162,A Cañiza,O Couto (San Bartolomeu),25
+disperso_copas,555664.5,4668452.5,1.25,media,"122 copas prohibidas (clasificador fase 6, zona validada)",289,A Cañiza,Luneda (Santa María),26
+rodal_ifn,560717.5,4673784.5,1.23,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 80%",165,A Cañiza,A Cañiza (Santa Teresa),27
+disperso_copas,555960.5,4666969.5,1.15,media,"101 copas prohibidas (clasificador fase 6, zona validada)",306,A Cañiza,Luneda (Santa María),28
+rodal_ifn,559247.5,4668196.5,1.04,media-alta,"Eucalyptus_globulus (IFN 2010, persistente), f_prohibida 70%",113,A Cañiza,Valeixe (Santa Cristina),29
+rodal_ifn,561433.5,4674434.5,1.03,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 78%",83,A Cañiza,Oroso (Santa María),30
+rodal_ifn,562665.5,4674364.5,1.03,media-alta,"Quercus_robur (IFN 2010, persistente), f_prohibida 50%",125,A Cañiza,Oroso (Santa María),31
+rodal_ifn,558880.5,4669802.5,1.0,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 89%",161,A Cañiza,Valeixe (Santa Cristina),32
+disperso_copas,556180.5,4668552.5,0.98,media,"70 copas prohibidas (clasificador fase 6, zona validada)",312,A Cañiza,Luneda (Santa María),33
+disperso_copas,559470.5,4668738.5,0.96,media,"92 copas prohibidas (clasificador fase 6, zona validada)",442,A Cañiza,Valeixe (Santa Cristina),34
+rodal_ifn,551236.5,4669810.5,0.89,media-alta,"Eucalyptus_globulus (IFN 2010, persistente), f_prohibida 80%",129,A Cañiza,A Franqueira (Santa María),35
+rodal_ifn,557462.5,4674657.5,0.86,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 100%",128,A Cañiza,As Achas (San Sebastián),36
+disperso_copas,559025.5,4667013.5,0.84,media,"73 copas prohibidas (clasificador fase 6, zona validada)",425,A Cañiza,Valeixe (Santa Cristina),37
+disperso_copas,556348.5,4668554.5,0.82,media,"73 copas prohibidas (clasificador fase 6, zona validada)",314,A Cañiza,Luneda (Santa María),38
+disperso_copas,557801.5,4669279.5,0.76,media,"63 copas prohibidas (clasificador fase 6, zona validada)",346,A Cañiza,Parada das Achas (Santiago),39
+disperso_copas,555832.5,4666736.5,0.75,media,"71 copas prohibidas (clasificador fase 6, zona validada)",287,A Cañiza,Luneda (Santa María),40
+disperso_copas,556106.5,4668368.5,0.74,media,"58 copas prohibidas (clasificador fase 6, zona validada)",311,A Cañiza,Luneda (Santa María),41
+disperso_copas,559365.5,4676152.5,0.71,media,"63 copas prohibidas (clasificador fase 6, zona validada)",459,A Cañiza,Petán (San Xián),42
+rodal_ifn,558828.5,4667185.5,0.69,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 90%",106,A Cañiza,Valeixe (Santa Cristina),43
+rodal_ifn,557547.5,4675081.5,0.69,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 100%",126,A Cañiza,As Achas (San Sebastián),44
+disperso_copas,555453.5,4668207.5,0.67,media,"58 copas prohibidas (clasificador fase 6, zona validada)",290,A Cañiza,Luneda (Santa María),45
+disperso_copas,556456.5,4667509.5,0.66,media,"53 copas prohibidas (clasificador fase 6, zona validada)",303,A Cañiza,Luneda (Santa María),46
+disperso_copas,555857.5,4668504.5,0.64,media,"50 copas prohibidas (clasificador fase 6, zona validada)",288,A Cañiza,Luneda (Santa María),47
+disperso_copas,557803.5,4667500.5,0.64,media,"48 copas prohibidas (clasificador fase 6, zona validada)",331,A Cañiza,Valeixe (Santa Cristina),48
+disperso_copas,558710.5,4669534.5,0.62,media,"60 copas prohibidas (clasificador fase 6, zona validada)",399,A Cañiza,Valeixe (Santa Cristina),49
+rodal_ifn,560007.5,4671374.5,0.58,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 80%",100,A Cañiza,A Cañiza (Santa Teresa),50
+rodal_ifn,560848.5,4673318.5,0.58,media-alta,"Pinus_radiata (IFN 2010, persistente), f_prohibida 100%",123,A Cañiza,Oroso (Santa María),51
+disperso_copas,557960.5,4668884.5,0.51,media,"36 copas prohibidas (clasificador fase 6, zona validada)",341,A Cañiza,Parada das Achas (Santiago),52
+disperso_copas,558897.5,4668710.5,0.49,media,"34 copas prohibidas (clasificador fase 6, zona validada)",387,A Cañiza,Valeixe (Santa Cristina),53
+disperso_copas,557109.5,4669131.5,0.47,media,"48 copas prohibidas (clasificador fase 6, zona validada)",351,A Cañiza,Parada das Achas (Santiago),54
+disperso_copas,551883.5,4669754.5,0.45,media,"57 copas prohibidas (clasificador fase 6, zona validada)",196,A Cañiza,A Franqueira (Santa María),55
+disperso_copas,556680.5,4667427.5,0.45,media,"37 copas prohibidas (clasificador fase 6, zona validada)",309,A Cañiza,Luneda (Santa María),56
+disperso_copas,558814.5,4676236.5,0.44,media,"33 copas prohibidas (clasificador fase 6, zona validada)",414,A Cañiza,Petán (San Xián),57
+disperso_copas,559430.5,4675146.5,0.44,media,"47 copas prohibidas (clasificador fase 6, zona validada)",454,A Cañiza,As Achas (San Sebastián),58
+disperso_copas,556552.5,4667727.5,0.42,media,"40 copas prohibidas (clasificador fase 6, zona validada)",308,A Cañiza,Luneda (Santa María),59
+disperso_copas,557529.5,4669570.5,0.41,media,"29 copas prohibidas (clasificador fase 6, zona validada)",342,A Cañiza,Parada das Achas (Santiago),60
+disperso_copas,558436.5,4675641.5,0.39,media,"29 copas prohibidas (clasificador fase 6, zona validada)",407,A Cañiza,Petán (San Xián),61
+disperso_copas,556242.5,4667261.5,0.38,media,"45 copas prohibidas (clasificador fase 6, zona validada)",307,A Cañiza,Luneda (Santa María),62
+disperso_copas,559899.5,4667612.5,0.38,media,"46 copas prohibidas (clasificador fase 6, zona validada)",434,A Cañiza,Valeixe (Santa Cristina),63
+disperso_copas,554776.5,4670536.5,0.36,media,"39 copas prohibidas (clasificador fase 6, zona validada)",279,A Cañiza,Parada das Achas (Santiago),64
+disperso_copas,557067.5,4668929.5,0.35,media,"21 copas prohibidas (clasificador fase 6, zona validada)",340,A Cañiza,Parada das Achas (Santiago),65
+disperso_copas,557620.5,4669359.5,0.35,media,"27 copas prohibidas (clasificador fase 6, zona validada)",354,A Cañiza,Parada das Achas (Santiago),66
+disperso_copas,558063.5,4668748.5,0.34,media,"21 copas prohibidas (clasificador fase 6, zona validada)",386,A Cañiza,Parada das Achas (Santiago),67
+disperso_copas,553463.5,4670252.5,0.32,media,"37 copas prohibidas (clasificador fase 6, zona validada)",243,A Cañiza,Parada das Achas (Santiago),68
+disperso_copas,558915.5,4669737.5,0.32,media,"39 copas prohibidas (clasificador fase 6, zona validada)",406,A Cañiza,Valeixe (Santa Cristina),69
+disperso_copas,559421.5,4676478.5,0.32,media,"31 copas prohibidas (clasificador fase 6, zona validada)",461,A Cañiza,Petán (San Xián),70
+disperso_copas,558768.5,4668955.5,0.31,media,"29 copas prohibidas (clasificador fase 6, zona validada)",404,A Cañiza,Valeixe (Santa Cristina),71
+disperso_copas,559781.5,4668708.5,0.3,media,"26 copas prohibidas (clasificador fase 6, zona validada)",436,A Cañiza,Valeixe (Santa Cristina),72
+disperso_copas,551711.5,4669785.5,0.28,media,"31 copas prohibidas (clasificador fase 6, zona validada)",199,A Cañiza,A Franqueira (Santa María),73
+disperso_copas,558370.5,4668391.5,0.28,media,"27 copas prohibidas (clasificador fase 6, zona validada)",391,A Cañiza,Valeixe (Santa Cristina),74
+disperso_copas,559493.5,4666953.5,0.28,media,"33 copas prohibidas (clasificador fase 6, zona validada)",416,A Cañiza,Valeixe (Santa Cristina),75
+disperso_copas,559268.5,4667295.5,0.28,media,"15 copas prohibidas (clasificador fase 6, zona validada)",426,A Cañiza,Valeixe (Santa Cristina),76
+disperso_copas,559704.5,4667117.5,0.28,media,"28 copas prohibidas (clasificador fase 6, zona validada)",430,A Cañiza,Valeixe (Santa Cristina),77
+disperso_copas,556831.5,4667327.5,0.27,media,"20 copas prohibidas (clasificador fase 6, zona validada)",302,A Cañiza,Luneda (Santa María),78
+disperso_copas,556820.5,4668808.5,0.27,media,"28 copas prohibidas (clasificador fase 6, zona validada)",313,A Cañiza,Parada das Achas (Santiago),79
+disperso_copas,557235.5,4669555.5,0.27,media,"30 copas prohibidas (clasificador fase 6, zona validada)",355,A Cañiza,Parada das Achas (Santiago),80
+disperso_copas,557967.5,4676393.5,0.27,media,"24 copas prohibidas (clasificador fase 6, zona validada)",359,A Cañiza,Petán (San Xián),81
+disperso_copas,558460.5,4667760.5,0.27,media,"16 copas prohibidas (clasificador fase 6, zona validada)",384,A Cañiza,Valeixe (Santa Cristina),82
+disperso_copas,558358.5,4668147.5,0.27,media,"31 copas prohibidas (clasificador fase 6, zona validada)",388,A Cañiza,Valeixe (Santa Cristina),83
+disperso_copas,551503.5,4669320.5,0.26,media,"18 copas prohibidas (clasificador fase 6, zona validada)",197,A Cañiza,A Franqueira (Santa María),84
+disperso_copas,558773.5,4669678.5,0.26,media,"16 copas prohibidas (clasificador fase 6, zona validada)",396,A Cañiza,Valeixe (Santa Cristina),85
+disperso_copas,557508.5,4669186.5,0.25,media,"30 copas prohibidas (clasificador fase 6, zona validada)",343,A Cañiza,Parada das Achas (Santiago),86
+disperso_copas,558135.5,4668895.5,0.25,media,"16 copas prohibidas (clasificador fase 6, zona validada)",392,A Cañiza,Parada das Achas (Santiago),87
+disperso_copas,550676.5,4669338.5,0.24,media,"33 copas prohibidas (clasificador fase 6, zona validada)",172,A Cañiza,A Franqueira (Santa María),88
+disperso_copas,555985.5,4666785.5,0.24,media,"19 copas prohibidas (clasificador fase 6, zona validada)",298,A Cañiza,Luneda (Santa María),89
+disperso_copas,557128.5,4667479.5,0.24,media,"13 copas prohibidas (clasificador fase 6, zona validada)",332,A Cañiza,Luneda (Santa María),90
+disperso_copas,559293.5,4669600.5,0.24,media,"41 copas prohibidas (clasificador fase 6, zona validada)",451,A Cañiza,Valeixe (Santa Cristina),91
+disperso_copas,557468.5,4668606.5,0.23,media,"29 copas prohibidas (clasificador fase 6, zona validada)",339,A Cañiza,Parada das Achas (Santiago),92
+disperso_copas,558844.5,4668532.5,0.22,media,"19 copas prohibidas (clasificador fase 6, zona validada)",390,A Cañiza,Valeixe (Santa Cristina),93
+disperso_copas,558620.5,4669191.5,0.21,media,"16 copas prohibidas (clasificador fase 6, zona validada)",397,A Cañiza,Valeixe (Santa Cristina),94
+eucaliptal_35m,559519.5,4670078.5,0.19,alta,dosel >35 m (1920 m2); solo eucalipto llega,26,A Cañiza,Valeixe (Santa Cristina),95
+disperso_copas,550910.5,4669284.5,0.19,media,"19 copas prohibidas (clasificador fase 6, zona validada)",174,A Cañiza,A Franqueira (Santa María),96
+disperso_copas,558075.5,4669609.5,0.19,media,"18 copas prohibidas (clasificador fase 6, zona validada)",401,A Cañiza,Parada das Achas (Santiago),97
+disperso_copas,559899.5,4667145.5,0.19,media,"24 copas prohibidas (clasificador fase 6, zona validada)",431,A Cañiza,Valeixe (Santa Cristina),98
+disperso_copas,559533.5,4669057.5,0.19,media,"18 copas prohibidas (clasificador fase 6, zona validada)",447,A Cañiza,Valeixe (Santa Cristina),99
+disperso_copas,559144.5,4675744.5,0.19,media,"16 copas prohibidas (clasificador fase 6, zona validada)",455,A Cañiza,Petán (San Xián),100
+disperso_copas,557978.5,4669132.5,0.18,media,"14 copas prohibidas (clasificador fase 6, zona validada)",349,A Cañiza,Parada das Achas (Santiago),101
+disperso_copas,557916.5,4668962.5,0.17,media,"11 copas prohibidas (clasificador fase 6, zona validada)",337,A Cañiza,Parada das Achas (Santiago),102
+disperso_copas,558578.5,4669641.5,0.17,media,"17 copas prohibidas (clasificador fase 6, zona validada)",398,A Cañiza,Valeixe (Santa Cristina),103
+disperso_copas,559110.5,4676296.5,0.17,media,"15 copas prohibidas (clasificador fase 6, zona validada)",460,A Cañiza,Petán (San Xián),104
+eucaliptal_35m,556257.5,4667779.5,0.17,alta,dosel >35 m (1678 m2); solo eucalipto llega,6,A Cañiza,Luneda (Santa María),105
+disperso_copas,557401.5,4676096.5,0.16,media,"24 copas prohibidas (clasificador fase 6, zona validada)",358,A Cañiza,Petán (San Xián),106
+disperso_copas,559531.5,4667093.5,0.16,media,"11 copas prohibidas (clasificador fase 6, zona validada)",428,A Cañiza,Valeixe (Santa Cristina),107
+disperso_copas,559313.5,4675683.5,0.16,media,"16 copas prohibidas (clasificador fase 6, zona validada)",457,A Cañiza,Petán (San Xián),108
+disperso_copas,556685.5,4667267.5,0.15,media,"18 copas prohibidas (clasificador fase 6, zona validada)",305,A Cañiza,Luneda (Santa María),109
+disperso_copas,558954.5,4668803.5,0.15,media,"16 copas prohibidas (clasificador fase 6, zona validada)",395,A Cañiza,Valeixe (Santa Cristina),110
+disperso_copas,559783.5,4668553.5,0.15,media,"18 copas prohibidas (clasificador fase 6, zona validada)",437,A Cañiza,Valeixe (Santa Cristina),111
+disperso_copas,559226.5,4668162.5,0.15,media,"11 copas prohibidas (clasificador fase 6, zona validada)",446,A Cañiza,Valeixe (Santa Cristina),112
+disperso_copas,554729.5,4670802.5,0.14,media,"9 copas prohibidas (clasificador fase 6, zona validada)",276,A Cañiza,Parada das Achas (Santiago),113
+disperso_copas,554473.5,4670188.5,0.14,media,"27 copas prohibidas (clasificador fase 6, zona validada)",277,A Cañiza,Parada das Achas (Santiago),114
+disperso_copas,555570.5,4668207.5,0.14,media,"12 copas prohibidas (clasificador fase 6, zona validada)",291,A Cañiza,Luneda (Santa María),115
+disperso_copas,558698.5,4669227.5,0.14,media,"12 copas prohibidas (clasificador fase 6, zona validada)",400,A Cañiza,Valeixe (Santa Cristina),116
+disperso_copas,553251.5,4670375.5,0.13,media,"12 copas prohibidas (clasificador fase 6, zona validada)",244,A Cañiza,A Franqueira (Santa María),117
+disperso_copas,557060.5,4669021.5,0.13,media,"15 copas prohibidas (clasificador fase 6, zona validada)",352,A Cañiza,Parada das Achas (Santiago),118
+disperso_copas,558457.5,4675341.5,0.13,media,"18 copas prohibidas (clasificador fase 6, zona validada)",409,A Cañiza,Petán (San Xián),119
+disperso_copas,559250.5,4668867.5,0.13,media,"14 copas prohibidas (clasificador fase 6, zona validada)",435,A Cañiza,Valeixe (Santa Cristina),120
+disperso_copas,559634.5,4668550.5,0.13,media,"11 copas prohibidas (clasificador fase 6, zona validada)",438,A Cañiza,Valeixe (Santa Cristina),121
+disperso_copas,559165.5,4669552.5,0.13,media,"17 copas prohibidas (clasificador fase 6, zona validada)",450,A Cañiza,Valeixe (Santa Cristina),122
+disperso_copas,551546.5,4669453.5,0.12,media,"18 copas prohibidas (clasificador fase 6, zona validada)",198,A Cañiza,A Franqueira (Santa María),123
+disperso_copas,551275.5,4669944.5,0.12,media,"25 copas prohibidas (clasificador fase 6, zona validada)",201,A Cañiza,A Franqueira (Santa María),124
+disperso_copas,557573.5,4669060.5,0.12,media,"14 copas prohibidas (clasificador fase 6, zona validada)",356,A Cañiza,Parada das Achas (Santiago),125
+disperso_copas,559272.5,4667086.5,0.12,media,"11 copas prohibidas (clasificador fase 6, zona validada)",433,A Cañiza,Valeixe (Santa Cristina),126
+disperso_copas,559176.5,4668569.5,0.12,media,"9 copas prohibidas (clasificador fase 6, zona validada)",443,A Cañiza,Valeixe (Santa Cristina),127
+eucaliptal_35m,562279.5,4670933.5,0.12,alta,dosel >35 m (1179 m2); solo eucalipto llega,36,A Cañiza,O Couto (San Bartolomeu),128
+eucaliptal_35m,562150.5,4671467.5,0.11,alta,dosel >35 m (1102 m2); solo eucalipto llega,38,A Cañiza,O Couto (San Bartolomeu),129
+disperso_copas,551317.5,4669804.5,0.11,media,"15 copas prohibidas (clasificador fase 6, zona validada)",200,A Cañiza,A Franqueira (Santa María),130
+disperso_copas,552745.5,4670321.5,0.11,media,"14 copas prohibidas (clasificador fase 6, zona validada)",221,A Cañiza,A Franqueira (Santa María),131
+disperso_copas,557372.5,4669253.5,0.11,media,"8 copas prohibidas (clasificador fase 6, zona validada)",348,A Cañiza,Parada das Achas (Santiago),132
+disperso_copas,558229.5,4668207.5,0.11,media,"11 copas prohibidas (clasificador fase 6, zona validada)",393,A Cañiza,Valeixe (Santa Cristina),133
+disperso_copas,558465.5,4675189.5,0.11,media,"15 copas prohibidas (clasificador fase 6, zona validada)",408,A Cañiza,Petán (San Xián),134
+disperso_copas,559434.5,4667132.5,0.11,media,"9 copas prohibidas (clasificador fase 6, zona validada)",424,A Cañiza,Valeixe (Santa Cristina),135
+disperso_copas,559189.5,4667237.5,0.11,media,"12 copas prohibidas (clasificador fase 6, zona validada)",429,A Cañiza,Valeixe (Santa Cristina),136
+disperso_copas,559924.5,4669650.5,0.11,media,"10 copas prohibidas (clasificador fase 6, zona validada)",449,A Cañiza,Valeixe (Santa Cristina),137
+disperso_copas,556140.5,4668220.5,0.1,media,"8 copas prohibidas (clasificador fase 6, zona validada)",315,A Cañiza,Luneda (Santa María),138
+disperso_copas,558477.5,4669452.5,0.1,media,"9 copas prohibidas (clasificador fase 6, zona validada)",402,A Cañiza,Valeixe (Santa Cristina),139
+disperso_copas,558403.5,4669300.5,0.1,media,"21 copas prohibidas (clasificador fase 6, zona validada)",403,A Cañiza,Valeixe (Santa Cristina),140
+disperso_copas,559216.5,4667649.5,0.1,media,"8 copas prohibidas (clasificador fase 6, zona validada)",427,A Cañiza,Valeixe (Santa Cristina),141
+disperso_copas,559773.5,4668369.5,0.1,media,"19 copas prohibidas (clasificador fase 6, zona validada)",444,A Cañiza,Valeixe (Santa Cristina),142
+disperso_copas,550515.5,4669296.5,0.09,media,"14 copas prohibidas (clasificador fase 6, zona validada)",173,A Cañiza,A Franqueira (Santa María),143
+disperso_copas,557187.5,4667411.5,0.09,media,"13 copas prohibidas (clasificador fase 6, zona validada)",333,A Cañiza,Luneda (Santa María),144
+disperso_copas,557036.5,4668777.5,0.09,media,"8 copas prohibidas (clasificador fase 6, zona validada)",338,A Cañiza,Parada das Achas (Santiago),145
+disperso_copas,558652.5,4668706.5,0.09,media,"9 copas prohibidas (clasificador fase 6, zona validada)",394,A Cañiza,Valeixe (Santa Cristina),146
+disperso_copas,558545.5,4669794.5,0.09,media,"11 copas prohibidas (clasificador fase 6, zona validada)",405,A Cañiza,Valeixe (Santa Cristina),147
+disperso_copas,558783.5,4676124.5,0.09,media,"21 copas prohibidas (clasificador fase 6, zona validada)",415,A Cañiza,Petán (San Xián),148
+disperso_copas,559459.5,4668314.5,0.09,media,"13 copas prohibidas (clasificador fase 6, zona validada)",440,A Cañiza,Valeixe (Santa Cristina),149
+disperso_copas,559389.5,4675854.5,0.09,media,"8 copas prohibidas (clasificador fase 6, zona validada)",456,A Cañiza,Petán (San Xián),150
+eucaliptal_35m,561750.5,4670946.5,0.09,alta,dosel >35 m (856 m2); solo eucalipto llega,31,A Cañiza,O Couto (San Bartolomeu),151
+disperso_copas,554723.5,4670192.5,0.08,media,"18 copas prohibidas (clasificador fase 6, zona validada)",278,A Cañiza,Parada das Achas (Santiago),152
+disperso_copas,554642.5,4670125.5,0.08,media,"14 copas prohibidas (clasificador fase 6, zona validada)",281,A Cañiza,Parada das Achas (Santiago),153
+disperso_copas,555900.5,4668389.5,0.08,media,"10 copas prohibidas (clasificador fase 6, zona validada)",292,A Cañiza,Luneda (Santa María),154
+disperso_copas,556522.5,4667222.5,0.08,media,"14 copas prohibidas (clasificador fase 6, zona validada)",304,A Cañiza,Luneda (Santa María),155
+disperso_copas,557537.5,4669940.5,0.08,media,"8 copas prohibidas (clasificador fase 6, zona validada)",345,A Cañiza,Parada das Achas (Santiago),156
+disperso_copas,557665.5,4669184.5,0.08,media,"9 copas prohibidas (clasificador fase 6, zona validada)",347,A Cañiza,Parada das Achas (Santiago),157
+eucaliptal_35m,558387.5,4667683.5,0.07,alta,dosel >35 m (736 m2); solo eucalipto llega,23,A Cañiza,Valeixe (Santa Cristina),158
+disperso_copas,551480.5,4669741.5,0.07,media,"22 copas prohibidas (clasificador fase 6, zona validada)",202,A Cañiza,A Franqueira (Santa María),159
+disperso_copas,551408.5,4669574.5,0.07,media,"11 copas prohibidas (clasificador fase 6, zona validada)",204,A Cañiza,A Franqueira (Santa María),160
+disperso_copas,553005.5,4670303.5,0.07,media,"12 copas prohibidas (clasificador fase 6, zona validada)",245,A Cañiza,A Franqueira (Santa María),161
+disperso_copas,557914.5,4667984.5,0.07,media,"8 copas prohibidas (clasificador fase 6, zona validada)",334,A Cañiza,Valeixe (Santa Cristina),162
+disperso_copas,557797.5,4669970.5,0.07,media,"10 copas prohibidas (clasificador fase 6, zona validada)",344,A Cañiza,Parada das Achas (Santiago),163
+disperso_copas,557599.5,4669900.5,0.07,media,"8 copas prohibidas (clasificador fase 6, zona validada)",350,A Cañiza,Parada das Achas (Santiago),164
+disperso_copas,558157.5,4667727.5,0.07,media,"11 copas prohibidas (clasificador fase 6, zona validada)",385,A Cañiza,Valeixe (Santa Cristina),165
+disperso_copas,559551.5,4668501.5,0.07,media,"8 copas prohibidas (clasificador fase 6, zona validada)",439,A Cañiza,Valeixe (Santa Cristina),166
+disperso_copas,559428.5,4669110.5,0.07,media,"11 copas prohibidas (clasificador fase 6, zona validada)",453,A Cañiza,Valeixe (Santa Cristina),167
+eucaliptal_35m,557835.5,4667398.5,0.07,alta,dosel >35 m (682 m2); solo eucalipto llega,15,A Cañiza,Valeixe (Santa Cristina),168
+eucaliptal_35m,559406.5,4675616.5,0.07,alta,dosel >35 m (651 m2); solo eucalipto llega,27,A Cañiza,Petán (San Xián),169
+disperso_copas,551890.5,4669614.5,0.06,media,"12 copas prohibidas (clasificador fase 6, zona validada)",203,A Cañiza,A Franqueira (Santa María),170
+disperso_copas,551495.5,4669916.5,0.06,media,"10 copas prohibidas (clasificador fase 6, zona validada)",205,A Cañiza,A Franqueira (Santa María),171
+disperso_copas,556386.5,4667700.5,0.06,media,"14 copas prohibidas (clasificador fase 6, zona validada)",310,A Cañiza,Luneda (Santa María),172
+disperso_copas,557804.5,4676218.5,0.06,media,"10 copas prohibidas (clasificador fase 6, zona validada)",357,A Cañiza,Petán (San Xián),173
+disperso_copas,558105.5,4668308.5,0.06,media,"8 copas prohibidas (clasificador fase 6, zona validada)",389,A Cañiza,Valeixe (Santa Cristina),174
+disperso_copas,558946.5,4675854.5,0.06,media,"8 copas prohibidas (clasificador fase 6, zona validada)",412,A Cañiza,Petán (San Xián),175
+disperso_copas,558201.5,4675869.5,0.06,media,"10 copas prohibidas (clasificador fase 6, zona validada)",413,A Cañiza,Petán (San Xián),176
+disperso_copas,559526.5,4668384.5,0.06,media,"10 copas prohibidas (clasificador fase 6, zona validada)",441,A Cañiza,Valeixe (Santa Cristina),177
+disperso_copas,559305.5,4675415.5,0.06,media,"9 copas prohibidas (clasificador fase 6, zona validada)",458,A Cañiza,As Achas (San Sebastián),178
+disperso_copas,559125.5,4677123.5,0.06,media,"12 copas prohibidas (clasificador fase 6, zona validada)",463,A Cañiza,Petán (San Xián),179
+eucaliptal_35m,556885.5,4668932.5,0.06,alta,dosel >35 m (568 m2); solo eucalipto llega,7,A Cañiza,Parada das Achas (Santiago),180
+eucaliptal_35m,560624.5,4669129.5,0.05,alta,dosel >35 m (545 m2); solo eucalipto llega,28,A Cañiza,Valeixe (Santa Cristina),181
+eucaliptal_35m,561915.5,4671455.5,0.05,alta,dosel >35 m (529 m2); solo eucalipto llega,33,A Cañiza,O Couto (San Bartolomeu),182
+eucaliptal_35m,558372.5,4669408.5,0.05,alta,dosel >35 m (505 m2); solo eucalipto llega,24,A Cañiza,Valeixe (Santa Cristina),183
+eucaliptal_35m,561638.5,4670511.5,0.05,alta,dosel >35 m (500 m2); solo eucalipto llega,32,A Cañiza,O Couto (San Bartolomeu),184
+disperso_copas,554693.5,4670375.5,0.05,media,"8 copas prohibidas (clasificador fase 6, zona validada)",280,A Cañiza,Parada das Achas (Santiago),185
+disperso_copas,558053.5,4675014.5,0.05,media,"9 copas prohibidas (clasificador fase 6, zona validada)",410,A Cañiza,As Achas (San Sebastián),186
+disperso_copas,559056.5,4667911.5,0.05,media,"11 copas prohibidas (clasificador fase 6, zona validada)",432,A Cañiza,Valeixe (Santa Cristina),187
+disperso_copas,559640.5,4669577.5,0.05,media,"11 copas prohibidas (clasificador fase 6, zona validada)",452,A Cañiza,Valeixe (Santa Cristina),188
+eucaliptal_35m,557747.5,4667899.5,0.05,alta,dosel >35 m (492 m2); solo eucalipto llega,14,A Cañiza,Valeixe (Santa Cristina),189
+eucaliptal_35m,557030.5,4669478.5,0.05,alta,dosel >35 m (480 m2); solo eucalipto llega,16,A Cañiza,Parada das Achas (Santiago),190
+eucaliptal_35m,559460.5,4668485.5,0.04,alta,dosel >35 m (441 m2); solo eucalipto llega,25,A Cañiza,Valeixe (Santa Cristina),191
+eucaliptal_35m,562959.5,4670674.5,0.04,alta,dosel >35 m (438 m2); solo eucalipto llega,37,A Cañiza,O Couto (San Bartolomeu),192
+eucaliptal_35m,557493.5,4670277.5,0.04,alta,dosel >35 m (423 m2); solo eucalipto llega,17,A Cañiza,Parada das Achas (Santiago),193
+eucaliptal_35m,555671.5,4668262.5,0.04,alta,dosel >35 m (406 m2); solo eucalipto llega,5,A Cañiza,Luneda (Santa María),194
+disperso_copas,550701.5,4669550.5,0.04,media,"9 copas prohibidas (clasificador fase 6, zona validada)",175,A Cañiza,A Franqueira (Santa María),195
+disperso_copas,558415.5,4675506.5,0.04,media,"12 copas prohibidas (clasificador fase 6, zona validada)",411,A Cañiza,Petán (San Xián),196
+disperso_copas,557846.5,4669630.5,0.03,media,"9 copas prohibidas (clasificador fase 6, zona validada)",353,A Cañiza,Parada das Achas (Santiago),197
+disperso_copas,559077.5,4668732.5,0.03,media,"8 copas prohibidas (clasificador fase 6, zona validada)",445,A Cañiza,Valeixe (Santa Cristina),198
+disperso_copas,559100.5,4676080.5,0.03,media,"8 copas prohibidas (clasificador fase 6, zona validada)",462,A Cañiza,Petán (San Xián),199
+disperso_copas,552808.5,4670032.5,0.02,media,"9 copas prohibidas (clasificador fase 6, zona validada)",222,A Cañiza,A Franqueira (Santa María),200
+disperso_copas,559256.5,4669717.5,0.02,media,"8 copas prohibidas (clasificador fase 6, zona validada)",448,A Cañiza,Valeixe (Santa Cristina),201
+rodal_ifn,557643.5,4665250.5,17.57,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 100%",133,Arbo,Mourentán (San Cristovo),1
+rodal_ifn,560546.5,4664281.5,3.75,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 70%",110,Arbo,Cequeliños (San Miguel),2
+rodal_ifn,554597.5,4662589.5,3.14,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 90%",171,Arbo,Cabeiras (San Sebastián),3
+rodal_ifn,560086.5,4664469.5,3.08,media-alta,"Eucalyptus_globulus (IFN 2010, persistente), f_prohibida 100%",70,Arbo,Cequeliños (San Miguel),4
+rodal_ifn,555784.5,4661345.5,2.99,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 70%",92,Arbo,Arbo (Santa María),5
+disperso_copas,556066.5,4666263.5,2.97,media,"243 copas prohibidas (clasificador fase 6, zona validada)",300,Arbo,Mourentán (San Cristovo),6
+rodal_ifn,558819.5,4665541.5,2.28,media-alta,"Eucalyptus_globulus (IFN 2010, persistente), f_prohibida 89%",167,Arbo,Mourentán (San Cristovo),7
+disperso_copas,557563.5,4666448.5,2.13,media,"243 copas prohibidas (clasificador fase 6, zona validada)",325,Arbo,Mourentán (San Cristovo),8
+rodal_ifn,557907.5,4665980.5,2.11,media-alta,"Eucalyptus_globulus (IFN 2010, persistente), f_prohibida 100%",79,Arbo,Mourentán (San Cristovo),9
+rodal_ifn,557763.5,4662182.5,1.69,media-alta,"Eucalyptus_globulus (IFN 2010, persistente), f_prohibida 100%",109,Arbo,Arbo (Santa María),10
+disperso_copas,556366.5,4666060.5,1.58,media,"120 copas prohibidas (clasificador fase 6, zona validada)",301,Arbo,Mourentán (San Cristovo),11
+rodal_ifn,556917.5,4662067.5,1.44,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 80%",93,Arbo,Arbo (Santa María),12
+rodal_ifn,556910.5,4662978.5,1.4,media-alta,"Eucalyptus_globulus (IFN 2010, persistente), f_prohibida 100%",75,Arbo,Arbo (Santa María),13
+rodal_ifn,558532.5,4663448.5,1.34,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 100%",72,Arbo,Arbo (Santa María),14
+rodal_ifn,560876.5,4664010.5,1.24,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 100%",107,Arbo,Cequeliños (San Miguel),15
+rodal_ifn,554933.5,4661628.5,1.21,media-alta,"Eucalyptus_globulus (IFN 2010, persistente), f_prohibida 100%",89,Arbo,Barcela (San Xoán),16
+rodal_ifn,554814.5,4661654.5,0.86,media-alta,"Eucalyptus_globulus (IFN 2010, persistente), f_prohibida 89%",169,Arbo,Barcela (San Xoán),17
+disperso_copas,559242.5,4666434.5,0.83,media,"79 copas prohibidas (clasificador fase 6, zona validada)",417,Arbo,Mourentán (San Cristovo),18
+rodal_ifn,556801.5,4663799.5,0.77,media-alta,"Eucalyptus_globulus (IFN 2010, persistente), f_prohibida 100%",76,Arbo,Mourentán (San Cristovo),19
+rodal_ifn,557564.5,4661926.5,0.68,media-alta,"Eucalyptus_globulus (IFN 2010, persistente), f_prohibida 100%",108,Arbo,Arbo (Santa María),20
+disperso_copas,557042.5,4666144.5,0.67,media,"58 copas prohibidas (clasificador fase 6, zona validada)",323,Arbo,Mourentán (San Cristovo),21
+disperso_copas,556948.5,4665914.5,0.54,media,"40 copas prohibidas (clasificador fase 6, zona validada)",296,Arbo,Mourentán (San Cristovo),22
+disperso_copas,557789.5,4666689.5,0.54,media,"65 copas prohibidas (clasificador fase 6, zona validada)",329,Arbo,Mourentán (San Cristovo),23
+disperso_copas,557895.5,4665382.5,0.49,media,"31 copas prohibidas (clasificador fase 6, zona validada)",321,Arbo,Mourentán (San Cristovo),24
+disperso_copas,558047.5,4666207.5,0.46,media,"60 copas prohibidas (clasificador fase 6, zona validada)",380,Arbo,Mourentán (San Cristovo),25
+disperso_copas,555862.5,4666507.5,0.4,media,"26 copas prohibidas (clasificador fase 6, zona validada)",286,Arbo,Mourentán (San Cristovo),26
+disperso_copas,558133.5,4665061.5,0.38,media,"19 copas prohibidas (clasificador fase 6, zona validada)",363,Arbo,Mourentán (San Cristovo),27
+disperso_copas,558268.5,4666604.5,0.37,media,"18 copas prohibidas (clasificador fase 6, zona validada)",372,Arbo,Mourentán (San Cristovo),28
+disperso_copas,559024.5,4666504.5,0.29,media,"26 copas prohibidas (clasificador fase 6, zona validada)",378,Arbo,Mourentán (San Cristovo),29
+disperso_copas,553668.5,4665124.5,0.28,media,"31 copas prohibidas (clasificador fase 6, zona validada)",242,Arbo,Cabeiras (San Sebastián),30
+disperso_copas,557232.5,4666293.5,0.28,media,"25 copas prohibidas (clasificador fase 6, zona validada)",330,Arbo,Mourentán (San Cristovo),31
+disperso_copas,558074.5,4665449.5,0.27,media,"33 copas prohibidas (clasificador fase 6, zona validada)",364,Arbo,Mourentán (San Cristovo),32
+disperso_copas,558206.5,4666966.5,0.27,media,"22 copas prohibidas (clasificador fase 6, zona validada)",381,Arbo,Mourentán (San Cristovo),33
+disperso_copas,558746.5,4666457.5,0.25,media,"16 copas prohibidas (clasificador fase 6, zona validada)",375,Arbo,Mourentán (San Cristovo),34
+eucaliptal_35m,558253.5,4665280.5,0.23,alta,dosel >35 m (2345 m2); solo eucalipto llega,21,Arbo,Mourentán (San Cristovo),35
+disperso_copas,553968.5,4665250.5,0.22,media,"17 copas prohibidas (clasificador fase 6, zona validada)",241,Arbo,Arbo (Santa María),36
+disperso_copas,558671.5,4666120.5,0.22,media,"13 copas prohibidas (clasificador fase 6, zona validada)",373,Arbo,Mourentán (San Cristovo),37
+disperso_copas,558086.5,4667080.5,0.22,media,"13 copas prohibidas (clasificador fase 6, zona validada)",383,Arbo,Mourentán (San Cristovo),38
+eucaliptal_35m,557673.5,4664770.5,0.2,alta,dosel >35 m (2007 m2); solo eucalipto llega,10,Arbo,Mourentán (San Cristovo),39
+disperso_copas,557814.5,4666212.5,0.2,media,"29 copas prohibidas (clasificador fase 6, zona validada)",326,Arbo,Mourentán (San Cristovo),40
+eucaliptal_35m,558280.5,4665139.5,0.19,alta,dosel >35 m (1944 m2); solo eucalipto llega,22,Arbo,Mourentán (San Cristovo),41
+disperso_copas,558472.5,4665032.5,0.19,media,"11 copas prohibidas (clasificador fase 6, zona validada)",361,Arbo,Mourentán (San Cristovo),42
+disperso_copas,558376.5,4665392.5,0.19,media,"16 copas prohibidas (clasificador fase 6, zona validada)",362,Arbo,Mourentán (San Cristovo),43
+disperso_copas,558281.5,4666435.5,0.19,media,"12 copas prohibidas (clasificador fase 6, zona validada)",376,Arbo,Mourentán (San Cristovo),44
+disperso_copas,558225.5,4665643.5,0.18,media,"13 copas prohibidas (clasificador fase 6, zona validada)",368,Arbo,Mourentán (San Cristovo),45
+disperso_copas,559232.5,4666177.5,0.18,media,"13 copas prohibidas (clasificador fase 6, zona validada)",422,Arbo,Mourentán (San Cristovo),46
+disperso_copas,556802.5,4665800.5,0.17,media,"12 copas prohibidas (clasificador fase 6, zona validada)",294,Arbo,Mourentán (San Cristovo),47
+disperso_copas,558383.5,4666670.5,0.17,media,"11 copas prohibidas (clasificador fase 6, zona validada)",374,Arbo,Mourentán (San Cristovo),48
+disperso_copas,557941.5,4665635.5,0.16,media,"12 copas prohibidas (clasificador fase 6, zona validada)",317,Arbo,Mourentán (San Cristovo),49
+eucaliptal_35m,557824.5,4664017.5,0.15,alta,dosel >35 m (1531 m2); solo eucalipto llega,12,Arbo,Arbo (Santa María),50
+disperso_copas,557613.5,4665366.5,0.15,media,"20 copas prohibidas (clasificador fase 6, zona validada)",318,Arbo,Mourentán (San Cristovo),51
+disperso_copas,558610.5,4665861.5,0.15,media,"27 copas prohibidas (clasificador fase 6, zona validada)",365,Arbo,Mourentán (San Cristovo),52
+disperso_copas,558519.5,4666431.5,0.14,media,"10 copas prohibidas (clasificador fase 6, zona validada)",377,Arbo,Mourentán (San Cristovo),53
+eucaliptal_35m,558264.5,4663322.5,0.14,alta,dosel >35 m (1350 m2); solo eucalipto llega,18,Arbo,Arbo (Santa María),54
+disperso_copas,556722.5,4665897.5,0.13,media,"14 copas prohibidas (clasificador fase 6, zona validada)",295,Arbo,Mourentán (San Cristovo),55
+disperso_copas,557269.5,4665815.5,0.13,media,"13 copas prohibidas (clasificador fase 6, zona validada)",320,Arbo,Mourentán (San Cristovo),56
+eucaliptal_35m,557835.5,4663984.5,0.12,alta,dosel >35 m (1234 m2); solo eucalipto llega,8,Arbo,Arbo (Santa María),57
+disperso_copas,558064.5,4665579.5,0.12,media,"8 copas prohibidas (clasificador fase 6, zona validada)",369,Arbo,Mourentán (San Cristovo),58
+disperso_copas,558554.5,4666299.5,0.12,media,"13 copas prohibidas (clasificador fase 6, zona validada)",382,Arbo,Mourentán (San Cristovo),59
+disperso_copas,557163.5,4665295.5,0.11,media,"9 copas prohibidas (clasificador fase 6, zona validada)",319,Arbo,Mourentán (San Cristovo),60
+disperso_copas,556275.5,4665797.5,0.1,media,"9 copas prohibidas (clasificador fase 6, zona validada)",293,Arbo,Mourentán (San Cristovo),61
+disperso_copas,557370.5,4666177.5,0.1,media,"19 copas prohibidas (clasificador fase 6, zona validada)",327,Arbo,Mourentán (San Cristovo),62
+disperso_copas,557942.5,4667077.5,0.1,media,"11 copas prohibidas (clasificador fase 6, zona validada)",335,Arbo,Mourentán (San Cristovo),63
+eucaliptal_35m,558204.5,4664037.5,0.09,alta,dosel >35 m (935 m2); solo eucalipto llega,19,Arbo,Mourentán (San Cristovo),64
+disperso_copas,558378.5,4665094.5,0.09,media,"10 copas prohibidas (clasificador fase 6, zona validada)",366,Arbo,Mourentán (San Cristovo),65
+eucaliptal_35m,557595.5,4665519.5,0.08,alta,dosel >35 m (820 m2); solo eucalipto llega,13,Arbo,Mourentán (San Cristovo),66
+disperso_copas,557576.5,4666233.5,0.08,media,"9 copas prohibidas (clasificador fase 6, zona validada)",328,Arbo,Mourentán (San Cristovo),67
+disperso_copas,558498.5,4665602.5,0.08,media,"8 copas prohibidas (clasificador fase 6, zona validada)",367,Arbo,Mourentán (San Cristovo),68
+eucaliptal_35m,555431.5,4660240.5,0.08,alta,dosel >35 m (769 m2); solo eucalipto llega,4,Arbo,Barcela (San Xoán),69
+disperso_copas,557838.5,4665229.5,0.07,media,"12 copas prohibidas (clasificador fase 6, zona validada)",322,Arbo,Mourentán (San Cristovo),70
+disperso_copas,557637.5,4666363.5,0.07,media,"9 copas prohibidas (clasificador fase 6, zona validada)",324,Arbo,Mourentán (San Cristovo),71
+disperso_copas,558946.5,4666399.5,0.07,media,"9 copas prohibidas (clasificador fase 6, zona validada)",379,Arbo,Mourentán (San Cristovo),72
+eucaliptal_35m,558447.5,4665691.5,0.07,alta,dosel >35 m (679 m2); solo eucalipto llega,20,Arbo,Mourentán (San Cristovo),73
+disperso_copas,556487.5,4666351.5,0.06,media,"14 copas prohibidas (clasificador fase 6, zona validada)",297,Arbo,Mourentán (San Cristovo),74
+disperso_copas,556783.5,4666060.5,0.06,media,"9 copas prohibidas (clasificador fase 6, zona validada)",299,Arbo,Mourentán (San Cristovo),75
+eucaliptal_35m,557807.5,4664959.5,0.04,alta,dosel >35 m (443 m2); solo eucalipto llega,9,Arbo,Mourentán (San Cristovo),76
+eucaliptal_35m,557838.5,4664100.5,0.04,alta,dosel >35 m (432 m2); solo eucalipto llega,11,Arbo,Mourentán (San Cristovo),77
+disperso_copas,558009.5,4665133.5,0.04,media,"11 copas prohibidas (clasificador fase 6, zona validada)",371,Arbo,Mourentán (San Cristovo),78
+disperso_copas,558586.5,4665177.5,0.03,media,"8 copas prohibidas (clasificador fase 6, zona validada)",370,Arbo,Mourentán (San Cristovo),79
+rodal_ifn,551778.5,4674988.5,8.44,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 67%",153,Covelo,Covelo (Santa Mariña),1
+rodal_ifn,549877.5,4678046.5,7.0,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 100%",149,Covelo,Barcia de Mera (San Martiño),2
+rodal_ifn,549588.5,4678687.5,5.92,media-alta,"Eucalyptus_globulus (IFN 2010, persistente), f_prohibida 56%",141,Covelo,Barcia de Mera (San Martiño),3
+rodal_ifn,550090.5,4681250.5,4.54,media-alta,"Eucalyptus_globulus (IFN 2010, persistente), f_prohibida 70%",140,Covelo,O Piñeiro (San Xoán),4
+rodal_ifn,552280.5,4676838.5,4.31,media-alta,"Eucalyptus_globulus (IFN 2010, persistente), f_prohibida 89%",146,Covelo,Covelo (Santa Mariña),5
+rodal_ifn,552667.5,4675876.5,3.75,media-alta,"Eucalyptus_globulus (IFN 2010, persistente), f_prohibida 67%",151,Covelo,Santiago de Covelo (Santiago),6
+rodal_ifn,553085.5,4675468.5,2.68,media-alta,"Eucalyptus_globulus (IFN 2010, persistente), f_prohibida 100%",152,Covelo,Santiago de Covelo (Santiago),7
+rodal_ifn,550140.5,4678239.5,2.55,media-alta,"Eucalyptus_globulus (IFN 2010, persistente), f_prohibida 100%",148,Covelo,Barcia de Mera (San Martiño),8
+rodal_ifn,550990.5,4674337.5,2.35,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 89%",154,Covelo,Covelo (Santa Mariña),9
+rodal_ifn,553497.5,4678947.5,2.03,media-alta,"Eucalyptus_globulus (IFN 2010, persistente), f_prohibida 67%",81,Covelo,Maceira (San Salvador),10
+rodal_ifn,551246.5,4672592.5,2.03,media-alta,"Eucalyptus_globulus (IFN 2010, persistente), f_prohibida 89%",147,Covelo,Paraños (Santa María),11
+rodal_ifn,549954.5,4672435.5,1.7,media-alta,"Eucalyptus_globulus (IFN 2010, persistente), f_prohibida 100%",156,Covelo,Paraños (Santa María),12
+rodal_ifn,553385.5,4678078.5,1.6,media-alta,"Eucalyptus_globulus (IFN 2010, persistente), f_prohibida 67%",144,Covelo,Maceira (San Salvador),13
+rodal_ifn,552969.5,4676769.5,1.51,media-alta,"Eucalyptus_globulus (IFN 2010, persistente), f_prohibida 100%",166,Covelo,Santiago de Covelo (Santiago),14
+rodal_ifn,551857.5,4676580.5,1.38,media-alta,"Eucalyptus_globulus (IFN 2010, persistente), f_prohibida 100%",145,Covelo,Covelo (Santa Mariña),15
+rodal_ifn,549405.5,4676934.5,0.98,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 100%",150,Covelo,Casteláns (Santo Estevo),16
+rodal_ifn,551138.5,4678671.5,0.92,media-alta,"Eucalyptus_globulus (IFN 2010, persistente), f_prohibida 100%",142,Covelo,Casteláns (Santo Estevo),17
+rodal_ifn,554254.5,4681599.5,0.82,media-alta,"Eucalyptus_globulus (IFN 2010, persistente), f_prohibida 75%",80,Covelo,Fofe (San Miguel),18
+rodal_ifn,550280.5,4678743.5,0.81,media-alta,"Eucalyptus_globulus (IFN 2010, persistente), f_prohibida 89%",160,Covelo,Barcia de Mera (San Martiño),19
+rodal_ifn,553206.5,4671883.5,0.69,media-alta,"Quercus_robur (IFN 2010, persistente), f_prohibida 50%",127,Covelo,Prado de Canda (Santiago),20
+rodal_ifn,551476.5,4678483.5,0.68,media-alta,"Eucalyptus_globulus (IFN 2010, persistente), f_prohibida 89%",143,Covelo,Casteláns (Santo Estevo),21
+rodal_ifn,552829.5,4674969.5,0.64,media-alta,"Eucalyptus_globulus (IFN 2010, persistente), f_prohibida 100%",155,Covelo,Santiago de Covelo (Santiago),22
+disperso_copas,550754.5,4674670.5,0.59,media,"37 copas prohibidas (clasificador fase 6, zona validada)",186,Covelo,Covelo (Santa Mariña),23
+disperso_copas,551849.5,4675797.5,0.58,media,"49 copas prohibidas (clasificador fase 6, zona validada)",214,Covelo,Covelo (Santa Mariña),24
+disperso_copas,553662.5,4672605.5,0.56,media,"61 copas prohibidas (clasificador fase 6, zona validada)",252,Covelo,A Lamosa (San Bartolomeu),25
+disperso_copas,552898.5,4672851.5,0.44,media,"33 copas prohibidas (clasificador fase 6, zona validada)",226,Covelo,A Lamosa (San Bartolomeu),26
+disperso_copas,552172.5,4676476.5,0.44,media,"37 copas prohibidas (clasificador fase 6, zona validada)",236,Covelo,Covelo (Santa Mariña),27
+disperso_copas,552546.5,4676183.5,0.43,media,"34 copas prohibidas (clasificador fase 6, zona validada)",239,Covelo,Santiago de Covelo (Santiago),28
+disperso_copas,552733.5,4675778.5,0.4,media,"18 copas prohibidas (clasificador fase 6, zona validada)",229,Covelo,Santiago de Covelo (Santiago),29
+disperso_copas,553932.5,4672546.5,0.38,media,"32 copas prohibidas (clasificador fase 6, zona validada)",249,Covelo,A Lamosa (San Bartolomeu),30
+disperso_copas,551649.5,4678424.5,0.36,media,"29 copas prohibidas (clasificador fase 6, zona validada)",218,Covelo,Casteláns (Santo Estevo),31
+disperso_copas,551579.5,4675236.5,0.34,media,"23 copas prohibidas (clasificador fase 6, zona validada)",216,Covelo,Covelo (Santa Mariña),32
+disperso_copas,552727.5,4675535.5,0.31,media,"24 copas prohibidas (clasificador fase 6, zona validada)",230,Covelo,Santiago de Covelo (Santiago),33
+disperso_copas,552920.5,4672108.5,0.29,media,"31 copas prohibidas (clasificador fase 6, zona validada)",225,Covelo,Prado de Canda (Santiago),34
+disperso_copas,552075.5,4675563.5,0.29,media,"26 copas prohibidas (clasificador fase 6, zona validada)",231,Covelo,Covelo (Santa Mariña),35
+disperso_copas,550462.5,4672137.5,0.28,media,"12 copas prohibidas (clasificador fase 6, zona validada)",176,Covelo,Paraños (Santa María),36
+disperso_copas,550679.5,4672433.5,0.28,media,"27 copas prohibidas (clasificador fase 6, zona validada)",183,Covelo,Paraños (Santa María),37
+disperso_copas,552713.5,4675866.5,0.28,media,"19 copas prohibidas (clasificador fase 6, zona validada)",233,Covelo,Santiago de Covelo (Santiago),38
+disperso_copas,553156.5,4671632.5,0.27,media,"46 copas prohibidas (clasificador fase 6, zona validada)",248,Covelo,Prado de Canda (Santiago),39
+disperso_copas,553148.5,4676784.5,0.27,media,"19 copas prohibidas (clasificador fase 6, zona validada)",262,Covelo,Santiago de Covelo (Santiago),40
+disperso_copas,550593.5,4672284.5,0.26,media,"16 copas prohibidas (clasificador fase 6, zona validada)",179,Covelo,Paraños (Santa María),41
+disperso_copas,550077.5,4673219.5,0.25,media,"16 copas prohibidas (clasificador fase 6, zona validada)",184,Covelo,Paraños (Santa María),42
+disperso_copas,550732.5,4674831.5,0.25,media,"27 copas prohibidas (clasificador fase 6, zona validada)",187,Covelo,Covelo (Santa Mariña),43
+disperso_copas,553445.5,4679670.5,0.25,media,"19 copas prohibidas (clasificador fase 6, zona validada)",271,Covelo,Maceira (San Salvador),44
+disperso_copas,550943.5,4674475.5,0.24,media,"30 copas prohibidas (clasificador fase 6, zona validada)",185,Covelo,Covelo (Santa Mariña),45
+disperso_copas,553031.5,4671583.5,0.23,media,"18 copas prohibidas (clasificador fase 6, zona validada)",246,Covelo,Prado de Canda (Santiago),46
+disperso_copas,553121.5,4676332.5,0.22,media,"13 copas prohibidas (clasificador fase 6, zona validada)",267,Covelo,Santiago de Covelo (Santiago),47
+disperso_copas,551175.5,4672462.5,0.21,media,"22 copas prohibidas (clasificador fase 6, zona validada)",208,Covelo,Paraños (Santa María),48
+disperso_copas,553832.5,4676172.5,0.21,media,"24 copas prohibidas (clasificador fase 6, zona validada)",263,Covelo,Santiago de Covelo (Santiago),49
+disperso_copas,551901.5,4676316.5,0.2,media,"21 copas prohibidas (clasificador fase 6, zona validada)",217,Covelo,Covelo (Santa Mariña),50
+disperso_copas,551389.5,4680857.5,0.2,media,"14 copas prohibidas (clasificador fase 6, zona validada)",220,Covelo,O Piñeiro (San Xoán),51
+disperso_copas,550242.5,4677923.5,0.19,media,"21 copas prohibidas (clasificador fase 6, zona validada)",194,Covelo,Barcia de Mera (San Martiño),52
+disperso_copas,550541.5,4672175.5,0.18,media,"11 copas prohibidas (clasificador fase 6, zona validada)",177,Covelo,Paraños (Santa María),53
+disperso_copas,550391.5,4672442.5,0.18,media,"18 copas prohibidas (clasificador fase 6, zona validada)",181,Covelo,Paraños (Santa María),54
+disperso_copas,552630.5,4671643.5,0.18,media,"18 copas prohibidas (clasificador fase 6, zona validada)",224,Covelo,Prado de Canda (Santiago),55
+disperso_copas,550738.5,4672238.5,0.17,media,"25 copas prohibidas (clasificador fase 6, zona validada)",182,Covelo,Paraños (Santa María),56
+disperso_copas,551047.5,4672597.5,0.17,media,"12 copas prohibidas (clasificador fase 6, zona validada)",206,Covelo,Paraños (Santa María),57
+disperso_copas,551093.5,4675035.5,0.17,media,"11 copas prohibidas (clasificador fase 6, zona validada)",215,Covelo,Covelo (Santa Mariña),58
+disperso_copas,553142.5,4672960.5,0.17,media,"20 copas prohibidas (clasificador fase 6, zona validada)",256,Covelo,A Lamosa (San Bartolomeu),59
+disperso_copas,550133.5,4672469.5,0.15,media,"16 copas prohibidas (clasificador fase 6, zona validada)",178,Covelo,Paraños (Santa María),60
+disperso_copas,553967.5,4681178.5,0.15,media,"10 copas prohibidas (clasificador fase 6, zona validada)",275,Covelo,Fofe (San Miguel),61
+disperso_copas,550782.5,4674958.5,0.14,media,"14 copas prohibidas (clasificador fase 6, zona validada)",190,Covelo,Covelo (Santa Mariña),62
+disperso_copas,551315.5,4674961.5,0.14,media,"12 copas prohibidas (clasificador fase 6, zona validada)",210,Covelo,Covelo (Santa Mariña),63
+disperso_copas,553191.5,4672824.5,0.14,media,"14 copas prohibidas (clasificador fase 6, zona validada)",251,Covelo,A Lamosa (San Bartolomeu),64
+disperso_copas,554478.5,4681267.5,0.14,media,"13 copas prohibidas (clasificador fase 6, zona validada)",284,Covelo,Fofe (San Miguel),65
+disperso_copas,551180.5,4674599.5,0.13,media,"8 copas prohibidas (clasificador fase 6, zona validada)",212,Covelo,Covelo (Santa Mariña),66
+disperso_copas,552596.5,4671800.5,0.13,media,"15 copas prohibidas (clasificador fase 6, zona validada)",223,Covelo,Prado de Canda (Santiago),67
+disperso_copas,553677.5,4676266.5,0.13,media,"10 copas prohibidas (clasificador fase 6, zona validada)",268,Covelo,Santiago de Covelo (Santiago),68
+disperso_copas,552896.5,4676397.5,0.12,media,"8 copas prohibidas (clasificador fase 6, zona validada)",237,Covelo,Santiago de Covelo (Santiago),69
+disperso_copas,550903.5,4675152.5,0.11,media,"15 copas prohibidas (clasificador fase 6, zona validada)",191,Covelo,Covelo (Santa Mariña),70
+disperso_copas,553654.5,4675886.5,0.11,media,"9 copas prohibidas (clasificador fase 6, zona validada)",259,Covelo,Santiago de Covelo (Santiago),71
+disperso_copas,553238.5,4678519.5,0.11,media,"13 copas prohibidas (clasificador fase 6, zona validada)",269,Covelo,Maceira (San Salvador),72
+disperso_copas,553116.5,4679855.5,0.11,media,"11 copas prohibidas (clasificador fase 6, zona validada)",270,Covelo,Maceira (San Salvador),73
+disperso_copas,550872.5,4680670.5,0.1,media,"9 copas prohibidas (clasificador fase 6, zona validada)",195,Covelo,O Piñeiro (San Xoán),74
+disperso_copas,552704.5,4675673.5,0.1,media,"15 copas prohibidas (clasificador fase 6, zona validada)",234,Covelo,Santiago de Covelo (Santiago),75
+disperso_copas,552058.5,4676301.5,0.1,media,"8 copas prohibidas (clasificador fase 6, zona validada)",240,Covelo,Covelo (Santa Mariña),76
+disperso_copas,553730.5,4672435.5,0.1,media,"8 copas prohibidas (clasificador fase 6, zona validada)",250,Covelo,A Lamosa (San Bartolomeu),77
+disperso_copas,553360.5,4672977.5,0.1,media,"12 copas prohibidas (clasificador fase 6, zona validada)",254,Covelo,A Lamosa (San Bartolomeu),78
+disperso_copas,553304.5,4673337.5,0.1,media,"12 copas prohibidas (clasificador fase 6, zona validada)",255,Covelo,A Lamosa (San Bartolomeu),79
+eucaliptal_35m,551964.5,4675267.5,0.1,alta,dosel >35 m (966 m2); solo eucalipto llega,1,Covelo,Covelo (Santa Mariña),80
+disperso_copas,550040.5,4674362.5,0.09,media,"9 copas prohibidas (clasificador fase 6, zona validada)",189,Covelo,Covelo (Santa Mariña),81
+disperso_copas,551070.5,4672751.5,0.09,media,"8 copas prohibidas (clasificador fase 6, zona validada)",207,Covelo,Paraños (Santa María),82
+disperso_copas,551950.5,4674883.5,0.09,media,"10 copas prohibidas (clasificador fase 6, zona validada)",213,Covelo,Covelo (Santa Mariña),83
+disperso_copas,552261.5,4675419.5,0.09,media,"15 copas prohibidas (clasificador fase 6, zona validada)",232,Covelo,Covelo (Santa Mariña),84
+disperso_copas,552846.5,4675432.5,0.09,media,"8 copas prohibidas (clasificador fase 6, zona validada)",235,Covelo,Santiago de Covelo (Santiago),85
+disperso_copas,553202.5,4676712.5,0.09,media,"9 copas prohibidas (clasificador fase 6, zona validada)",265,Covelo,Santiago de Covelo (Santiago),86
+eucaliptal_35m,550806.5,4675050.5,0.09,alta,dosel >35 m (874 m2); solo eucalipto llega,0,Covelo,Covelo (Santa Mariña),87
+disperso_copas,550019.5,4676096.5,0.08,media,"9 copas prohibidas (clasificador fase 6, zona validada)",193,Covelo,Casteláns (Santo Estevo),88
+disperso_copas,552505.5,4673082.5,0.08,media,"14 copas prohibidas (clasificador fase 6, zona validada)",227,Covelo,A Lamosa (San Bartolomeu),89
+disperso_copas,552034.5,4674834.5,0.08,media,"9 copas prohibidas (clasificador fase 6, zona validada)",228,Covelo,Covelo (Santa Mariña),90
+disperso_copas,552123.5,4676302.5,0.08,media,"10 copas prohibidas (clasificador fase 6, zona validada)",238,Covelo,Covelo (Santa Mariña),91
+disperso_copas,553245.5,4671948.5,0.08,media,"12 copas prohibidas (clasificador fase 6, zona validada)",247,Covelo,Prado de Canda (Santiago),92
+disperso_copas,553357.5,4673118.5,0.08,media,"13 copas prohibidas (clasificador fase 6, zona validada)",257,Covelo,A Lamosa (San Bartolomeu),93
+eucaliptal_35m,552273.5,4675899.5,0.07,alta,dosel >35 m (706 m2); solo eucalipto llega,2,Covelo,Santiago de Covelo (Santiago),94
+disperso_copas,553514.5,4675915.5,0.07,media,"10 copas prohibidas (clasificador fase 6, zona validada)",258,Covelo,Santiago de Covelo (Santiago),95
+disperso_copas,553654.5,4676010.5,0.07,media,"9 copas prohibidas (clasificador fase 6, zona validada)",264,Covelo,Santiago de Covelo (Santiago),96
+eucaliptal_35m,553022.5,4675811.5,0.07,alta,dosel >35 m (688 m2); solo eucalipto llega,3,Covelo,Santiago de Covelo (Santiago),97
+disperso_copas,551039.5,4674681.5,0.06,media,"13 copas prohibidas (clasificador fase 6, zona validada)",211,Covelo,Covelo (Santa Mariña),98
+disperso_copas,553115.5,4672061.5,0.06,media,"9 copas prohibidas (clasificador fase 6, zona validada)",253,Covelo,Prado de Canda (Santiago),99
+disperso_copas,553155.5,4675800.5,0.06,media,"9 copas prohibidas (clasificador fase 6, zona validada)",260,Covelo,Santiago de Covelo (Santiago),100
+disperso_copas,553747.5,4680637.5,0.06,media,"9 copas prohibidas (clasificador fase 6, zona validada)",273,Covelo,Maceira (San Salvador),101
+disperso_copas,554019.5,4681244.5,0.06,media,"9 copas prohibidas (clasificador fase 6, zona validada)",285,Covelo,Fofe (San Miguel),102
+disperso_copas,556638.5,4681551.5,0.06,media,"17 copas prohibidas (clasificador fase 6, zona validada)",316,Covelo,Godóns (Santa María),103
+disperso_copas,550151.5,4674269.5,0.05,media,"10 copas prohibidas (clasificador fase 6, zona validada)",188,Covelo,Covelo (Santa Mariña),104
+disperso_copas,551149.5,4673077.5,0.05,media,"9 copas prohibidas (clasificador fase 6, zona validada)",209,Covelo,Paraños (Santa María),105
+disperso_copas,551543.5,4678501.5,0.05,media,"8 copas prohibidas (clasificador fase 6, zona validada)",219,Covelo,Casteláns (Santo Estevo),106
+disperso_copas,553649.5,4676767.5,0.05,media,"13 copas prohibidas (clasificador fase 6, zona validada)",266,Covelo,Maceira (San Salvador),107
+disperso_copas,554325.5,4677623.5,0.05,media,"8 copas prohibidas (clasificador fase 6, zona validada)",282,Covelo,Maceira (San Salvador),108
+disperso_copas,550416.5,4672222.5,0.03,media,"8 copas prohibidas (clasificador fase 6, zona validada)",180,Covelo,Paraños (Santa María),109
+disperso_copas,550039.5,4675642.5,0.03,media,"8 copas prohibidas (clasificador fase 6, zona validada)",192,Covelo,Casteláns (Santo Estevo),110
+disperso_copas,553806.5,4675950.5,0.03,media,"9 copas prohibidas (clasificador fase 6, zona validada)",261,Covelo,Santiago de Covelo (Santiago),111
+disperso_copas,553260.5,4680062.5,0.03,media,"9 copas prohibidas (clasificador fase 6, zona validada)",272,Covelo,Maceira (San Salvador),112
+disperso_copas,554425.5,4679970.5,0.03,media,"9 copas prohibidas (clasificador fase 6, zona validada)",283,Covelo,Maceira (San Salvador),113
+disperso_copas,553683.5,4680625.5,0.02,media,"13 copas prohibidas (clasificador fase 6, zona validada)",274,Covelo,Maceira (San Salvador),114
+disperso_copas,557060.5,4681442.5,0.02,media,"9 copas prohibidas (clasificador fase 6, zona validada)",360,Covelo,Godóns (Santa María),115
+rodal_ifn,564213.5,4666373.5,38.04,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 70%",101,Crecente,Ribeira (Santa Mariña),1
+rodal_ifn,567337.5,4671343.5,21.15,media-alta,"Eucalyptus_globulus (IFN 2010, persistente), f_prohibida 78%",121,Crecente,Rebordechán (Santa María),2
+rodal_ifn,565964.5,4668061.5,10.69,media-alta,"Eucalyptus_globulus (IFN 2010, persistente), f_prohibida 80%",69,Crecente,O Freixo (San Roque),3
+rodal_ifn,564397.5,4668504.5,9.39,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 90%",117,Crecente,Crecente (San Pedro),4
+rodal_ifn,562121.5,4667936.5,8.13,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 90%",139,Crecente,Vilar (San Xorxe),5
+rodal_ifn,566064.5,4674114.5,7.97,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 67%",132,Crecente,Filgueira (San Pedro),6
+rodal_ifn,562818.5,4668821.5,7.18,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 100%",118,Crecente,Vilar (San Xorxe),7
+rodal_ifn,560891.5,4665689.5,7.07,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 78%",74,Crecente,Albeos (San Xoán),8
+rodal_ifn,565974.5,4671132.5,5.51,media-alta,"Eucalyptus_globulus (IFN 2010, persistente), f_prohibida 67%",114,Crecente,Rebordechán (Santa María),9
+rodal_ifn,561961.5,4666698.5,3.61,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 56%",137,Crecente,Albeos (San Xoán),10
+rodal_ifn,561562.5,4666623.5,3.24,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 75%",77,Crecente,Albeos (San Xoán),11
+rodal_ifn,564790.5,4667618.5,2.68,media-alta,"Quercus_robur (IFN 2010, persistente), f_prohibida 56%",170,Crecente,Crecente (San Pedro),12
+rodal_ifn,562743.5,4667260.5,2.64,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 90%",97,Crecente,Albeos (San Xoán),13
+rodal_ifn,567418.5,4674887.5,2.56,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 70%",157,Crecente,Filgueira (San Pedro),14
+rodal_ifn,564326.5,4672294.5,2.15,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 100%",131,Crecente,A Ameixeira (San Bernabeu),15
+rodal_ifn,564644.5,4667996.5,1.99,media-alta,"Quercus_robur (IFN 2010, persistente), f_prohibida 50%",96,Crecente,Crecente (San Pedro),16
+rodal_ifn,561941.5,4665639.5,1.94,media-alta,"Quercus_robur (IFN 2010, persistente), f_prohibida 56%",73,Crecente,Albeos (San Xoán),17
+rodal_ifn,563283.5,4668303.5,1.64,media-alta,"Quercus_robur (IFN 2010, persistente), f_prohibida 60%",98,Crecente,Vilar (San Xorxe),18
+rodal_ifn,563306.5,4671677.5,1.5,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 100%",116,Crecente,A Ameixeira (San Bernabeu),19
+rodal_ifn,561113.5,4666703.5,1.24,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 70%",158,Crecente,Albeos (San Xoán),20
+rodal_ifn,561006.5,4665831.5,1.08,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 100%",71,Crecente,Albeos (San Xoán),21
+rodal_ifn,563967.5,4668016.5,0.9,media-alta,"Eucalyptus_globulus (IFN 2010, persistente), f_prohibida 90%",95,Crecente,Crecente (San Pedro),22
+rodal_ifn,567296.5,4669865.5,0.86,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 78%",159,Crecente,Angudes (San Xoán),23
+rodal_ifn,561901.5,4667427.5,0.85,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 89%",136,Crecente,Albeos (San Xoán),24
+rodal_ifn,559993.5,4666689.5,0.81,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 100%",112,Crecente,Albeos (San Xoán),25
+rodal_ifn,567217.5,4668256.5,0.8,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 100%",94,Crecente,Sendelle (Santa Cruz),26
+rodal_ifn,563211.5,4666047.5,0.79,media-alta,"Eucalyptus_globulus (IFN 2010, persistente), f_prohibida 100%",78,Crecente,Ribeira (Santa Mariña),27
+rodal_ifn,562920.5,4668730.5,0.71,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 100%",163,Crecente,Vilar (San Xorxe),28
+rodal_ifn,559772.5,4665969.5,0.59,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 50%",168,Crecente,Albeos (San Xoán),29
+rodal_ifn,563270.5,4665620.5,0.58,media-alta,"Pinus_pinaster (IFN 2010, persistente), f_prohibida 70%",102,Crecente,Ribeira (Santa Mariña),30
+eucaliptal_35m,566454.5,4667628.5,0.18,alta,dosel >35 m (1755 m2); solo eucalipto llega,53,Crecente,O Freixo (San Roque),31
+eucaliptal_35m,567362.5,4670170.5,0.17,alta,dosel >35 m (1743 m2); solo eucalipto llega,65,Crecente,Angudes (San Xoán),32
+eucaliptal_35m,563309.5,4668305.5,0.15,alta,dosel >35 m (1540 m2); solo eucalipto llega,41,Crecente,Vilar (San Xorxe),33
+eucaliptal_35m,566123.5,4668227.5,0.14,alta,dosel >35 m (1430 m2); solo eucalipto llega,54,Crecente,O Freixo (San Roque),34
+eucaliptal_35m,566199.5,4673218.5,0.14,alta,dosel >35 m (1396 m2); solo eucalipto llega,60,Crecente,Filgueira (San Pedro),35
+eucaliptal_35m,566428.5,4667680.5,0.13,alta,dosel >35 m (1306 m2); solo eucalipto llega,52,Crecente,O Freixo (San Roque),36
+eucaliptal_35m,566088.5,4673434.5,0.12,alta,dosel >35 m (1229 m2); solo eucalipto llega,56,Crecente,Filgueira (San Pedro),37
+disperso_copas,559794.5,4666062.5,0.12,media,"16 copas prohibidas (clasificador fase 6, zona validada)",420,Crecente,Albeos (San Xoán),38
+eucaliptal_35m,563708.5,4668601.5,0.12,alta,dosel >35 m (1152 m2); solo eucalipto llega,40,Crecente,Vilar (San Xorxe),39
+disperso_copas,559911.5,4666633.5,0.11,media,"11 copas prohibidas (clasificador fase 6, zona validada)",421,Crecente,Albeos (San Xoán),40
+disperso_copas,559847.5,4666267.5,0.1,media,"10 copas prohibidas (clasificador fase 6, zona validada)",419,Crecente,Albeos (San Xoán),41
+disperso_copas,559652.5,4666528.5,0.1,media,"14 copas prohibidas (clasificador fase 6, zona validada)",423,Crecente,Albeos (San Xoán),42
+eucaliptal_35m,566142.5,4668184.5,0.1,alta,dosel >35 m (961 m2); solo eucalipto llega,55,Crecente,O Freixo (San Roque),43
+eucaliptal_35m,565167.5,4668072.5,0.09,alta,dosel >35 m (857 m2); solo eucalipto llega,51,Crecente,Crecente (San Pedro),44
+eucaliptal_35m,562260.5,4667636.5,0.08,alta,dosel >35 m (823 m2); solo eucalipto llega,35,Crecente,Vilar (San Xorxe),45
+eucaliptal_35m,567800.5,4669762.5,0.08,alta,dosel >35 m (799 m2); solo eucalipto llega,63,Crecente,Angudes (San Xoán),46
+eucaliptal_35m,565822.5,4667926.5,0.08,alta,dosel >35 m (779 m2); solo eucalipto llega,49,Crecente,O Freixo (San Roque),47
+eucaliptal_35m,567682.5,4672497.5,0.08,alta,dosel >35 m (758 m2); solo eucalipto llega,67,Crecente,Rebordechán (Santa María),48
+eucaliptal_35m,567394.5,4670207.5,0.08,alta,dosel >35 m (757 m2); solo eucalipto llega,64,Crecente,Angudes (San Xoán),49
+eucaliptal_35m,562319.5,4667883.5,0.07,alta,dosel >35 m (704 m2); solo eucalipto llega,34,Crecente,Vilar (San Xorxe),50
+eucaliptal_35m,567189.5,4668603.5,0.07,alta,dosel >35 m (653 m2); solo eucalipto llega,62,Crecente,Sendelle (Santa Cruz),51
+eucaliptal_35m,563983.5,4668297.5,0.06,alta,dosel >35 m (649 m2); solo eucalipto llega,42,Crecente,Crecente (San Pedro),52
+eucaliptal_35m,564553.5,4668215.5,0.06,alta,dosel >35 m (636 m2); solo eucalipto llega,47,Crecente,Crecente (San Pedro),53
+eucaliptal_35m,567321.5,4671516.5,0.06,alta,dosel >35 m (634 m2); solo eucalipto llega,66,Crecente,Rebordechán (Santa María),54
+disperso_copas,559863.5,4666505.5,0.06,media,"11 copas prohibidas (clasificador fase 6, zona validada)",418,Crecente,Albeos (San Xoán),55
+eucaliptal_35m,565970.5,4668110.5,0.06,alta,dosel >35 m (564 m2); solo eucalipto llega,50,Crecente,O Freixo (San Roque),56
+eucaliptal_35m,565483.5,4666232.5,0.05,alta,dosel >35 m (527 m2); solo eucalipto llega,48,Crecente,Quintela (San Caetano),57
+eucaliptal_35m,564808.5,4667612.5,0.05,alta,dosel >35 m (499 m2); solo eucalipto llega,45,Crecente,Crecente (San Pedro),58
+eucaliptal_35m,567544.5,4672384.5,0.05,alta,dosel >35 m (497 m2); solo eucalipto llega,68,Crecente,Rebordechán (Santa María),59
+eucaliptal_35m,561735.5,4666972.5,0.05,alta,dosel >35 m (496 m2); solo eucalipto llega,29,Crecente,Albeos (San Xoán),60
+eucaliptal_35m,566564.5,4674350.5,0.05,alta,dosel >35 m (490 m2); solo eucalipto llega,61,Crecente,Filgueira (San Pedro),61
+eucaliptal_35m,563103.5,4666519.5,0.05,alta,dosel >35 m (459 m2); solo eucalipto llega,39,Crecente,Crecente (San Pedro),62
+eucaliptal_35m,564739.5,4667561.5,0.05,alta,dosel >35 m (458 m2); solo eucalipto llega,46,Crecente,Crecente (San Pedro),63
+eucaliptal_35m,563946.5,4668053.5,0.05,alta,dosel >35 m (456 m2); solo eucalipto llega,44,Crecente,Crecente (San Pedro),64
+eucaliptal_35m,563886.5,4668086.5,0.04,alta,dosel >35 m (410 m2); solo eucalipto llega,43,Crecente,Crecente (San Pedro),65
+eucaliptal_35m,566493.5,4673393.5,0.04,alta,dosel >35 m (409 m2); solo eucalipto llega,57,Crecente,Filgueira (San Pedro),66
+eucaliptal_35m,561538.5,4666700.5,0.04,alta,dosel >35 m (406 m2); solo eucalipto llega,30,Crecente,Albeos (San Xoán),67
+eucaliptal_35m,566100.5,4673354.5,0.04,alta,dosel >35 m (405 m2); solo eucalipto llega,58,Crecente,Filgueira (San Pedro),68
+eucaliptal_35m,566121.5,4673343.5,0.04,alta,dosel >35 m (402 m2); solo eucalipto llega,59,Crecente,Filgueira (San Pedro),69

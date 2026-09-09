@@ -1,0 +1,564 @@
+﻿puesto,concello,parroquia,ha_medida,ha_arbolado,ha_sobre_35m,ha_prohibida_min,ha_prohibida_max,ha_prohibida_punto_medio
+1,Cangas,O Hío (Santo André),267.322,102.838,2.147,46.2,74.6,60.4
+2,A Cañiza,Valeixe (Santa Cristina),257.154,96.824,1.39,36.4,63.7,50.0
+3,O Rosal,O Rosal (Santa Mariña),188.055,75.9,3.203,37.6,55.9,46.8
+4,O Porriño,Pontellas (Santiago),164.211,71.174,4.676,38.3,54.1,46.2
+5,O Porriño,San Salvador de Budiño (San Salvador),185.132,80.026,1.448,35.6,55.8,45.7
+6,Ponteareas,Moreira (San Martiño),146.426,72.713,1.147,34.3,54.0,44.2
+7,Salvaterra de Miño,Salvaterra (San Lourenzo),157.618,70.431,3.917,33.8,51.3,42.6
+8,Valga,Cordeiro (Santa Comba),227.046,71.524,0.264,32.2,51.9,42.0
+9,O Porriño,Atios (Santa Eulalia),148.139,66.466,1.608,33.3,49.1,41.2
+10,Ponteareas,Guláns (San Xulián),184.402,70.129,1.314,29.9,52.2,41.0
+11,Cuntis,Cuntis (Santa María),255.363,69.604,0.881,27.3,50.7,39.0
+12,Salvaterra de Miño,Fornelos (San Xoán),116.085,55.984,1.362,29.7,43.5,36.6
+13,Mos,Louredo (San Salvador),136.98,58.642,2.125,28.3,44.7,36.5
+14,Tomiño,Tomiño (Santa María),158.722,60.063,0.945,28.9,43.6,36.2
+15,Soutomaior,Soutomaior (San Salvador),255.789,68.251,0.742,23.8,45.9,34.8
+16,Ponteareas,Areas (Santa María),142.101,61.464,0.84,24.5,43.1,33.8
+17,Arbo,Mourentán (San Cristovo),160.034,64.904,2.145,22.8,44.1,33.4
+18,Vilaboa,Vilaboa (San Martiño),127.491,53.858,3.891,26.7,39.7,33.2
+19,O Porriño,Chenlo (San Xoán),83.696,47.744,8.464,27.2,38.7,33.0
+20,Salvaterra de Miño,Leirado (San Salvador),102.763,53.089,1.509,24.0,39.4,31.7
+21,Mos,Mos (Santa Eulalia),138.062,53.208,2.098,22.7,40.1,31.4
+22,Valga,Setecoros (San Salvador),144.101,49.341,1.29,24.6,37.9,31.2
+23,Sanxenxo,Adina (Santa María),177.898,48.708,0.379,23.9,38.4,31.2
+24,Meis,A Armenteira (Santa María),116.816,47.599,1.782,23.7,37.2,30.4
+25,Tui,Ribadelouro (Santa Comba),104.694,60.45,2.016,23.9,36.6,30.2
+26,Poio,Poio (San Xoán),195.698,54.158,0.975,20.9,39.6,30.2
+27,Tomiño,Barrantes (San Vicente),109.949,43.636,1.942,24.3,35.3,29.8
+28,Ponteareas,Ribadetea (San Xurxo),147.229,54.846,1.171,21.0,38.2,29.6
+29,Mos,Torroso (San Mamede),122.25,49.012,1.241,23.0,36.3,29.6
+30,Portas,Portas (Santa María),144.392,43.625,0.958,22.9,34.6,28.8
+31,Sanxenxo,Noalla (Santo Estevo),250.199,48.759,0.139,19.9,37.1,28.5
+32,Salvaterra de Miño,Alxén (San Paio),94.018,41.938,3.38,23.2,33.2,28.2
+33,Redondela,Cedeira (Santo André),148.244,51.397,2.92,19.6,36.9,28.2
+34,Salceda de Caselas,Santo Estevo de Budiño (Santo Estevo),85.152,42.27,0.972,22.8,33.4,28.1
+35,A Cañiza,A Cañiza (Santa Teresa),122.189,52.348,0.471,20.0,35.8,27.9
+36,Mos,Cela (San Pedro),141.51,44.405,1.8,20.9,34.7,27.8
+37,Ponteareas,Cristiñade (San Salvador),91.344,44.017,1.101,21.4,33.7,27.6
+38,Moraña,Saiáns (San Salvador),127.234,46.47,0.825,20.6,33.3,27.0
+39,Cangas,Darbo (Santa María),125.878,47.244,1.871,18.8,34.4,26.6
+40,Vilanova de Arousa,Baión (San Xoán),170.852,48.408,1.313,18.6,34.5,26.6
+41,Cotobade,Tenorio (San Pedro),85.044,46.353,0.554,20.9,32.3,26.6
+42,Marín,San Tomé de Piñeiro (San Tomé),98.419,40.617,3.959,21.1,31.2,26.2
+43,A Cañiza,Parada das Achas (Santiago),156.869,76.245,0.484,16.8,35.4,26.1
+44,Mondariz,Mondariz (Santa Baia),115.374,55.87,0.66,18.6,33.4,26.0
+45,O Porriño,Torneiros (San Salvador),90.737,40.818,2.503,20.1,31.9,26.0
+46,Salceda de Caselas,Entenza (Santos Xusto e Pastor),96.616,43.386,2.27,20.2,31.9,26.0
+47,Ponteareas,Padróns (San Salvador),142.077,50.159,0.549,18.1,33.3,25.7
+48,A Cañiza,As Achas (San Sebastián),137.711,45.913,0.255,17.6,33.1,25.4
+49,Crecente,Albeos (San Xoán),141.253,48.553,0.406,19.4,30.7,25.0
+50,A Cañiza,Oroso (Santa María),131.706,46.666,0.038,19.7,29.9,24.8
+51,Salceda de Caselas,Soutelo (San Vicente),70.253,34.29,2.057,21.0,28.5,24.8
+52,Ponteareas,Xinzo (Santa Mariña),102.349,39.499,1.315,18.6,30.1,24.4
+53,Salceda de Caselas,Santa María de Salceda (Santa María),116.824,41.015,2.072,17.4,31.3,24.4
+54,Moraña,Santa Xusta de Moraña (Santa Xusta),96.115,41.336,1.044,18.7,29.9,24.3
+55,O Porriño,Mosende (San Xurxo),80.976,38.603,3.104,18.7,29.4,24.0
+56,A Cañiza,O Couto (San Bartolomeu),103.21,46.157,1.148,17.9,30.0,24.0
+57,Cangas,Aldán (San Cibrán),122.267,44.699,0.965,17.3,30.4,23.8
+58,Ponte Caldelas,Ponte Caldelas (Santa Eulalia),157.424,49.471,0.299,16.0,31.4,23.7
+59,Marín,Marín (San Xián),121.817,38.426,1.733,18.1,29.0,23.6
+60,Mos,Tameiga (San Martiño),119.019,44.132,1.558,15.2,31.8,23.5
+61,Tui,Pexegueiro (San Miguel),89.352,33.207,1.273,19.4,27.4,23.4
+62,Crecente,Crecente (San Pedro),77.113,43.499,1.141,17.9,26.9,22.4
+63,Ponteareas,Arcos (San Breixo),70.019,37.493,0.174,17.3,27.3,22.3
+64,Ponteareas,San Mateo de Oliveira (San Mateo),105.416,38.774,0.177,16.6,27.9,22.2
+65,Vilagarcía de Arousa,Sobrán (San Martiño de Fóra),168.037,37.336,0.555,15.6,28.7,22.2
+66,Mos,Petelos (San Mamede),84.694,37.832,0.521,16.3,27.7,22.0
+67,Mondariz,Lougares (San Fiz),85.884,49.192,0.538,15.3,28.8,22.0
+68,Moaña,Domaio (San Pedro),106.666,45.198,1.404,13.1,31.0,22.0
+69,A Guarda,Camposancos (Santa Isabel),91.939,32.99,0.492,17.6,26.3,22.0
+70,Ponteareas,Nogueira (San Salvador),65.541,32.641,0.94,17.5,25.9,21.7
+71,Salceda de Caselas,Parderrubias (San Tomé),101.106,34.932,2.012,16.9,26.4,21.6
+72,Covelo,Barcia de Mera (San Martiño),102.208,52.666,0.577,14.6,28.5,21.6
+73,Valga,Valga (San Miguel),109.211,39.01,0.289,14.3,28.0,21.2
+74,Ponteareas,Guillade (San Miguel),98.845,36.398,0.66,14.8,27.1,21.0
+75,Salvaterra de Miño,Oleiros (Santa María),57.687,33.767,1.5,17.2,24.9,21.0
+76,Tomiño,Goián (San Cristovo),93.458,38.289,0.316,15.6,26.3,21.0
+77,Moaña,Moaña (Virxe do Carme),96.021,40.179,1.326,14.2,27.9,21.0
+78,As Neves,Taboexa (Santa María),98.596,36.12,0.81,14.9,26.7,20.8
+79,Cotobade,Sacos (San Xurxo),81.334,38.623,0.427,16.0,25.5,20.8
+80,Meis,Paradela (Santa María),96.898,38.587,1.318,15.0,26.3,20.6
+81,Gondomar,Mañufe (San Vicente),120.639,37.869,1.021,15.2,26.1,20.6
+82,Caldas de Reis,Saiar (Santo Estevo),139.95,38.304,0.232,14.2,26.9,20.5
+83,Marín,Ardán (Santa María),103.206,36.323,1.682,15.3,25.7,20.5
+84,Mondariz,Toutón (San Mateo),88.776,41.086,0.646,15.6,24.6,20.1
+85,Mondariz,Riofrío (San Miguel),89.853,40.794,0.257,14.5,25.4,20.0
+86,Gondomar,Vincios (Santa Mariña),106.848,34.155,0.828,14.6,25.2,19.9
+87,Mondariz,Sabaxáns (San Mamede),99.1,49.873,0.384,13.6,26.1,19.8
+88,Redondela,Chapela (San Fausto),95.343,39.212,0.325,14.0,25.2,19.6
+89,Vilaboa,Santa Cristina de Cobres (Santa Cristina),82.704,33.64,0.882,14.1,24.8,19.4
+90,Sanxenxo,Dorrón (San Xoán),94.553,30.098,0.822,14.9,23.9,19.4
+91,Caldas de Reis,Santo André de Cesar (Santo André),93.845,37.304,0.628,15.0,23.7,19.4
+92,Redondela,O Viso (Santa María),154.916,39.801,0.449,10.5,28.1,19.3
+93,Caldas de Reis,Bemil (Santa María),128.288,33.655,1.053,14.0,24.5,19.2
+94,Meis,Meis (San Salvador),88.656,28.014,0.516,16.1,22.4,19.2
+95,Ponteareas,Fozara (San Bartolomeu),73.07,30.525,0.234,15.2,22.7,19.0
+96,O Porriño,Cans (Santo Estevo),45.61,27.537,2.406,15.4,22.5,19.0
+97,Caldas de Reis,Godos (Santa María),111.06,31.74,0.583,14.0,24.0,19.0
+98,A Estrada,San Miguel de Castro (San Miguel),99.581,36.843,0.345,12.6,25.2,18.9
+99,Salvaterra de Miño,Meder (Santo Adrián),114.792,33.518,0.49,13.4,24.1,18.8
+100,Salvaterra de Miño,Cabreira (San Miguel),77.486,36.403,2.463,14.0,23.4,18.7
+101,Mos,Sanguiñeda (Santa María),84.508,33.661,0.472,13.6,23.6,18.6
+102,Tomiño,Sobrada (San Salvador),45.674,25.534,1.556,16.0,21.3,18.6
+103,Barro,Barro (San Breixo),71.683,32.985,1.054,15.0,22.0,18.5
+104,Meis,Nogueira (San Vicente),83.548,29.395,1.019,14.6,22.3,18.4
+105,Cotobade,Aguasantas (Santa María),77.431,45.083,0.701,14.2,22.7,18.4
+106,Vilaboa,Cobres (Santo Adrán),91.692,31.027,1.988,13.1,23.6,18.4
+107,Ponte Caldelas,Tourón (Santa María),124.274,35.354,0.281,12.3,24.3,18.3
+108,Valga,Xanza (Santa María),118.099,34.554,0.506,12.9,23.4,18.2
+109,Catoira,Dimo (San Pedro),107.494,33.678,0.101,12.7,23.5,18.1
+110,Ponteareas,Oliveira (Santiago),71.274,32.265,0.525,13.2,22.8,18.0
+111,Vilagarcía de Arousa,Bamio (San Xens),107.124,32.148,0.162,12.1,23.8,18.0
+112,Redondela,Vilar de Infesta (San Martiño),106.026,33.362,1.451,11.6,23.8,17.7
+113,A Cañiza,Petán (San Xián),123.143,45.186,0.236,11.6,23.6,17.6
+114,Mondariz,Vilar (San Mamede),57.269,28.61,0.122,15.1,20.2,17.6
+115,A Estrada,Berres (San Vicenzo),107.056,40.346,0.373,11.4,23.6,17.5
+116,Moraña,Rebón (San Pedro),86.44,28.73,0.335,13.6,21.4,17.5
+117,Salvaterra de Miño,Arantei (San Pedro),71.752,29.305,0.864,13.6,21.1,17.4
+118,Cangas,Coiro (San Salvador),150.68,44.283,0.595,7.7,27.0,17.4
+119,Crecente,Rebordechán (Santa María),48.428,33.548,0.753,13.3,21.3,17.3
+120,Redondela,Cesantes (San Pedro),164.911,36.755,0.369,9.5,25.0,17.2
+121,Cuntis,Troáns (Santa María),120.558,31.095,0.345,12.4,22.0,17.2
+122,Salvaterra de Miño,Lira (San Simón),68.698,35.147,0.435,12.7,21.7,17.2
+123,Mondariz,Mouriscados (San Cibrán),65.141,30.764,1.069,12.7,21.5,17.1
+124,Portas,Romai (San Xián),131.614,33.922,0.315,10.9,23.3,17.1
+125,Campo Lameiro,O Campo (San Miguel),79.006,30.925,0.487,12.4,21.7,17.0
+126,Ponteareas,Pías (Santa Mariña),99.915,33.903,0.276,11.0,23.0,17.0
+127,Redondela,Reboreda (Santa María),167.225,35.25,0.908,8.9,25.2,17.0
+128,Salvaterra de Miño,Fiolledo (San Paio),44.531,26.558,0.733,14.3,19.6,17.0
+129,A Guarda,Salcidos (San Lourenzo),119.692,31.765,0.59,11.9,22.2,17.0
+130,A Estrada,Guimarei (San Xiao),132.814,34.409,0.982,12.6,21.5,17.0
+131,Barro,Perdecanai (Santa María),69.754,29.188,1.199,12.3,20.8,16.6
+132,Tui,Randufe (Santa María da Guía),88.898,26.804,1.008,12.4,20.8,16.6
+133,Tui,Malvas (Santiago),69.044,25.559,0.634,12.1,20.2,16.2
+134,Meaño,Xil (Santa Eulalia),104.381,24.527,1.161,13.2,19.3,16.2
+135,Campo Lameiro,Fragas (Santa Mariña),97.475,30.63,0.835,10.3,22.2,16.2
+136,Ponteareas,Ponteareas (San Miguel),91.011,31.351,0.321,10.7,21.6,16.2
+137,Crecente,Ribeira (Santa Mariña),58.441,31.356,0.275,13.1,19.4,16.2
+138,Cambados,Castrelo (Santa Cruz),225.229,26.169,0.217,11.8,20.3,16.0
+139,Vilanova de Arousa,Tremoedo (Santo Estevo),138.457,25.367,0.176,12.5,19.4,16.0
+140,Redondela,Saxamonde (San Román),89.966,30.658,0.937,10.2,21.5,15.8
+141,Crecente,Vilar (San Xorxe),66.483,26.127,0.871,12.7,18.9,15.8
+142,Poio,Poio (San Salvador),81.063,25.442,0.159,11.7,19.8,15.8
+143,Silleda,Silleda (Santa Baia),150.387,48.642,0.653,8.4,22.7,15.6
+144,Sanxenxo,Nantes (Santa Baia),99.5,26.724,0.606,11.7,19.5,15.6
+145,Tomiño,San Salvador de Tebra (San Salvador),38.829,22.296,2.553,13.2,17.8,15.5
+146,Covelo,Covelo (Santa Mariña),65.216,35.172,0.729,10.8,20.2,15.5
+147,Arbo,Arbo (Santa María),143.409,31.863,0.425,10.8,20.1,15.4
+148,Gondomar,Vilaza (Santa María),69.766,25.531,0.54,11.9,18.7,15.3
+149,A Estrada,Arnois (San Xiao),94.776,31.144,0.069,10.9,19.6,15.2
+150,Vilagarcía de Arousa,Rubiáns (Santa María),90.583,27.059,0.839,9.8,20.1,15.0
+151,Catoira,Abalo (San Mamede),65.943,23.381,0.143,11.9,18.1,15.0
+152,Redondela,Trasmañó (San Vicente),84.542,28.857,0.25,10.3,19.8,15.0
+153,Crecente,Filgueira (San Pedro),49.472,37.832,0.889,11.8,18.1,15.0
+154,Cotobade,Borela (San Martiño),68.403,37.673,0.079,11.3,18.1,14.7
+155,Tui,Guillarei (San Mamede),98.978,29.658,1.256,9.0,20.2,14.6
+156,Ponte Caldelas,A Insua (Santa Mariña),114.709,31.665,0.112,10.8,18.3,14.6
+157,Sanxenxo,Padriñán (San Xenxo),84.139,24.609,0.231,10.9,18.3,14.6
+158,A Estrada,Matalobos (Santa Baia),116.29,36.283,0.259,9.2,20.1,14.6
+159,Caldas de Reis,San Clemente de Cesar (San Clemente),97.804,25.538,0.481,11.5,17.8,14.6
+160,Ponteareas,Bugarín (Santa Cristina),64.485,22.356,0.196,11.2,17.8,14.5
+161,A Lama,A Lama (San Salvador),80.917,37.108,0.162,10.2,18.5,14.4
+162,Cerdedo,Cerdedo (San Xoán),98.311,38.522,0.215,10.1,18.5,14.3
+163,Barro,Portela (San Mamede),73.073,22.541,1.343,11.4,17.0,14.2
+164,A Estrada,A Estrada (San Paio),99.664,33.666,0.644,9.1,19.3,14.2
+165,A Estrada,Codeseda (San Xurxo),128.001,38.581,0.067,9.0,19.5,14.2
+166,Covelo,Santiago de Covelo (Santiago),63.557,35.843,0.53,10.2,18.1,14.2
+167,Mondariz,Vilasobroso (San Martiño),53.062,30.484,1.011,10.9,17.5,14.2
+168,Mos,Pereiras (San Miguel),71.782,24.12,1.72,10.0,18.0,14.0
+169,Gondomar,Borreiros (San Martiño),73.482,25.032,0.287,9.9,17.9,13.9
+170,Lalín,Lalín (Santa María das Dores),137.994,47.379,0.075,6.6,20.8,13.7
+171,Tui,Baldráns (Santiago),51.461,22.459,0.389,10.7,16.7,13.7
+172,Vilagarcía de Arousa,Cornazo (San Pedro),71.548,22.28,0.976,9.8,17.3,13.6
+173,A Lama,Gaxate (San Pedro),43.234,30.32,1.426,11.6,15.7,13.6
+174,Mos,Guizán (Santa María),62.844,20.62,0.927,10.7,16.3,13.5
+175,Ponteareas,Celeiros (San Fins),58.331,24.339,0.294,9.8,17.0,13.4
+176,Gondomar,Donas (Santa Baia),79.696,24.538,0.511,9.4,17.3,13.4
+177,Forcarei,Forcarei (San Martiño),106.433,46.954,0.316,6.5,20.3,13.4
+178,Tomiño,Taborda (San Miguel),41.154,19.514,0.938,10.9,15.8,13.4
+179,Meaño,Dena (Santa Eulalia),172.554,25.978,0.307,8.3,18.6,13.4
+180,Moaña,Moaña (San Martiño),68.355,26.632,0.519,8.9,18.0,13.4
+181,Tui,Rebordáns (San Bartolomeu),71.844,27.775,0.765,9.0,17.9,13.4
+182,Fornelos de Montes,Fornelos de Montes (San Lourenzo),83.808,35.941,0.566,8.1,18.3,13.2
+183,O Porriño,O Porriño (Santa María),33.93,18.615,0.768,10.9,15.4,13.2
+184,Nigrán,Nigrán (San Fiz),89.548,28.212,0.236,7.5,18.9,13.2
+185,Vilagarcía de Arousa,Cea (San Pedro),111.355,29.016,0.313,6.2,20.0,13.1
+186,Salvaterra de Miño,Pesqueiras (Santa Mariña),47.375,21.882,0.567,10.1,16.0,13.0
+187,Pazos de Borbén,Borbén (Santiago),51.522,22.747,0.36,9.8,16.2,13.0
+188,Salceda de Caselas,San Xurxo de Salceda (San Xurxo),40.649,17.832,0.512,10.9,14.9,12.9
+189,Silleda,Manduas (San Tirso),129.933,29.5,0.122,6.3,19.3,12.8
+190,Salceda de Caselas,A Picoña (San Martiño),44.601,19.328,1.715,9.9,15.5,12.7
+191,Ponteareas,Angoares (San Pedro),46.556,21.665,0.174,10.2,15.2,12.7
+192,Salvaterra de Miño,Soutolobre (Santa Comba),40.599,21.816,0.252,10.3,14.7,12.5
+193,Meis,San Martiño de Meis (San Martiño),69.974,20.49,0.283,10.0,14.9,12.4
+194,Gondomar,Morgadáns (Santiago),90.317,20.346,0.262,9.1,15.6,12.4
+195,Vilaboa,Santa Comba de Bértola (Santa Comba),66.598,22.298,1.022,9.3,15.6,12.4
+196,Cuntis,Piñeiro (San Mamede),80.356,21.71,0.155,9.3,15.4,12.4
+197,Cotobade,Carballedo (San Miguel),60.33,25.525,0.186,8.5,16.1,12.3
+198,Sanxenxo,Vilalonga (San Pedro),137.208,23.091,0.332,7.8,16.8,12.3
+199,Mondariz,Frades (San Martiño),55.66,28.279,0.467,8.8,15.5,12.2
+200,Barro,Agudelo (San Martiño),61.78,20.217,0.194,9.6,14.8,12.2
+201,Vilaboa,Figueirido (Santo André),60.587,20.585,0.98,9.4,15.0,12.2
+202,A Cañiza,Luneda (Santa María),63.772,25.198,0.497,7.0,17.5,12.2
+203,Pazos de Borbén,Nespereira (San Martiño),49.815,20.561,1.104,8.9,15.3,12.1
+204,Tui,Areas (Santa Mariña),67.882,20.46,1.298,9.1,15.0,12.0
+205,A Estrada,San Xurxo de Vea (San Xurxo),100.724,23.832,0.164,8.0,15.9,12.0
+206,Lalín,Vilatuxe (San Lourenzo),135.493,37.676,0.049,6.3,17.7,12.0
+207,As Neves,San Xosé de Ribarteme (San Xosé),65.768,23.743,0.361,8.9,15.1,12.0
+208,Poio,Combarro (San Roque),38.942,17.614,0.405,9.7,14.1,11.9
+209,Tomiño,Piñeiro (San Salvador),38.813,16.798,1.22,9.7,13.8,11.8
+210,A Estrada,Oca (Santo Estevo),80.756,24.447,0.069,7.8,15.7,11.8
+211,Nigrán,Camos (Santa Baia),79.079,23.117,0.437,7.7,15.7,11.7
+212,A Estrada,Moreira (San Miguel),106.101,26.833,0.141,8.1,15.2,11.6
+213,As Neves,Setados (Santa Euxenia),48.364,19.048,0.007,9.7,13.6,11.6
+214,Tui,Caldelas de Tui (San Martiño),59.339,20.695,0.162,8.3,14.8,11.6
+215,Nigrán,Priegue (San Mamede),73.86,21.996,0.027,7.5,15.6,11.6
+216,Caldas de Reis,Arcos da Condesa (Santa Mariña),82.376,23.032,0.674,7.3,15.7,11.5
+217,Barro,Valiñas (Santo André),47.105,17.365,0.178,9.6,13.4,11.5
+218,A Estrada,Vinseiro (Santa Cristina),72.192,23.872,0.393,7.7,15.3,11.5
+219,Mondariz,Gargamala (Santa María),76.324,31.144,0.062,6.8,16.0,11.4
+220,Mondariz,Meirol (Santo André),42.297,22.387,0.994,8.4,14.3,11.4
+221,Vilanova de Arousa,Caleiro (Santa María),146.788,21.814,0.058,6.6,15.9,11.2
+222,Lalín,Losón (Santa Baia),95.671,21.649,0.014,8.1,14.3,11.2
+223,Cotobade,Viascón (Santiago),41.444,18.358,0.138,8.8,13.5,11.2
+224,As Neves,Rubiós (San Xoán),65.426,19.341,0.138,8.0,14.4,11.2
+225,Redondela,Quintela (San Mamede),99.126,23.172,0.289,5.9,16.4,11.1
+226,Portas,Lantaño (San Pedro),75.784,19.329,0.426,8.7,13.4,11.0
+227,A Estrada,Ribeira (Santa Mariña),74.76,23.674,0.063,7.3,14.6,11.0
+228,Tomiño,Tebra (Santa María),49.097,18.876,0.493,8.4,13.6,11.0
+229,As Neves,Vide (Santa María),64.991,21.904,0.11,8.3,13.6,11.0
+230,Poio,Samieira (Santa María),56.006,21.686,0.324,8.3,13.6,11.0
+231,Baiona,Belesar (San Lourenzo),65.849,18.979,0.384,7.9,13.8,10.9
+232,Moraña,Lamas (Santa Cruz),52.645,20.175,0.897,7.9,13.6,10.8
+233,Lalín,Filgueira (Santa María),124.739,37.838,0.129,4.5,17.1,10.8
+234,Tomiño,Amorín (San Xoán),45.392,17.271,0.38,8.6,12.8,10.7
+235,A Estrada,Callobre (San Martiño),123.373,24.69,0.199,5.8,15.6,10.7
+236,Meis,San Lourenzo de Nogueira (San Lourenzo),54.06,17.212,0.676,8.1,13.3,10.7
+237,Soutomaior,Arcade (Santiago),82.937,18.974,0.054,7.1,14.0,10.6
+238,Salvaterra de Miño,Corzáns (San Miguel),44.385,21.421,0.351,7.7,13.4,10.6
+239,Baiona,Baíña (Santa Mariña),38.861,15.212,0.278,8.5,12.4,10.4
+240,Gondomar,Gondomar (San Bieito),67.147,19.004,0.336,7.5,13.3,10.4
+241,Mos,Dornelas (Santa María),58.847,18.538,0.467,7.7,13.2,10.4
+242,A Estrada,Ouzande (San Lourenzo),93.79,32.51,0.617,5.8,14.5,10.2
+243,Gondomar,Chaín (Santa María),63.521,18.967,0.181,7.2,13.1,10.2
+244,Salvaterra de Miño,Porto (San Paulo),54.366,16.483,0.32,8.3,12.1,10.2
+245,Ponteareas,Prado (San Nicolao),39.868,17.089,0.118,8.0,12.3,10.2
+246,Vilanova de Arousa,Deiro (San Miguel),116.451,19.837,0.159,5.8,14.5,10.2
+247,Gondomar,Peitieiros (San Miguel),71.137,20.692,0.306,5.8,14.6,10.2
+248,Redondela,Negros (Santo Estevo),67.534,20.984,0.936,6.7,13.5,10.1
+249,As Neves,San Cibrán de Ribarteme (San Cibrán),46.32,16.846,0.056,8.1,12.2,10.1
+250,Tui,Paramos (San Xoán),44.648,18.201,0.693,7.3,12.6,10.0
+251,Meis,San Tomé de Nogueira (San Tomé),42.847,15.325,0.594,7.8,12.3,10.0
+252,Ribadumia,Lois (San Fins),76.798,17.167,0.189,7.3,12.8,10.0
+253,Caldas de Reis,Caldas de Reis (Santa María),62.91,17.217,0.188,7.4,12.4,9.9
+254,Marín,O Campo (Santa María),30.746,14.184,0.555,8.4,11.3,9.9
+255,Catoira,Oeste (Santa Baia),51.4,17.497,0.041,7.0,12.7,9.8
+256,Sanxenxo,Bordóns (San Pedro),53.46,15.29,0.978,7.6,12.0,9.8
+257,A Estrada,Orazo (San Pedro),92.591,18.648,0.016,6.4,13.1,9.8
+258,Redondela,Cabeiro (San Xoán),56.262,18.545,0.331,6.4,13.2,9.8
+259,Lalín,Botos (San Xoán),138.095,47.311,0.097,3.5,16.2,9.8
+260,Crecente,Angudes (San Xoán),22.912,16.902,0.568,8.0,11.4,9.7
+261,Caldas de Reis,Carracedo (Santa Mariña),75.52,16.715,0.018,6.8,12.6,9.7
+262,Baiona,Baredo (Santa María),55.107,15.648,0.111,7.0,12.2,9.6
+263,Tui,Pazos de Reis (O Sagrario),42.751,16.62,0.827,7.5,11.8,9.6
+264,Vilagarcía de Arousa,O Carril (Santiago de Fóra),71.7,19.398,0.235,5.3,13.8,9.6
+265,Moraña,Laxe (San Martiño),58.036,18.36,0.368,6.7,12.2,9.4
+266,Crecente,A Ameixeira (San Bernabeu),36.542,16.895,0.065,7.1,11.7,9.4
+267,Sanxenxo,Gondar (San Tomé),75.402,17.202,0.074,6.8,11.9,9.4
+268,Gondomar,Couso (San Cristovo),41.222,13.83,0.471,7.5,11.2,9.4
+269,Barro,Curro (Santa María),53.491,17.126,1.671,6.1,12.8,9.4
+270,Poio,Raxó (San Gregorio),28.321,13.335,0.46,7.6,11.0,9.3
+271,Covelo,Maceira (San Salvador),77.649,30.618,0.111,4.4,14.1,9.2
+272,Ponte Caldelas,Anceu (Santo André),38.37,18.866,0.071,6.3,12.1,9.2
+273,A Estrada,Riobó (San Martiño),62.88,21.081,0.023,5.8,12.7,9.2
+274,Salvaterra de Miño,Uma (Santo André),42.468,21.096,1.029,5.8,12.7,9.2
+275,Lalín,Bendoiro (San Miguel),71.761,24.708,0.018,5.2,13.0,9.1
+276,Ponteareas,Fontenla (San Mamede),44.856,18.464,0.215,6.2,11.9,9.0
+277,Tomiño,Vilameán (San Bieito),31.968,13.569,1.069,7.3,10.6,9.0
+278,Arbo,Cequeliños (San Miguel),48.078,15.693,0.062,6.9,10.9,8.9
+279,O Rosal,As Eiras (San Bartolomeu),27.745,12.742,0.395,7.2,10.4,8.8
+280,Lalín,Goiás (San Miguel),140.754,30.72,0.0,1.8,15.7,8.8
+281,Oia,Pedornes (San Mamede),33.282,14.513,0.004,6.3,11.2,8.8
+282,A Lama,Verducido (San Martiño),46.403,25.434,0.2,5.9,11.6,8.8
+283,Crecente,O Freixo (San Roque),24.715,16.292,1.149,7.3,10.3,8.8
+284,A Estrada,Santeles (San Xoán),101.996,21.582,0.07,5.2,12.4,8.8
+285,Silleda,Cira (Santa Baia),61.896,19.029,0.971,6.0,11.5,8.8
+286,Nigrán,A Ramallosa (San Pedro),82.748,18.648,0.33,4.5,13.1,8.8
+287,Cotobade,Almofrei (San Lourenzo),29.894,18.858,0.268,6.9,10.2,8.6
+288,Cuntis,Arcos (San Breixo),85.293,19.782,0.283,5.4,11.7,8.6
+289,A Estrada,Santa Cristina de Vea (Santa Cristina),81.756,18.271,0.005,5.4,11.8,8.6
+290,A Estrada,Loimil (Santa María),69.687,16.531,0.038,5.6,11.5,8.6
+291,A Estrada,Curantes (San Miguel),66.756,21.997,0.093,5.6,11.7,8.6
+292,Silleda,Escuadro (San Salvador),124.519,24.541,0.169,3.8,13.3,8.6
+293,Campo Lameiro,O Couso (San Cristovo),54.526,16.158,0.162,6.3,11.0,8.6
+294,Ponteareas,Arnoso (San Lourenzo),37.622,14.274,0.159,6.9,10.4,8.6
+295,Cotobade,Sacos (Santa María),52.259,25.618,0.137,5.8,11.3,8.6
+296,Oia,Burgueira (San Pedro),60.627,15.098,0.34,6.4,10.9,8.6
+297,Lalín,Donramiro (Santa María),99.687,35.144,0.0,3.6,13.4,8.5
+298,A Lama,Xende (San Paulo),36.567,20.656,0.287,6.5,10.5,8.5
+299,Lalín,O Cello (San Martiño),102.568,23.815,0.0,4.0,12.8,8.4
+300,Lalín,Bermés (Santa María),89.98,25.657,0.048,2.8,14.0,8.4
+301,Cotobade,Valongo (Santo André),34.664,19.696,0.251,6.1,10.6,8.4
+302,Oia,Mougás (Santa Uxía),52.857,13.426,0.114,6.3,10.6,8.4
+303,O Rosal,San Miguel de Tabagón (San Miguel),31.873,11.548,0.607,7.1,9.6,8.4
+304,Lalín,Catasós (Santiago),131.452,35.846,0.004,2.4,14.5,8.4
+305,Tomiño,Estás (Santiago),34.068,15.149,0.304,6.2,10.4,8.3
+306,Silleda,Lamela (San Miguel),79.712,19.808,0.121,4.4,12.2,8.3
+307,Salvaterra de Miño,Vilacova (San Xoán),38.674,20.876,0.774,5.7,10.9,8.3
+308,As Neves,Tortoreos (Santiago),72.791,17.448,0.132,5.4,11.2,8.3
+309,Redondela,Redondela (Santiago),57.384,16.82,0.199,4.3,12.0,8.2
+310,Ponteareas,Cumiar (Santo Estevo),38.313,17.442,0.219,5.4,10.5,8.0
+311,Tomiño,Currás (San Martiño),24.823,13.06,0.26,6.7,9.4,8.0
+312,Pontecesures,Pontecesures (San Xulián),64.841,18.113,0.009,3.9,12.0,8.0
+313,Marín,Mogor (San Xurxo),29.564,12.823,0.41,6.5,9.6,8.0
+314,A Estrada,Toedo (San Pedro),58.909,15.27,0.01,5.7,10.3,8.0
+315,Crecente,Quintela (San Caetano),33.483,15.456,0.159,6.6,9.4,8.0
+316,Tomiño,Figueiró (San Martiño),25.024,12.012,0.021,6.7,8.9,7.8
+317,Ribadumia,Ribadumia (Santa Baia),131.295,14.96,0.027,5.1,10.6,7.8
+318,Ponteareas,San Lourenzo de Oliveira (San Lourenzo),33.941,16.914,0.391,4.9,10.6,7.8
+319,Silleda,Dornelas (San Martiño),45.069,13.487,0.037,5.9,9.5,7.7
+320,A Lama,Antas (Santiago),43.485,26.958,0.61,6.0,9.3,7.6
+321,Moaña,Meira (Santa Eulalia),56.865,13.968,0.275,4.8,10.4,7.6
+322,Campo Lameiro,Moimenta (Santa María),45.434,14.366,0.15,4.7,10.4,7.6
+323,Mondariz-Balneario,Mondariz-Balneario (Nosa Señora de Lurdes),39.189,19.037,0.265,4.1,11.0,7.6
+324,A Estrada,Rubín (Santa María),88.152,16.539,0.008,4.1,11.0,7.6
+325,Ponte Caldelas,Caritel (Santa María),51.61,19.771,0.021,4.7,10.2,7.4
+326,Moaña,Tirán (San Xoán),53.928,16.932,0.197,4.0,10.9,7.4
+327,A Lama,Escuadra (San Lourenzo),56.835,22.048,0.005,3.9,11.0,7.4
+328,As Neves,As Neves (Santa María),52.285,14.146,0.016,5.0,9.9,7.4
+329,Portas,Briallos (San Cristovo),63.772,14.967,0.131,4.9,9.7,7.3
+330,Vilagarcía de Arousa,Arealonga (Santa Baia),78.271,18.06,0.026,2.5,12.1,7.3
+331,Forcarei,Millarada (San Amedio),95.381,31.568,0.016,2.0,12.5,7.2
+332,Vilanova de Arousa,András (San Lourenzo),55.321,12.553,0.248,5.1,9.3,7.2
+333,Meaño,Lores (San Miguel),69.138,11.606,0.364,5.7,8.7,7.2
+334,Covelo,Casteláns (Santo Estevo),43.512,21.242,0.071,4.3,10.1,7.2
+335,As Neves,Santiago de Ribarteme (Santiago),51.245,14.233,0.0,4.9,9.4,7.2
+336,Catoira,Catoira (San Miguel),43.546,12.314,0.014,5.5,8.9,7.2
+337,A Estrada,Lagartóns (Santo Estevo),47.532,14.721,0.0,5.2,8.8,7.0
+338,Cotobade,Loureiro (Santiago),40.427,24.577,0.23,3.8,10.3,7.0
+339,A Estrada,Couso (Santa María),48.015,14.745,0.02,4.6,9.3,7.0
+340,A Estrada,Remesar (San Cristovo),37.393,13.219,0.006,4.9,9.2,7.0
+341,Valga,Campaña (Santa Cristina),66.26,17.945,0.009,3.9,10.0,7.0
+342,Cambados,Oubiña (San Vicenzo),59.078,10.705,0.026,5.4,8.5,7.0
+343,Lalín,Cercio (Santiago),72.047,18.787,0.049,3.3,10.5,6.9
+344,Redondela,Ventosela (San Martiño),61.252,13.959,0.198,3.7,10.0,6.8
+345,Cotobade,Rebordelo (San Martiño),43.299,22.929,0.028,4.2,9.3,6.8
+346,Silleda,Abades (Santa María),51.71,14.855,0.039,4.0,9.6,6.8
+347,Nigrán,Parada (Santiago),48.178,13.667,0.157,4.5,8.9,6.7
+348,Ponte Caldelas,Forzáns (San Fiz),28.182,13.358,0.037,4.7,8.7,6.7
+349,Cambados,Corvillón (San Amedio),119.96,13.192,0.025,3.8,9.6,6.7
+350,Fornelos de Montes,Ventín (San Miguel),43.845,16.528,0.042,4.4,8.8,6.6
+351,Fornelos de Montes,As Estacas (Santa María),37.778,15.545,0.133,4.8,8.5,6.6
+352,Forcarei,A Madanela de Montes (Santa María Madanela),57.736,24.593,0.025,2.6,10.5,6.6
+353,A Estrada,Aguións (Santa María),61.971,13.728,0.24,4.7,8.5,6.6
+354,A Estrada,San Xiao de Vea (San Xiao),64.223,16.591,0.056,3.8,9.3,6.6
+355,Meaño,Meaño (San Xoán),46.297,9.556,0.098,5.4,7.8,6.6
+356,Lalín,Soutolongo (Santa María),89.465,30.856,0.012,1.9,11.3,6.6
+357,Oia,Loureza (San Mamede),44.162,15.025,0.185,4.4,8.7,6.6
+358,A Lama,Covelo (San Sebastián),66.67,30.282,0.066,3.8,9.2,6.5
+359,Moraña,Amil (San Mamede),64.177,15.29,0.35,3.6,9.3,6.4
+360,Tomiño,Pinzás (Santa María),24.209,9.633,0.209,5.0,7.7,6.4
+361,Cuntis,Estacas (San Fiz),42.114,11.626,0.344,4.8,8.0,6.4
+362,Marín,Seixo (Nosa Señora do Carme),37.727,12.818,0.161,4.5,8.3,6.4
+363,Cuntis,Portela (Santa Eulalia),50.055,12.087,0.064,4.3,8.4,6.4
+364,A Estrada,Tabeirós (Santiago),66.462,16.299,0.153,3.8,9.1,6.4
+365,Arbo,Sela (Santa María),46.739,14.76,0.047,3.3,9.3,6.3
+366,A Estrada,Nigoi (Santa María),53.027,16.224,0.127,3.6,9.0,6.3
+367,Arbo,Barcela (San Xoán),59.598,14.047,0.186,3.1,9.5,6.3
+368,Lalín,Galegos (San Miguel),47.176,11.68,0.001,3.9,8.4,6.2
+369,Lalín,A Xesta (San Fiz),69.753,26.319,0.022,2.6,9.9,6.2
+370,Cuntis,Cequeril (Santa María),47.597,15.536,0.031,3.7,8.5,6.1
+371,Baiona,Baiona (Santa María),19.255,7.698,0.004,5.4,6.7,6.1
+372,Baiona,Santa Cristina da Ramallosa (Santa Cristina),25.364,9.903,0.234,4.4,7.7,6.1
+373,A Estrada,Santo André de Vea (Santo André),90.839,13.302,0.347,3.3,8.8,6.1
+374,As Neves,Batalláns (Santa Eulalia),41.761,17.027,0.392,4.0,8.2,6.1
+375,Ponte Caldelas,Xustáns (San Martiño),64.742,14.702,0.236,3.7,8.1,5.9
+376,Lalín,Prado (San Martiño),47.481,15.969,0.017,3.5,8.3,5.9
+377,Covelo,Paraños (Santa María),39.938,13.521,0.038,3.3,8.6,5.9
+378,Lalín,Castro de Cabras (San Pedro),80.655,14.358,0.0,3.3,8.6,5.9
+379,Cambados,Vilariño (Santo Adrián),179.067,12.901,0.107,2.6,9.0,5.8
+380,Meaño,Padrenda (San Martiño),64.157,9.004,0.119,4.3,7.1,5.7
+381,A Estrada,Lamas (San Breixo),49.294,11.024,0.125,3.9,7.5,5.7
+382,Silleda,Siador (San Miguel),54.698,15.665,0.056,2.8,8.3,5.6
+383,O Rosal,Tabagón (San Xoán),22.035,7.724,0.062,4.7,6.5,5.6
+384,Lalín,Doade (San Pedro),61.755,21.483,0.002,3.2,8.1,5.6
+385,Nigrán,Panxón (San Xoán),62.444,13.363,0.0,2.2,9.1,5.6
+386,A Lama,Seixido (San Bartolomeu),85.569,44.321,0.176,2.9,8.2,5.6
+387,Silleda,Moalde (San Mamede),66.203,14.248,0.054,2.8,8.5,5.6
+388,Sanxenxo,Arra (San Amaro),41.655,8.787,0.045,4.1,6.9,5.5
+389,Cerdedo,Quireza (San Tomé),56.211,14.243,0.03,2.7,8.1,5.4
+390,A Estrada,Paradela (Santa María),37.944,12.12,0.02,3.5,7.3,5.4
+391,Arbo,Cabeiras (San Sebastián),45.373,12.276,0.065,3.5,7.3,5.4
+392,Oia,Viladesuso (San Miguel),23.993,8.202,0.019,4.3,6.5,5.4
+393,Cerdedo,Folgoso (Santa María),41.319,15.852,0.014,2.7,7.6,5.2
+394,Tomiño,Forcadela (San Pedro),35.28,9.289,0.023,3.7,6.7,5.2
+395,Lalín,Moimenta (San Lourenzo),37.652,11.436,0.0,3.0,7.4,5.2
+396,Silleda,Negreiros (San Martiño),59.542,11.759,0.008,2.6,7.9,5.2
+397,Ribadumia,Leiro (San Xoán),70.416,10.432,0.108,3.3,7.1,5.2
+398,A Estrada,Agar (Santa Mariña),47.827,10.511,0.08,3.2,7.2,5.2
+399,A Estrada,Frades (Santa María),38.7,9.466,0.025,3.8,6.6,5.2
+400,Meaño,Covas (Santa Cristina),42.24,8.071,0.136,4.1,6.2,5.2
+401,A Estrada,Barbude (San Martiño),33.352,10.34,0.013,3.7,6.4,5.1
+402,A Estrada,Souto (Santo André),55.897,15.051,0.156,2.2,7.9,5.1
+403,Mondariz,Queimadelos (Santa María),18.293,8.394,0.074,4.1,6.1,5.1
+404,Moraña,San Lourenzo de Moraña (San Lourenzo),35.542,10.296,0.295,3.0,6.9,5.0
+405,Agolada,Ferreiroa (San Pedro),45.215,10.901,0.007,2.5,7.4,5.0
+406,A Estrada,San Pedro de Ancorados (San Pedro),54.826,11.712,0.122,2.8,7.2,5.0
+407,A Lama,A Barcia do Seixo (Santa Ana),76.156,26.28,0.013,1.2,8.8,5.0
+408,Lalín,Noceda (Santa María),54.136,13.454,0.06,2.9,7.2,5.0
+409,A Estrada,Arca (San Miguel),49.765,11.206,0.008,3.3,6.6,4.9
+410,Salvaterra de Miño,Lourido (Santo André),18.114,7.589,0.072,4.1,5.8,4.9
+411,Silleda,Margaride (San Fiz),42.37,10.756,0.025,2.8,6.7,4.8
+412,Silleda,Piñeiro (San Xiao),65.601,11.198,0.012,2.5,7.1,4.8
+413,Oia,Oia (Santa María),26.379,7.88,0.158,3.5,6.1,4.8
+414,Campo Lameiro,Montes (San Isidro),28.143,10.231,0.026,3.4,6.3,4.8
+415,Silleda,Cortegada (Santa María),72.36,15.983,0.0,2.1,7.3,4.7
+416,Crecente,Sendelle (Santa Cruz),20.606,13.875,0.221,2.8,6.6,4.7
+417,Lalín,Zobra (Santa Mariña),42.327,14.578,0.002,2.8,6.6,4.7
+418,A Estrada,Parada (San Pedro),55.292,11.878,0.026,2.1,7.2,4.6
+419,Forcarei,Pardesoa (Santiago),36.923,18.281,0.151,2.5,6.6,4.6
+420,Lalín,Cadrón (Santo Estevo),35.622,10.963,0.032,2.8,6.4,4.6
+421,Nigrán,Chandebrito (San Xosé),32.783,7.837,0.083,3.3,5.6,4.4
+422,A Guarda,A Guarda (Santa María),23.338,6.315,0.003,3.7,5.2,4.4
+423,A Estrada,Cereixo (San Xurxo),45.611,8.946,0.085,2.8,6.0,4.4
+424,Lalín,Val do Carrio (Santo André),25.694,9.695,0.012,3.3,5.4,4.4
+425,Agolada,Borraxeiros (San Cristovo),55.102,13.309,0.0,1.5,7.4,4.4
+426,Lalín,Gresande (Santiago),53.307,14.856,0.017,2.0,6.6,4.3
+427,Lalín,Maceira (San Martiño),74.324,16.037,0.0,1.2,7.4,4.3
+428,Meaño,Simes (Santa María),62.428,8.352,0.344,2.4,6.0,4.2
+429,Silleda,Breixa (Santiago),42.537,9.493,0.011,2.2,6.2,4.2
+430,Lalín,Xaxán (Santa María da Saleta),53.289,15.402,0.024,1.7,6.8,4.2
+431,As Neves,Liñares (Santa María),35.517,9.079,0.004,2.2,6.2,4.2
+432,Silleda,Parada (San Tomé),47.736,10.251,0.005,2.2,6.2,4.2
+433,Lalín,Madriñán (Santo Adrao),36.5,9.38,0.067,2.4,6.1,4.2
+434,A Estrada,San Tomé de Ancorados (San Tomé),38.073,7.999,0.038,2.8,5.6,4.2
+435,Forcarei,Aciveiro (Santa María),62.195,16.523,0.002,0.4,7.8,4.1
+436,Pazos de Borbén,Pazos (Santa María),32.029,10.836,0.003,2.1,6.1,4.1
+437,Silleda,Graba (Santa María),60.037,12.686,0.22,2.1,6.1,4.1
+438,Cotobade,Corredoira (San Gregorio),37.872,12.724,0.0,1.4,6.7,4.0
+439,Cerdedo,Figueiroa (San Martiño),36.694,12.712,0.002,2.0,6.0,4.0
+440,Fornelos de Montes,Calvos (Santo Adrián),32.772,11.516,0.405,2.4,5.5,4.0
+441,Lalín,Lebozán (Santiago),52.628,18.198,0.165,1.5,6.6,4.0
+442,Lalín,A Veiga (San Ramón),59.894,10.251,0.0,1.7,6.3,4.0
+443,Forcarei,Dúas Igrexas (Santa María),57.584,14.623,0.002,1.5,6.3,3.9
+444,Ponteareas,Paredes (San Cibrán),21.148,6.698,0.041,2.9,4.7,3.8
+445,Lalín,Donsión (Santa Baia),63.852,17.684,0.019,0.9,6.7,3.8
+446,Vilagarcía de Arousa,Solobeira (San Fins),26.679,6.323,0.179,2.9,4.8,3.8
+447,A Estrada,Cora (San Miguel),56.34,11.255,0.0,2.3,5.4,3.8
+448,A Estrada,A Somoza (Santo André),46.411,10.437,0.148,2.1,5.4,3.8
+449,Silleda,Rellas (San Martiño),41.084,9.456,0.049,2.2,5.5,3.8
+450,As Neves,Cerdeira (San Xoán),27.781,8.812,0.073,2.4,5.3,3.8
+451,Lalín,Santiso (San Román),56.8,9.475,0.0,1.8,5.7,3.8
+452,Pazos de Borbén,A Ermida (Nosa Señora da Anunciación),12.433,6.879,0.016,3.2,4.4,3.8
+453,As Neves,San Pedro de Batalláns (San Pedro),26.375,12.199,0.046,2.5,4.9,3.7
+454,Ribadumia,Barrantes (Santo André),81.609,7.968,0.312,1.8,5.6,3.7
+455,A Estrada,Ribela (Santa Mariña),47.874,11.187,0.001,2.0,5.4,3.7
+456,Silleda,Chapa (San Cibrao),35.341,7.658,0.0,2.1,5.3,3.7
+457,Lalín,Busto (San Facundo),19.711,6.95,0.018,3.0,4.4,3.7
+458,Lalín,Méixome (Santiago),36.977,7.753,0.076,2.6,4.8,3.7
+459,Moraña,Gargantáns (San Martiño),26.424,6.118,0.209,2.8,4.3,3.6
+460,A Estrada,Olives (Santa María),33.918,9.767,0.022,2.2,4.9,3.6
+461,Cerdedo,Parada (San Pedro),20.091,10.796,0.0,2.2,5.1,3.6
+462,Cuntis,Couselo (San Miguel),28.106,6.836,0.095,2.6,4.5,3.6
+463,Lalín,Anzo (San Xoán),40.678,7.403,0.022,2.2,5.0,3.6
+464,Lalín,Rodís (San Xiao),30.962,7.674,0.0,2.3,4.9,3.6
+465,Pazos de Borbén,Moscoso (San Paio),22.166,6.132,0.019,2.6,4.4,3.5
+466,Agolada,Eidián (Santiago),23.233,7.31,0.0,2.2,4.8,3.5
+467,Covelo,O Piñeiro (San Xoán),25.587,7.631,0.016,2.3,4.6,3.4
+468,Agolada,Artoño (Santalla),14.116,5.885,0.023,2.2,4.5,3.4
+469,Agolada,Ventosa (San Xulián),47.108,9.73,0.0,1.0,5.7,3.4
+470,Lalín,Cangas (Santa Mariña),36.134,7.721,0.039,1.9,5.0,3.4
+471,Lalín,Vilanova (San Xoán),58.699,18.153,0.003,0.5,6.1,3.3
+472,Agolada,A Baíña (San Pedro),12.96,5.098,0.0,2.5,3.8,3.2
+473,Agolada,Berredo (Santa María),22.148,6.956,0.002,1.7,4.6,3.2
+474,Silleda,Fiestras (San Martiño),34.194,7.294,0.028,2.1,4.2,3.2
+475,Silleda,Taboada (Santiago),47.718,12.606,0.132,1.7,4.6,3.2
+476,Covelo,Godóns (Santa María),52.698,16.99,0.016,0.7,5.8,3.2
+477,Forcarei,Castrelo (Santa Mariña),29.734,10.95,0.002,1.1,5.2,3.2
+478,A Lama,Xesta (San Bartolomeu),70.273,27.034,0.031,0.9,5.4,3.2
+479,Forcarei,Santa Mariña de Presqueiras (Santa Mariña),30.384,14.61,0.018,1.4,4.8,3.1
+480,Cerdedo,Tomonde (Santa María),26.282,10.529,0.023,1.6,4.4,3.0
+481,Ribadumia,Sisán (San Clemenzo),79.808,7.68,0.023,1.3,4.8,3.0
+482,Silleda,Ponte (San Miguel),51.119,7.937,0.058,1.0,5.1,3.0
+483,Lalín,Barcia (Santo Estevo),56.152,12.672,0.001,0.7,5.2,3.0
+484,Covelo,A Lamosa (San Bartolomeu),28.014,11.946,0.044,1.4,4.7,3.0
+485,Ponte Caldelas,Castro Barbudo (Santa María),16.198,5.602,0.015,2.2,3.6,2.9
+486,A Estrada,Pardemarín (Santa Baia),40.417,9.893,0.055,1.3,4.6,2.9
+487,Lalín,Palmou (San Xoán),43.709,8.222,0.0,1.4,4.4,2.9
+488,Pazos de Borbén,Amoedo (San Sadurniño),37.152,7.822,0.078,0.8,5.1,2.9
+489,A Cañiza,A Franqueira (Santa María),37.028,10.843,0.116,1.3,4.5,2.9
+490,Vilanova de Arousa,Vilanova de Arousa (San Cibrán),61.098,7.812,0.024,0.5,5.1,2.8
+491,Lalín,Parada (Santa María),34.754,5.792,0.008,1.4,4.1,2.8
+492,A Estrada,San Miguel de Barcala (San Miguel),32.342,6.664,0.01,1.4,4.2,2.8
+493,A Estrada,Barcala (Santa Mariña),20.482,6.301,0.06,1.6,4.0,2.8
+494,Silleda,O Castro (San Mamede),37.426,8.019,0.0,1.0,4.6,2.8
+495,Silleda,Vilar (San Martiño),29.242,9.489,0.004,1.6,3.9,2.8
+496,Cerdedo,Castro (Santa Baia),23.513,8.333,0.0,1.3,4.3,2.8
+497,Silleda,Saídres (San Xoán),40.972,7.476,0.0,0.7,4.5,2.6
+498,Agolada,Brocos (San Miguel),14.778,5.327,0.011,1.7,3.6,2.6
+499,Fornelos de Montes,Traspielas (Santa María),48.004,7.054,0.0,1.2,4.1,2.6
+500,Cotobade,Caroi (Santiago),41.908,11.688,0.0,1.2,4.1,2.6
+501,Agolada,Brántega (San Lourenzo),22.834,6.288,0.0,1.2,3.6,2.4
+502,Silleda,Refoxos (San Paio),32.191,7.923,0.006,0.2,4.5,2.4
+503,Forcarei,Ventoxo (San Nicolao),37.331,16.294,0.011,0.4,4.5,2.4
+504,Ribadumia,Besomaño (Santa María),32.186,3.906,0.032,1.7,3.0,2.4
+505,Lalín,Alemparte (Santa María),15.002,3.615,0.0,1.8,2.9,2.4
+506,Silleda,Cervaña (San Salvador),27.161,5.435,0.035,1.3,3.5,2.4
+507,Silleda,Martixe (San Cristovo),30.577,5.813,0.0,1.3,3.3,2.3
+508,A Estrada,Baloira (San Salvador),27.113,6.123,0.016,1.4,3.3,2.3
+509,Pazos de Borbén,Xunqueiras (San Salvador),23.649,5.87,0.016,1.4,3.2,2.3
+510,Forcarei,Quintillán (San Pedro),37.457,9.074,0.001,0.9,3.7,2.3
+511,Silleda,Laro (San Salvador),52.687,7.262,0.0,0.2,4.1,2.2
+512,Lalín,Cristimil (San Xurxo),43.045,8.435,0.044,1.1,3.2,2.2
+513,Forcarei,Meavía (San Xoán),49.767,6.402,0.0,0.8,3.5,2.2
+514,Ponte Caldelas,Taboadelo (Santiago),17.463,5.038,0.015,1.6,2.8,2.2
+515,Cerdedo,Pedre (Santo Estevo),15.759,6.317,0.028,1.3,3.0,2.2
+516,Agolada,Órrea (Santo André),9.789,3.739,0.015,1.6,2.9,2.2
+517,Agolada,Santa Comba (San Xoán),19.524,3.784,0.0,1.6,2.7,2.2
+518,Fornelos de Montes,Oitavén (San Vicente),21.304,6.884,0.0,1.1,3.1,2.1
+519,Silleda,Oleiros (San Miguel),36.459,7.592,0.0,0.8,3.4,2.1
+520,Campo Lameiro,Morillas (Santiago),12.597,4.498,0.032,1.3,2.7,2.0
+521,Silleda,Carboeiro (Santa María),21.089,5.503,0.007,1.2,2.9,2.0
+522,Moraña,Cosoirado (Santa María),7.936,3.435,0.009,1.6,2.3,2.0
+523,Silleda,Ansemil (San Pedro),22.258,4.964,0.028,1.1,2.8,2.0
+524,Agolada,As Trabancas (San Mamede),31.561,5.787,0.0,0.8,3.0,1.9
+525,Vilagarcía de Arousa,Sobradelo (San Salvador),21.468,5.955,0.021,0.0,3.7,1.8
+526,Covelo,Prado de Canda (Santiago),14.427,5.496,0.0,0.8,2.7,1.8
+527,Covelo,Fofe (San Miguel),13.918,5.367,0.017,0.7,3.0,1.8
+528,Agolada,Val de Sangorza (Santa María),15.661,3.781,0.0,0.7,2.6,1.6
+529,A Estrada,Sabucedo (San Lourenzo),10.739,3.602,0.033,1.1,2.1,1.6
+530,Silleda,Pazos (San Martiño),18.894,4.266,0.043,0.9,2.2,1.6
+531,Agolada,Vilariño (Santa María),18.08,3.195,0.0,0.9,2.3,1.6
+532,Forcarei,San Miguel de Presqueiras (San Miguel),24.147,8.318,0.045,0.5,2.8,1.6
+533,Fornelos de Montes,A Laxe (San Xosé),29.844,6.522,0.0,0.6,2.4,1.5
+534,Lalín,Camposancos (San Cristovo),21.73,6.269,0.0,0.2,2.8,1.5
+535,Caldas de Reis,Caldas de Reis (San Tomé e Santa María),18.164,3.888,0.024,0.5,2.5,1.5
+536,Lalín,Moneixas (Santo Adrao),36.865,9.006,0.0,0.0,3.0,1.5
+537,Lalín,Anseán (Santiago),24.125,6.549,0.0,0.5,2.5,1.5
+538,Lalín,Lodeiro (San Paio),18.104,3.914,0.0,1.0,1.9,1.4
+539,Agolada,Merlín (San Pedro),10.987,3.249,0.0,0.7,1.9,1.3
+540,Forcarei,Pereira (San Bartolomeu),32.329,5.718,0.0,0.1,2.4,1.2
+541,Cangas,Cangas (Santiago e San Salvador),9.65,2.724,0.174,0.5,1.9,1.2
+542,Cambados,Cambados (Santa Mariña),26.465,2.327,0.059,0.6,1.7,1.2
+543,Vilagarcía de Arousa,Vilagarcía (Santa Baia),26.836,3.745,0.02,0.0,2.4,1.2
+544,Agolada,Agra (San Miguel),14.519,3.241,0.11,0.4,1.9,1.2
+545,Covelo,Campo (Santa María),31.199,9.2,0.004,0.1,2.3,1.2
+546,Vilagarcía de Arousa,Fontecarmoa (San Pedro),7.495,2.097,0.013,0.7,1.5,1.1
+547,Agolada,Basadre (Santa María),12.811,3.187,0.0,0.3,1.8,1.0
+548,Agolada,Ramil (San Martiño),6.657,2.446,0.0,0.5,1.4,1.0
+549,A Estrada,Liripio (San Xoán Bautista),22.729,4.468,0.0,0.4,1.5,1.0
+550,Lalín,Albarellos (Santa María),12.752,3.725,0.0,0.5,1.4,1.0
+551,Covelo,Prado (San Salvador),35.542,9.181,0.0,0.0,1.7,0.8
+552,Silleda,Xestoso (Santa María),16.386,3.48,0.0,0.0,1.5,0.8
+553,Agolada,Gurgueiro (San Miguel),5.512,1.056,0.0,0.6,0.9,0.8
+554,Pazos de Borbén,Cepeda (San Pedro),17.627,2.376,0.0,0.0,1.5,0.8
+555,Covelo,A Graña (San Bernabeu),39.139,12.642,0.002,0.0,1.6,0.8
+556,Agolada,O Sexo (Santiago),7.402,1.737,0.0,0.2,1.0,0.6
+557,Agolada,Sesto (San Cibrao),7.83,1.818,0.0,0.2,0.8,0.5
+558,Lalín,Sello (Santiago),14.513,1.472,0.0,0.2,0.8,0.5
+559,Agolada,Carmoega (San Pedro),6.259,1.092,0.0,0.3,0.6,0.4
+560,Tui,Tui (O Sagrario),6.054,2.044,0.029,0.1,0.8,0.4
+561,Agolada,Esperante (San Cibrao),14.238,1.009,0.0,0.0,0.6,0.3
+562,Agolada,San Paio de Bais (San Paio),4.276,0.556,0.0,0.0,0.3,0.2
+563,Marín,Marín (Santa María do Porto),0.571,0.056,0.0,0.0,0.0,0.0

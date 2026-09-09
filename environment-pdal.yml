@@ -1,0 +1,17 @@
+# Entorno conda SOLO para PDAL y GDAL, que no tienen wheel en PyPI para Windows.
+# El resto del pipeline corre en el Python del sistema (ver requirements.txt).
+#
+#     micromamba create -f environment-pdal.yml
+#
+# Ojo: NO invocarlo con `micromamba run` — se come el stderr y los fallos de PDAL
+# pasan desapercibidos. Llamar al ejecutable directo:
+#
+#     envs\pdal\Library\bin\pdal.exe
+#
+name: pdal
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pdal
+  - gdal

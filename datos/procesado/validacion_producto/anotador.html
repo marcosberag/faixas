@@ -1,0 +1,342 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Anotador de validacion — faixas</title>
+<style>
+  :root {
+    --fondo: #14171a; --panel: #1e2328; --borde: #2f3740;
+    --texto: #e6e9ec; --suave: #98a2ad; --acento: #5aa9e6;
+    --si: #4caf7d; --no: #d98555; --edif: #b07cc6; --duda: #7d8894;
+    --alerta: #e0574f;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--fondo); color: var(--texto);
+         font: 15px/1.5 system-ui, -apple-system, Segoe UI, sans-serif; }
+  header { display: flex; align-items: center; gap: 18px; padding: 10px 18px;
+           background: var(--panel); border-bottom: 1px solid var(--borde); }
+  .barra { flex: 1; height: 7px; background: #2a3138; border-radius: 4px; overflow: hidden; }
+  .barra > div { height: 100%; width: 0; background: var(--acento); transition: width .15s; }
+  .cifra { font-variant-numeric: tabular-nums; color: var(--suave); font-size: 13px; }
+  main { display: grid; grid-template-columns: minmax(0, 1fr) 330px; gap: 20px;
+         padding: 20px; max-width: 1080px; margin: 0 auto; align-items: start; }
+  .lienzo { position: relative; background: #000; border: 1px solid var(--borde);
+            border-radius: 8px; overflow: hidden; aspect-ratio: 1; }
+  .lienzo img { width: 100%; height: 100%; display: block; }
+  .lienzo img.oculto { display: none; }
+  .id { position: absolute; right: 12px; top: 10px; color: #fff; font-size: 12px;
+        text-shadow: 0 0 4px #000; font-variant-numeric: tabular-nums; }
+  .encuadre { position: absolute; left: 12px; top: 10px; color: #fff; font-size: 12px;
+        text-shadow: 0 0 4px #000; font-variant-numeric: tabular-nums; }
+  .encuadre b { color: #ffff3c; }
+  aside { display: flex; flex-direction: column; gap: 8px; }
+  button.op { display: flex; align-items: center; gap: 11px; width: 100%;
+      padding: 11px 13px; border: 1px solid var(--borde); border-radius: 7px;
+      background: var(--panel); color: var(--texto); font: inherit;
+      cursor: pointer; text-align: left; }
+  button.op:hover { border-color: var(--acento); }
+  kbd { background: #2c343c; border: 1px solid #3d4650; border-radius: 4px;
+        padding: 1px 7px; font: 12.5px ui-monospace, monospace; }
+  button.op kbd { min-width: 26px; text-align: center; }
+  button.op b { font-weight: 600; }
+  button.op small { display: block; color: var(--suave); font-size: 12px;
+      font-weight: 400; line-height: 1.35; }
+  .p1 kbd { color: var(--si); } .p2 kbd { color: var(--no); }
+  .p3 kbd { color: var(--edif); } .p4 kbd { color: var(--duda); }
+  /* el color va por estatus legal, no por botanica: la acacia es una frondosa y
+     esta prohibida, y esa es justamente la confusion que hay que evitar */
+  .t-mal  { border-left: 4px solid var(--alerta) !important; }
+  .t-bien { border-left: 4px solid var(--si) !important; }
+  .grupo { margin-top: 6px; font-size: 12px; text-transform: uppercase;
+      letter-spacing: .09em; color: var(--suave); }
+  .criterio { background: var(--panel); border: 1px solid var(--borde);
+      border-radius: 7px; padding: 11px 13px; font-size: 12.5px; color: var(--suave); }
+  .criterio b { color: var(--texto); }
+  .aviso { background: #3a1f1d; border: 1px solid var(--alerta); color: #f3cdc9;
+      border-radius: 7px; padding: 11px 13px; font-size: 13px; }
+  .pie { grid-column: 1 / -1; display: flex; gap: 10px; align-items: center;
+      flex-wrap: wrap; border-top: 1px solid var(--borde); padding-top: 14px;
+      font-size: 13px; color: var(--suave); }
+  .pie button { padding: 8px 15px; border-radius: 6px; border: 1px solid var(--borde);
+      background: var(--panel); color: var(--texto); font: inherit; cursor: pointer; }
+  .pie button.primario { background: var(--acento); border-color: var(--acento);
+      color: #08131c; font-weight: 600; }
+  .oculto { display: none !important; }
+  .fin { text-align: center; padding: 60px 20px; }
+  .fin h2 { font-size: 22px; margin: 0 0 10px; }
+  .fin p { color: var(--suave); }
+</style>
+
+<header>
+  <strong>Validación de faixas</strong>
+  <div class="barra"><div id="prog"></div></div>
+  <span class="cifra" id="contador"></span>
+  <span class="cifra" id="ritmo"></span>
+</header>
+
+<main id="pantalla">
+  <div>
+    <div class="lienzo">
+      <img id="chip" alt="">
+      <img id="chipctx" class="oculto" alt="">
+      <span class="encuadre" id="encuadre"></span>
+      <span class="id" id="etiqueta"></span>
+    </div>
+  </div>
+
+  <aside>
+    <div id="alerta" class="aviso oculto"></div>
+
+    <div id="pregunta1">
+      <div class="grupo">¿Qué hay justo en la mira?</div>
+      <button class="op p1" data-v="arbol"><kbd>1</kbd><b>Árbol
+        <small>copa de individuo leñoso con porte arbóreo</small></b></button>
+      <button class="op p2" data-v="no"><kbd>2</kbd><b>No árbol
+        <small>prado, cultivo, matorral, roca, camino, agua, suelo</small></b></button>
+      <button class="op p3" data-v="edificacion"><kbd>3</kbd><b>Edificación
+        <small>tejado, nave, muro, vehículo, estructura</small></b></button>
+      <button class="op p4" data-v="dudoso"><kbd>4</kbd><b>Dudoso
+        <small>sombra, nube, borde, no se puede decidir</small></b></button>
+    </div>
+
+    <div id="pregunta2" class="oculto">
+      <div class="grupo">¿Qué tipo de copa?</div>
+      <button class="op t-mal" data-t="pino"><kbd>1</kbd><b>Pino u otra conífera
+        <small>copa estrellada, verde oscuro, 20–25 m</small></b></button>
+      <button class="op t-mal" data-t="eucalipto"><kbd>2</kbd><b>Eucalipto
+        <small>rala y despeinada, azulada, 30–50 m</small></b></button>
+      <button class="op t-mal" data-t="acacia"><kbd>3</kbd><b>Acacia o mimosa
+        <small>manta continua fina y plateada, sin copas sueltas</small></b></button>
+      <button class="op t-bien" data-t="frondosa"><kbd>4</kbd><b>Frondosa caducifolia
+        <small>castaño, roble, ribera. La única EXENTA</small></b></button>
+      <button class="op" data-t="nd"><kbd>5</kbd><b>No distinguible</b></button>
+    </div>
+
+    <div class="criterio" id="recuerda-tipo">
+      <b>El tipo de copa es opcional.</b> No entra en el umbral ni en la tasa de
+      falsos positivos. Si no lo ves clarísimo, <kbd>5</kbd> y a seguir:
+      etiquetar con dudas es peor que no etiquetar.
+    </div>
+
+    <div class="criterio">
+      <b>La rejilla da la escala.</b> Cada casilla son 10 m, y el círculo de la
+      mira mide 3 m de diámetro. Una copa de pino adulto llena media casilla.<br><br>
+      <b>Matorral no es árbol.</b> Tojo, brezo y zarza forman manta continua sin
+      copa individual ni sombra propia: van en <i>No árbol</i> aunque levanten
+      dos metros.<br><br>
+      <b>Sombra no es vegetación.</b> La sombra sobre suelo conserva el tono del
+      suelo, solo más oscuro. Si es verde, hay planta.<br><br>
+      <b>Decide solo el centro de la mira</b>, no lo que la rodea.<br><br>
+      <b>No adivines.</b> Si dudas, <kbd>4</kbd>. Los dudosos se declaran y se
+      excluyen; forzar la respuesta es lo que estropea la calibración.
+    </div>
+
+    <div class="criterio">
+      <kbd>z</kbd> alejar a 120 m y volver · <kbd>←</kbd> volver ·
+      <kbd>→</kbd> saltar sin responder.
+      Puedes cerrar y seguir después: el progreso se guarda solo.
+    </div>
+  </aside>
+
+  <div class="pie">
+    <button id="atras">← Volver</button>
+    <button id="saltar">Saltar →</button>
+    <span id="estado"></span>
+    <span style="flex:1"></span>
+    <button id="exportar" class="primario">Descargar CSV</button>
+    <button id="borrar">Borrar progreso</button>
+  </div>
+</main>
+
+<div class="fin oculto" id="fin">
+  <h2>Muestra completa</h2>
+  <p id="resumen"></p>
+  <p style="margin-top:24px">
+    <button class="primario" id="exportar2"
+      style="padding:11px 22px;border:0;border-radius:7px;font:inherit;font-weight:600;cursor:pointer">
+      Descargar CSV</button>
+    <button id="revisar"
+      style="padding:11px 22px;border-radius:7px;font:inherit;cursor:pointer">
+      Revisar desde el principio</button></p>
+  <p style="font-size:13px">Guarda el CSV en <code>datos/procesado/validacion/</code>
+     y corre <code>python scripts/calibra_umbral.py</code>.</p>
+</div>
+
+<script>
+const PUNTOS = [{"id":"p0139"},{"id":"p0202"},{"id":"p0138"},{"id":"p0121"},{"id":"p0053"},{"id":"p0002"},{"id":"p0227"},{"id":"p0173"},{"id":"p0228"},{"id":"p0140"},{"id":"p0075"},{"id":"p0004"},{"id":"p0231"},{"id":"p0241"},{"id":"p0021"},{"id":"p0110"},{"id":"p0217"},{"id":"p0016"},{"id":"p0201"},{"id":"p0118"},{"id":"p0177"},{"id":"p0129"},{"id":"p0190"},{"id":"p0160"},{"id":"p0168"},{"id":"p0054"},{"id":"p0056"},{"id":"p0215"},{"id":"p0103"},{"id":"p0234"},{"id":"p0082"},{"id":"p0096"},{"id":"p0148"},{"id":"p0197"},{"id":"p0102"},{"id":"p0175"},{"id":"p0076"},{"id":"p0114"},{"id":"p0046"},{"id":"p0218"},{"id":"p0245"},{"id":"p0184"},{"id":"p0090"},{"id":"p0024"},{"id":"p0163"},{"id":"p0191"},{"id":"p0095"},{"id":"p0246"},{"id":"p0005"},{"id":"p0029"},{"id":"p0208"},{"id":"p0248"},{"id":"p0122"},{"id":"p0145"},{"id":"p0169"},{"id":"p0066"},{"id":"p0007"},{"id":"p0101"},{"id":"p0239"},{"id":"p0071"},{"id":"p0221"},{"id":"p0154"},{"id":"p0164"},{"id":"p0117"},{"id":"p0011"},{"id":"p0062"},{"id":"p0146"},{"id":"p0100"},{"id":"p0183"},{"id":"p0065"},{"id":"p0098"},{"id":"p0109"},{"id":"p0085"},{"id":"p0235"},{"id":"p0161"},{"id":"p0172"},{"id":"p0224"},{"id":"p0127"},{"id":"p0128"},{"id":"p0220"},{"id":"p0003"},{"id":"p0136"},{"id":"p0033"},{"id":"p0223"},{"id":"p0240"},{"id":"p0077"},{"id":"p0080"},{"id":"p0193"},{"id":"p0167"},{"id":"p0084"},{"id":"p0039"},{"id":"p0017"},{"id":"p0206"},{"id":"p0010"},{"id":"p0212"},{"id":"p0006"},{"id":"p0042"},{"id":"p0035"},{"id":"p0047"},{"id":"p0207"},{"id":"p0134"},{"id":"p0194"},{"id":"p0210"},{"id":"p0013"},{"id":"p0200"},{"id":"p0225"},{"id":"p0156"},{"id":"p0238"},{"id":"p0097"},{"id":"p0232"},{"id":"p0037"},{"id":"p0124"},{"id":"p0093"},{"id":"p0133"},{"id":"p0104"},{"id":"p0211"},{"id":"p0052"},{"id":"p0012"},{"id":"p0064"},{"id":"p0131"},{"id":"p0186"},{"id":"p0222"},{"id":"p0205"},{"id":"p0132"},{"id":"p0155"},{"id":"p0170"},{"id":"p0107"},{"id":"p0092"},{"id":"p0143"},{"id":"p0120"},{"id":"p0069"},{"id":"p0226"},{"id":"p0162"},{"id":"p0178"},{"id":"p0195"},{"id":"p0094"},{"id":"p0204"},{"id":"p0165"},{"id":"p0057"},{"id":"p0237"},{"id":"p0144"},{"id":"p0022"},{"id":"p0044"},{"id":"p0233"},{"id":"p0081"},{"id":"p0073"},{"id":"p0236"},{"id":"p0243"},{"id":"p0025"},{"id":"p0152"},{"id":"p0181"},{"id":"p0112"},{"id":"p0187"},{"id":"p0199"},{"id":"p0059"},{"id":"p0214"},{"id":"p0027"},{"id":"p0099"},{"id":"p0031"},{"id":"p0023"},{"id":"p0216"},{"id":"p0196"},{"id":"p0123"},{"id":"p0209"},{"id":"p0135"},{"id":"p0051"},{"id":"p0151"},{"id":"p0008"},{"id":"p0078"},{"id":"p0070"},{"id":"p0188"},{"id":"p0014"},{"id":"p0067"},{"id":"p0072"},{"id":"p0048"},{"id":"p0050"},{"id":"p0041"},{"id":"p0000"},{"id":"p0088"},{"id":"p0030"},{"id":"p0189"},{"id":"p0113"},{"id":"p0032"},{"id":"p0166"},{"id":"p0185"},{"id":"p0219"},{"id":"p0106"},{"id":"p0018"},{"id":"p0020"},{"id":"p0086"},{"id":"p0182"},{"id":"p0119"},{"id":"p0055"},{"id":"p0034"},{"id":"p0049"},{"id":"p0141"},{"id":"p0061"},{"id":"p0087"},{"id":"p0045"},{"id":"p0174"},{"id":"p0242"},{"id":"p0249"},{"id":"p0125"},{"id":"p0083"},{"id":"p0015"},{"id":"p0019"},{"id":"p0229"},{"id":"p0130"},{"id":"p0192"},{"id":"p0157"},{"id":"p0115"},{"id":"p0179"},{"id":"p0001"},{"id":"p0158"},{"id":"p0116"},{"id":"p0079"},{"id":"p0038"},{"id":"p0036"},{"id":"p0009"},{"id":"p0213"},{"id":"p0147"},{"id":"p0171"},{"id":"p0230"},{"id":"p0153"},{"id":"p0060"},{"id":"p0137"},{"id":"p0105"},{"id":"p0198"},{"id":"p0040"},{"id":"p0176"},{"id":"p0180"},{"id":"p0244"},{"id":"p0159"},{"id":"p0063"},{"id":"p0058"},{"id":"p0108"},{"id":"p0142"},{"id":"p0149"},{"id":"p0091"},{"id":"p0028"},{"id":"p0068"},{"id":"p0150"},{"id":"p0126"},{"id":"p0026"},{"id":"p0089"},{"id":"p0247"},{"id":"p0203"},{"id":"p0043"},{"id":"p0111"},{"id":"p0074"}];
+const CLAVE  = "faixas-validacion-250-229816";
+// la subpregunta de tipo de copa es opcional: no entra en el umbral ni en la
+// tasa de falsos positivos, que es lo que la fase 2 tiene que entregar
+const PIDE_TIPO = false;
+
+let resp = {}, i = 0, t0 = Date.now(), esperandoTipo = false, persiste = true;
+let lejos = false;   // si se esta mirando el encuadre de 120 m
+// si el punto que se esta respondiendo era nuevo o se esta revisando: lo decide
+// `responde` y lo necesita `respondeTipo`, que llega un clic despues
+let pendiente = true;
+
+const $ = s => document.querySelector(s);
+
+// localStorage puede estar capado al abrir con file:// segun navegador y ajustes.
+// Si lo esta hay que decirlo ANTES de que alguien anote 300 chips y los pierda.
+try {
+  localStorage.setItem(CLAVE + "-test", "1");
+  localStorage.removeItem(CLAVE + "-test");
+  resp = JSON.parse(localStorage.getItem(CLAVE) || "{}");
+} catch (e) {
+  persiste = false;
+}
+
+function guarda() {
+  if (!persiste) return;
+  try { localStorage.setItem(CLAVE, JSON.stringify(resp)); }
+  catch (e) { persiste = false; alerta(); }
+}
+
+function alerta() {
+  if (persiste) return;
+  const a = $("#alerta");
+  a.classList.remove("oculto");
+  a.innerHTML = "<b>El navegador no deja guardar el progreso.</b> "
+    + "Si cierras la pestaña lo pierdes todo. Descarga el CSV a menudo, "
+    + "o sirve la carpeta con <code>python -m http.server</code> y ábrela "
+    + "por <code>localhost</code>.";
+}
+
+function encuadra(ancho) {
+  lejos = ancho;
+  $("#chip").classList.toggle("oculto", lejos);
+  $("#chipctx").classList.toggle("oculto", !lejos);
+  $("#encuadre").innerHTML = lejos
+    ? "120 × 120 m · rejilla <b>20 m</b>" : "40 × 40 m · rejilla <b>10 m</b>";
+}
+
+function pinta() {
+  const p = PUNTOS[i], r = resp[p.id];
+  $("#chip").src = "chips/" + p.id + ".jpg";
+  $("#chipctx").src = "chips_ctx/" + p.id + ".jpg";
+  // cada punto arranca en el encuadre corto: si el zoom se quedara pegado, se
+  // acabarian juzgando unos puntos de cerca y otros de lejos sin darse cuenta
+  encuadra(false);
+  $("#etiqueta").textContent = p.id;
+  esperandoTipo = false;
+  $("#pregunta1").classList.remove("oculto");
+  $("#pregunta2").classList.add("oculto");
+
+  const hechas = Object.keys(resp).length;
+  $("#prog").style.width = (100 * hechas / PUNTOS.length) + "%";
+  $("#contador").textContent = hechas + " / " + PUNTOS.length;
+  const ts = Object.values(resp).map(r => r.ms).filter(m => m > 0 && m < 60000);
+  $("#ritmo").textContent = ts.length
+    ? (ts.reduce((a, b) => a + b, 0) / ts.length / 1000).toFixed(1) + " s/chip" : "";
+
+  $("#estado").textContent = "posición " + (i + 1) + (r
+    ? " — respondido: " + r.clase + (r.tipo ? " / " + r.tipo : "") : "");
+  t0 = Date.now();
+  if (i + 1 < PUNTOS.length) new Image().src = "chips/" + PUNTOS[i + 1].id + ".jpg";
+}
+
+$("#chip").onclick = () => encuadra(true);
+$("#chipctx").onclick = () => encuadra(false);
+
+function ir(k) {
+  $("#fin").classList.add("oculto");
+  $("#pantalla").classList.remove("oculto");
+  i = Math.max(0, Math.min(PUNTOS.length - 1, k));
+  pinta();
+}
+
+function siguienteSinResponder(desde) {
+  for (let k = desde; k < PUNTOS.length; k++) if (!resp[PUNTOS[k].id]) return k;
+  return PUNTOS.findIndex(p => !resp[p.id]);   // -1 si no queda ninguno
+}
+
+function avanza(eraNuevo) {
+  // al revisar (el punto ya estaba respondido) se avanza de uno en uno, que es lo
+  // que uno espera; al anotar en serie se salta a la siguiente sin responder
+  const k = eraNuevo ? siguienteSinResponder(i + 1) : i + 1;
+  if (k < 0) return terminar();
+  if (k >= PUNTOS.length) return terminar();
+  ir(k);
+}
+
+function responde(clase) {
+  const p = PUNTOS[i], eraNuevo = !resp[p.id];
+  resp[p.id] = { clase, ms: Date.now() - t0 };
+  guarda();
+  if (clase === "arbol" && PIDE_TIPO) {
+    // la subpregunta solo aplica si hay copa que clasificar
+    esperandoTipo = true;
+    $("#pregunta1").classList.add("oculto");
+    $("#pregunta2").classList.remove("oculto");
+    pendiente = eraNuevo;
+  } else {
+    avanza(eraNuevo);
+  }
+}
+
+function respondeTipo(tipo) {
+  resp[PUNTOS[i].id].tipo = tipo;
+  guarda();
+  avanza(pendiente);
+}
+
+function terminar() {
+  $("#pantalla").classList.add("oculto");
+  $("#fin").classList.remove("oculto");
+  const c = {};
+  Object.values(resp).forEach(r => c[r.clase] = (c[r.clase] || 0) + 1);
+  const n = Object.keys(resp).length;
+  $("#resumen").textContent = n + " puntos anotados · "
+    + Object.entries(c).map(([k, v]) =>
+        k + ": " + v + " (" + (100 * v / n).toFixed(0) + " %)").join(" · ");
+}
+
+function exporta() {
+  const filas = PUNTOS.filter(p => resp[p.id]).map(p => {
+    const r = resp[p.id];
+    return [p.id, r.clase, r.tipo || "", r.ms].join(",");
+  });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(
+    new Blob(["id,clase,tipo,ms\n" + filas.join("\n") + "\n"],
+             {type: "text/csv;charset=utf-8"}));
+  a.download = "anotacion.csv";
+  a.click();
+}
+
+document.querySelectorAll("#pregunta1 .op").forEach(b =>
+  b.onclick = () => responde(b.dataset.v));
+document.querySelectorAll("#pregunta2 .op").forEach(b =>
+  b.onclick = () => respondeTipo(b.dataset.t));
+$("#atras").onclick = () => ir(i - 1);
+$("#saltar").onclick = () => ir(i + 1);
+$("#exportar").onclick = exporta;
+$("#exportar2").onclick = exporta;
+$("#revisar").onclick = () => ir(0);
+$("#borrar").onclick = () => {
+  if (confirm("¿Borrar las " + Object.keys(resp).length + " respuestas?")) {
+    resp = {}; guarda(); ir(0);
+  }
+};
+
+document.onkeydown = ev => {
+  if (ev.ctrlKey || ev.altKey || ev.metaKey) return;
+  if (ev.key === "ArrowLeft")  { ev.preventDefault(); return ir(i - 1); }
+  if (ev.key === "ArrowRight") { ev.preventDefault(); return ir(i + 1); }
+  if (ev.key === "z" || ev.key === "Z" || ev.key === " ") {
+    ev.preventDefault(); return encuadra(!lejos);
+  }
+  if (esperandoTipo) {
+    const t = {"1": "pino", "2": "eucalipto", "3": "acacia",
+               "4": "frondosa", "5": "nd"}[ev.key];
+    if (t) respondeTipo(t);
+    return;
+  }
+  const c = {"1": "arbol", "2": "no", "3": "edificacion", "4": "dudoso"}[ev.key];
+  if (c) responde(c);
+};
+
+alerta();
+if (!PIDE_TIPO) $("#recuerda-tipo").classList.add("oculto");
+const inicio = siguienteSinResponder(0);
+if (inicio < 0) { ir(0); terminar(); } else { ir(inicio); }
+</script>

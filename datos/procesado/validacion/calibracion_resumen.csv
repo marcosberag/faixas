@@ -1,0 +1,2 @@
+﻿umbral_youden_m,umbral_f1_m,resolucion_px_m,n_anotados,n_utiles,pct_dudosos_superficie,sensibilidad,precision,tasa_fp_producto,tasa_fp_ic95_lo,tasa_fp_ic95_hi,fpr,auc,ortofoto,lidar
+5.5,8.75,1.0,400,340,12.39,0.8936,0.7578,0.2422,0.17,0.3121,0.1094,0.9156,PNOA sept-2023,PNOA 2024

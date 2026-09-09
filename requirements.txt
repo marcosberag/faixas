@@ -1,0 +1,34 @@
+# Dependencias del pipeline `faixas`.
+#
+#     pip install -r requirements.txt
+#
+# PDAL NO está aquí: no hay wheel en PyPI para Windows. Vive en un entorno conda
+# aparte (ver environment-pdal.yml) y se invoca como ejecutable, no como librería.
+# El detalle y las trampas, en docs/02-walkthrough.md.
+#
+# Verificado sobre Python 3.13.
+
+# Geoespacial
+rasterio>=1.3
+geopandas>=0.14
+shapely>=2.0
+pyproj>=3.6
+laspy>=2.5
+
+# Cálculo y datos
+numpy>=1.26
+pandas>=2.0
+scipy>=1.11
+
+# Imagen y aprendizaje
+Pillow>=10.0
+scikit-image>=0.22
+scikit-learn>=1.4
+joblib>=1.3
+torch>=2.2              # solo embeddings_copas.py (MobileNetV3)
+torchvision>=0.17       # idem
+
+# Descargas, figuras y utilidades
+requests>=2.31
+matplotlib>=3.8
+psutil>=5.9             # guardia de batería de procesa_comarca.py

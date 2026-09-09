@@ -1,0 +1,41 @@
+﻿puesto,concello,parroquia,ha_medida,ha_arbolado,ha_sobre_35m,ha_prohibida_min,ha_prohibida_max,ha_prohibida_punto_medio
+1,A Cañiza,Valeixe (Santa Cristina),257.154,96.824,1.39,40.4,58.5,49.4
+2,Arbo,Mourentán (San Cristovo),160.034,64.904,2.145,31.6,42.5,37.0
+3,A Cañiza,Parada das Achas (Santiago),156.869,76.245,0.484,20.3,33.0,26.6
+4,A Cañiza,A Cañiza (Santa Teresa),122.189,52.348,0.471,15.8,30.8,23.3
+5,A Cañiza,As Achas (San Sebastián),137.711,45.913,0.255,15.0,28.6,21.8
+6,Crecente,Albeos (San Xoán),141.253,48.553,0.406,16.3,26.6,21.5
+7,A Cañiza,Oroso (Santa María),131.706,46.666,0.038,14.8,25.9,20.4
+8,A Cañiza,O Couto (San Bartolomeu),103.21,46.157,1.148,14.5,25.7,20.1
+9,Crecente,Crecente (San Pedro),77.113,43.499,1.141,14.5,23.1,18.8
+10,Covelo,Barcia de Mera (San Martiño),102.208,52.666,0.577,11.8,23.3,17.6
+11,A Cañiza,Luneda (Santa María),63.772,25.198,0.497,13.3,17.6,15.4
+12,Covelo,Covelo (Santa Mariña),65.216,35.172,0.729,12.5,16.6,14.6
+13,Crecente,Rebordechán (Santa María),48.428,33.548,0.753,10.8,18.2,14.5
+14,Crecente,Ribeira (Santa Mariña),58.441,31.356,0.275,10.6,16.7,13.6
+15,Crecente,Vilar (San Xorxe),66.483,26.127,0.871,10.2,16.3,13.2
+16,Arbo,Arbo (Santa María),143.409,31.863,0.425,8.8,17.3,13.0
+17,Covelo,Santiago de Covelo (Santiago),63.557,35.843,0.53,11.2,14.6,12.9
+18,A Cañiza,Petán (San Xián),123.143,45.186,0.236,10.7,14.4,12.6
+19,Crecente,Filgueira (San Pedro),49.472,37.832,0.889,9.5,15.5,12.5
+20,Crecente,Angudes (San Xoán),22.912,16.902,0.568,6.4,9.8,8.1
+21,Crecente,A Ameixeira (San Bernabeu),36.542,16.895,0.065,5.7,10.0,7.8
+22,Arbo,Cequeliños (San Miguel),48.078,15.693,0.062,5.6,9.4,7.5
+23,Crecente,O Freixo (San Roque),24.715,16.292,1.149,5.9,8.8,7.4
+24,Crecente,Quintela (San Caetano),33.483,15.456,0.159,5.4,8.1,6.8
+25,Covelo,Paraños (Santa María),39.938,13.521,0.038,4.9,6.6,5.8
+26,Arbo,Barcela (San Xoán),59.598,14.047,0.186,2.5,8.2,5.4
+27,Covelo,Casteláns (Santo Estevo),43.512,21.242,0.071,3.7,7.2,5.4
+28,Arbo,Cabeiras (San Sebastián),45.373,12.276,0.065,3.1,6.3,4.7
+29,Arbo,Sela (Santa María),46.739,14.76,0.047,0.5,8.0,4.2
+30,Covelo,Maceira (San Salvador),77.649,30.618,0.111,3.6,4.7,4.2
+31,A Cañiza,A Franqueira (Santa María),37.028,10.843,0.116,3.5,4.6,4.0
+32,Crecente,Sendelle (Santa Cruz),20.606,13.875,0.221,2.3,5.6,4.0
+33,Covelo,A Lamosa (San Bartolomeu),28.014,11.946,0.044,2.8,3.8,3.3
+34,Covelo,O Piñeiro (San Xoán),25.587,7.631,0.016,1.9,2.4,2.2
+35,Covelo,Prado de Canda (Santiago),14.427,5.496,0.0,1.7,2.2,2.0
+36,Covelo,Godóns (Santa María),52.698,16.99,0.016,0.6,1.0,0.8
+37,Covelo,Fofe (San Miguel),13.918,5.367,0.017,0.6,0.7,0.6
+38,Covelo,A Graña (San Bernabeu),39.139,12.642,0.002,0.0,1.0,0.5
+39,Covelo,Campo (Santa María),31.199,9.2,0.004,0.1,0.2,0.2
+40,Covelo,Prado (San Salvador),35.542,9.181,0.0,0.0,0.2,0.1

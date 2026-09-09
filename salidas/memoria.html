@@ -1,0 +1,606 @@
+<title>Memoria Faixas</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --bg: #FAFAF6; --ink: #1F2823; --muted: #5C6A61; --accent: #177A4C;
+    --band: #C8DFD1; --border: #DFE6E0; --panel: #F0F4EF; --panel-ink: #33413A;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #151A17; --ink: #E7ECE7; --muted: #9AA79E; --accent: #22A465;
+      --band: #2A4B3B; --border: #2B342D; --panel: #1C231F; --panel-ink: #C2CCC4;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #151A17; --ink: #E7ECE7; --muted: #9AA79E; --accent: #22A465;
+    --band: #2A4B3B; --border: #2B342D; --panel: #1C231F; --panel-ink: #C2CCC4;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+    font-size: 16.5px; line-height: 1.62; margin: 0;
+  }
+  .page { max-width: 880px; margin: 0 auto; padding: 56px 28px 80px; }
+  .prose { max-width: 68ch; }
+  .eyebrow {
+    font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 12px;
+    letter-spacing: .14em; text-transform: uppercase; color: var(--accent);
+    font-weight: 500;
+  }
+  h1 {
+    font-family: "IBM Plex Serif", Georgia, serif; font-weight: 700;
+    font-size: clamp(38px, 6vw, 56px); line-height: 1.05; margin: 10px 0 14px;
+    text-wrap: balance;
+  }
+  .standfirst { font-size: 19px; line-height: 1.55; color: var(--panel-ink); max-width: 62ch; }
+  h2 {
+    font-family: "IBM Plex Serif", Georgia, serif; font-weight: 600;
+    font-size: 27px; line-height: 1.2; margin: 60px 0 6px; text-wrap: balance;
+  }
+  h2 + .sub { color: var(--muted); margin: 0 0 18px; max-width: 66ch; }
+  h3 { font-size: 17px; font-weight: 600; margin: 28px 0 8px; }
+  p { margin: 0 0 14px; }
+  a { color: var(--accent); }
+  strong { font-weight: 600; }
+  .rule { border: 0; border-top: 1px solid var(--border); margin: 46px 0 0; }
+
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; margin: 34px 0 8px; }
+  .stat { background: var(--panel); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px 12px; }
+  .stat .v {
+    font-family: "IBM Plex Mono", ui-monospace, monospace; font-weight: 500;
+    font-size: 25px; letter-spacing: -.01em; font-variant-numeric: tabular-nums;
+  }
+  .stat .k { font-size: 13px; color: var(--muted); margin-top: 3px; line-height: 1.35; }
+
+  table { border-collapse: collapse; width: 100%; font-size: 14.5px; }
+  .tablewrap { overflow-x: auto; margin: 18px 0 6px; }
+  th { text-align: left; font-weight: 600; font-size: 12.5px; letter-spacing: .05em;
+       text-transform: uppercase; color: var(--muted); padding: 8px 12px 8px 0;
+       border-bottom: 1px solid var(--ink); }
+  td { padding: 8px 12px 8px 0; border-bottom: 1px solid var(--border); vertical-align: top; }
+  td.n, th.n { text-align: right; font-family: "IBM Plex Mono", ui-monospace, monospace;
+               font-variant-numeric: tabular-nums; font-size: 13.5px; white-space: nowrap; }
+  tr.total td { border-bottom: none; font-weight: 600; }
+
+  figure { margin: 26px 0 8px; }
+  figcaption { font-size: 13px; color: var(--muted); margin-top: 10px; max-width: 66ch; }
+  .figtitle { font-weight: 600; font-size: 15px; margin-bottom: 2px; }
+  .figsub { font-size: 13px; color: var(--muted); margin-bottom: 14px; }
+  svg text { font-family: "IBM Plex Sans", system-ui, sans-serif; fill: var(--ink); }
+  svg .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+  svg .mut { fill: var(--muted); }
+  svg .grid { stroke: var(--border); stroke-width: 1; }
+
+  .tip {
+    position: fixed; pointer-events: none; z-index: 10; display: none;
+    background: var(--ink); color: var(--bg); border-radius: 5px;
+    padding: 7px 10px; font-size: 12.5px; line-height: 1.45; max-width: 260px;
+  }
+  .tip b { font-weight: 600; }
+  .tip .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+
+  .fases { list-style: none; counter-reset: fase; padding: 0; margin: 20px 0 0; display: grid; gap: 14px; }
+  .fases li { border: 1px solid var(--border); border-radius: 6px; padding: 16px 18px 14px; background: var(--panel); }
+  .fases li::before {
+    counter-increment: fase; content: "Fase " counter(fase);
+    font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 11.5px;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--accent); font-weight: 500;
+    display: block; margin-bottom: 4px;
+  }
+  .fases b.t { display: block; font-size: 16.5px; margin-bottom: 6px; font-weight: 600; }
+  .fases p { font-size: 14.5px; margin: 0 0 6px; color: var(--panel-ink); }
+  .fases p:last-child { margin-bottom: 0; }
+
+  .aviso { border-left: 3px solid var(--accent); padding: 4px 0 4px 16px; margin: 22px 0; max-width: 64ch; }
+  .aviso p { margin: 0; color: var(--panel-ink); }
+  ul.compacta { margin: 0 0 14px; padding-left: 20px; }
+  ul.compacta li { margin-bottom: 7px; }
+  .foot { color: var(--muted); font-size: 13.5px; margin-top: 14px; max-width: 70ch; }
+  @media (prefers-reduced-motion: no-preference) { .stat, .fases li { transition: border-color .15s; } }
+</style>
+
+<div class="page">
+  <div class="eyebrow">Memoria de proyecto · Agosto 2026 · Mini-beca X. Mihura</div>
+  <h1>Faixas</h1>
+  <p class="standfirst">
+    Un mapa que no existía: cuánto arbolado de especie prohibida hay en las franjas
+    de protección contra incendios, estimado desde datos públicos con la tasa de
+    error medida y publicada. Primero en una comarca piloto — y ya, con su propia
+    validación, en la provincia de Pontevedra entera.
+  </p>
+
+  <div class="stats">
+    <div class="stat"><div class="v">2.848 ha</div><div class="k">de franja medidas — el 99,9 % de la comarca</div></div>
+    <div class="stat"><div class="v">1.167 ha</div><div class="k">con arbolado sobre el umbral calibrado (5,5 m)</div></div>
+    <div class="stat"><div class="v">353–574 ha</div><div class="k">de especie prohibida por la Ley 3/2007 (cotas)</div></div>
+    <div class="stat"><div class="v">0 €</div><div class="k">en datos: LiDAR, ortofoto, franjas e inventario, todo público</div></div>
+  </div>
+
+  <hr class="rule">
+  <h2>El problema</h2>
+  <p class="sub">La ley dice dónde; nadie sabe dónde se cumple.</p>
+  <div class="prose">
+    <p>
+      La Ley 3/2007 de Galicia obliga a mantener una franja de 50 m alrededor de cada
+      núcleo de población y cada vivienda libre de siete especies arbóreas —pinos,
+      eucaliptos y acacias— que son las que convierten un fuego en una catástrofe.
+      La Xunta publica el mapa de <strong>dónde existe esa obligación</strong>. El mapa de
+      <strong>dónde se cumple</strong> no existe: se verifica mandando inspectores a pie,
+      parcela por parcela, y la plantilla se ha duplicado en 2026 porque no da abasto.
+    </p>
+    <p>
+      Este proyecto construye ese segundo mapa para una comarca piloto —A Paradanta:
+      Arbo, A Cañiza, Covelo y Crecente— cruzando la capa oficial de franjas con el
+      LiDAR aéreo del PNOA, el inventario forestal y la ortofoto. Todo público, todo
+      gratuito, todo reproducible por scripts.
+    </p>
+  </div>
+  <div class="aviso"><p>
+    <strong>Es una herramienta de triaje, no una lista de infractores.</strong> La propia ley
+    admite excepciones que ningún sensor puede evaluar. El producto ordena dónde
+    mirar primero; la palabra la sigue teniendo el inspector.
+  </p></div>
+
+  <h2>Resultados</h2>
+  <p class="sub">De 2.848 ha de franja, 1.167 ha tienen arbolado — y entre 353 y 574 ha son de especie prohibida.</p>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr>
+        <th>Concello</th><th class="n">Franja medida</th><th class="n">Con arbolado</th>
+        <th class="n">Prohibido, cota inf.</th><th class="n">Cota sup.</th>
+      </tr></thead>
+      <tbody>
+        <tr><td>A Cañiza</td><td class="n">1.133 ha</td><td class="n">445 ha</td><td class="n">148 ha</td><td class="n">239 ha</td></tr>
+        <tr><td>Crecente</td><td class="n">579 ha</td><td class="n">300 ha</td><td class="n">98 ha</td><td class="n">159 ha</td></tr>
+        <tr><td>Arbo</td><td class="n">503 ha</td><td class="n">154 ha</td><td class="n">52 ha</td><td class="n">92 ha</td></tr>
+        <tr><td>Covelo</td><td class="n">633 ha</td><td class="n">268 ha</td><td class="n">55 ha</td><td class="n">84 ha</td></tr>
+        <tr class="total"><td>Total</td><td class="n">2.848 ha</td><td class="n">1.167 ha</td><td class="n">353 ha</td><td class="n">574 ha</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <figure>
+    <div class="figtitle">Las diez parroquias donde mirar primero</div>
+    <div class="figsub">Hectáreas de franja con arbolado prohibido — la banda es el intervalo entre cotas, la marca su punto medio</div>
+    <div id="fig1"></div>
+    <figcaption>
+      Las cotas componen la tasa de falsos positivos del detector de arbolado (con su IC 95 %)
+      y la fracción de especie prohibida del inventario forestal; el arbolado disperso que el
+      inventario no cartografía va a las cotas, no a una etiqueta inventada.
+    </figcaption>
+  </figure>
+
+  <figure>
+    <div class="figtitle">El argumento del triaje en una curva</div>
+    <div class="figsub">Porcentaje del incumplimiento estimado que acumulan las parroquias, ordenadas de más a menos</div>
+    <div id="fig2"></div>
+    <figcaption>
+      Diez de las cuarenta parroquias —una cuarta parte— concentran el 55 % del
+      incumplimiento estimado. Veinte concentran el 83 %. Un servicio de inspección
+      que siga este orden encuentra la mitad del problema visitando una cuarta parte del territorio.
+    </figcaption>
+  </figure>
+
+  <h2>El valor, con ejemplos</h2>
+  <p class="sub">Qué sabe hoy la administración que ayer no sabía.</p>
+  <div class="prose">
+    <h3>1 · Un orden de visita que no existía</h3>
+    <p>
+      Hoy la inspección reparte esfuerzo casi a ciegas. Con este mapa, el 25 % de las
+      parroquias concentra el 55 % del incumplimiento estimado. Valeixe (Santa Cristina)
+      sola tiene entre 40 y 59 ha de arbolado prohibido en franja — el 11 % de todo el
+      incumplimiento estimado de la comarca, en una parroquia de cuarenta.
+    </p>
+    <h3>2 · Contar árboles no basta: hay que restar los legales</h3>
+    <p>
+      La ley exime a las frondosas autóctonas: un castañar dentro de la franja es legal
+      y desde el aire da la misma señal que un eucaliptal. Al corregir por especie,
+      <strong>37 de las 40 parroquias cambian de puesto</strong>. Sendelle tiene el 67 % de su
+      franja arbolada —la más arbolada de la comarca— pero solo el 19–37 % es prohibido:
+      es monte de frondosa. A Lamosa cae 17 puestos por lo mismo. El indicador ingenuo
+      («dónde hay árboles») manda al inspector justo al sitio equivocado.
+    </p>
+    <h3>3 · Una lista de «ir ya»: el eucaliptal maduro</h3>
+    <p>
+      En Galicia solo el eucalipto supera los 35 m. El mapa de alturas localiza
+      <strong>16,2 ha de arbolado de más de 35 m dentro de franja</strong> — eucaliptal adulto,
+      especie prohibida con certeza casi total y sin necesidad de satélite. Se validó a ojo:
+      14 de 15 puntos comprobados son árboles (el otro, dudoso). Encabezan Mourentán (2,1 ha),
+      Valeixe (1,4 ha) y O Freixo (1,1 ha).
+    </p>
+    <h3>4 · Tres resultados negativos que ahorran dinero a quien venga detrás</h3>
+    <p>
+      Quedó medido que <strong>la especie no se distingue en ortofoto a 12,5 cm/píxel</strong>
+      (de 87 árboles anotados, cero identificables como especie de la lista); que el
+      clasificador de especie por satélite Sentinel-2, que sobre 3 bloques prometía,
+      <strong>no supera la validación con la comarca entera</strong> (AUC 0,746 fuera de muestra,
+      inestable entre zonas); y que la <strong>vigilancia de cortas con la serie anual</strong> de
+      Sentinel-2 se queda en un 39 % de precisión — y su arreglo obvio, exigir la caída dos
+      veranos, también está medido y descartado. Los tres caminos están documentados con
+      números para que nadie vuelva a pagarlos.
+    </p>
+  </div>
+
+  <h2>¿Cómo de fiable es?</h2>
+  <p class="sub">Cada eslabón de la cadena tiene su comprobación, y las tasas de error viajan hasta el resultado.</p>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Qué se comprueba</th><th>Cómo</th><th class="n">Resultado</th></tr></thead>
+      <tbody>
+        <tr><td>Geometrías de las franjas</td><td>Contraste con el servicio oficial de la Xunta</td><td class="n">IoU 0,9996</td></tr>
+        <tr><td>Modelo del terreno propio</td><td>Contra la clasificación provisional del IGN</td><td class="n">mediana +5 cm · σ 26 cm</td></tr>
+        <tr><td>Recorte y áreas</td><td>Suma de píxeles vs área de polígono</td><td class="n">desvío −0,05 %</td></tr>
+        <tr><td>Umbral de «esto es un árbol»</td><td>400 puntos de ortofoto anotados a ciegas</td><td class="n">5,5 m · sens. 89,4 %</td></tr>
+        <tr><td>Tasa de falsos positivos</td><td>Calibración (3 bloques) y contraste fuera de muestra (250 puntos frescos en 127 bloques nuevos)</td><td class="n">24,2 % → 33,5 % [25–42]</td></tr>
+        <tr><td>El propio anotador</td><td>Segunda pasada ciega de 126 puntos y propagación del desacuerdo</td><td class="n">umbral estable ±1 m en 98 % de réplicas</td></tr>
+        <tr><td>Regla del eucalipto (&gt;35 m)</td><td>Comprobación visual de los puntos señalados</td><td class="n">14 de 15 confirmados</td></tr>
+        <tr><td>Vigencia del inventario de 2010</td><td>Detector de eventos sobre Sentinel-2 y 65 rodales contrastados a ciegas con siete vuelos de ortofoto histórica</td><td class="n">97,4 % persistente [81–99]</td></tr>
+        <tr><td>Especie del arbolado disperso</td><td>Clasificador por copa (textura de ortofoto a 25 cm + CNN), validado dejando zonas de 5×5 km fuera; aplicado solo donde valida</td><td class="n">AUC 0,86 fuera de zona</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="prose">
+    <p style="margin-top:16px">
+      El dato clave es el segundo contraste de la tasa de falsos positivos: al medirla en
+      los 260 bloques que la calibración nunca vio salió más alta (33,5 %), y <strong>el ranking
+      usa la cifra peor</strong>. Todos los sesgos conocidos del método empujan en la dirección
+      prudente: el ruido del anotador infla la tasa de error aparente, y el arbolado sin
+      especie conocida ensancha las cotas en vez de resolverse a conveniencia.
+    </p>
+    <h3>Límites que se declaran</h3>
+    <ul class="compacta">
+      <li>El inventario forestal de referencia es de <strong>2010</strong>. Su vigencia está medida —el 97,4 % del rodal en franja persiste, acotado [81–99 %]— pero el hueco 2010–2017 solo está comprobado en la muestra, y el arbolado disperso sigue sin inventario. Por eso hay cotas y no un número.</li>
+      <li>El <strong>39 % del arbolado en franja es disperso</strong> y ningún inventario lo cartografía; va a las cotas.</li>
+      <li>Un solo fotointérprete (con su concordancia consigo mismo medida: kappa 0,88 en casos claros, 0,53 en la zona de decisión).</li>
+      <li>Ortofoto de 2023 y LiDAR de 2024: un año de desfase.</li>
+      <li>A Paradanta es más difícil que la media gallega (poblamiento 3–5 veces más disperso): sirve para probar el método, no para extrapolar tasas al resto de Galicia sin recalibrar.</li>
+      <li>El clasificador de especie por copa se aplica solo donde su validación lo avala (el 45 % del arbolado disperso); su error se mide contra etiquetas del inventario, que llevan su propio ruido, y el intervalo no recoge toda la heterogeneidad entre zonas.</li>
+    </ul>
+  </div>
+
+  <h2>¿Sigue valiendo un inventario de 2010?</h2>
+  <p class="sub">La objeción más seria al método, convertida en número — y validada contra dieciséis años de ortofoto.</p>
+  <div class="prose">
+    <p>
+      La fracción de especie prohibida sale del inventario forestal de 2010, y en dieciséis
+      años un monte se corta y se replanta. Pero los árboles no cambian de especie: la
+      etiqueta solo caduca donde hubo un <strong>reemplazo del dosel</strong>. Detectar esos
+      eventos es un problema mucho más fácil que clasificar especie, y se hizo con la serie
+      anual de verdor de Sentinel-2 (2017–2026) sobre los 658 rodales de la comarca, con una
+      regla declarada y el efecto de los años secos descontado.
+    </p>
+    <p>
+      El resultado: el <strong>97,4 % de la superficie de rodal dentro de franja no muestra
+      ningún evento</strong> en toda la serie. Y no se publica sin red: 65 rodales se
+      contrastaron a ciegas contra siete vuelos de ortofoto histórica del PNOA (2010–2023).
+      De 26 persistentes comprobados, el ojo confirmó 23; hubo un solo falso negativo del
+      detector (3,8 %) y dos cambios anteriores a 2017 — el hueco que la serie no cubre,
+      que erosiona la etiqueta en un 7,7 % de los rodales comprobados (IC [1,6–22,5]) y
+      queda declarado. El titular queda acotado en <strong>[81–99 %]</strong>, y como los fallos
+      del detector van en la dirección de inventar eventos, no de esconderlos, el 97,4 % es
+      un suelo, no un techo.
+    </p>
+    <p>
+      El detector encontró además, a ciegas, algo que nadie le enseñó: 37 de sus 70 eventos
+      son de 2018 y forman manchas contiguas en el límite con As Neves — <strong>las
+      cicatrices de los incendios de octubre de 2017</strong>, verdad documentada que funciona
+      como validación natural.
+    </p>
+    <p>
+      La otra mitad se descarta y se dice: como <strong>listador de cortas recientes</strong> el
+      detector no alcanza precisión publicable (39 % global). Funciona donde hay ortofoto para
+      comprobarlo (69 % en 2019–2023) y se hunde en 2024–2026, donde la sequía de agosto
+      de 2026 fabrica espejismos: 0 de 8 comprobados. El arreglo obvio —exigir que la caída
+      dure dos veranos— también está medido y descartado: la corta gallega rebrota tan deprisa
+      que desaparece de la serie anual en un año (12 de 16 cortas reales rebotan), mientras el
+      incendio sí persiste (5 de 6). Vigilar cortas exigirá compuestas mensuales; del detector,
+      nada entra en el ranking.
+    </p>
+    <p>
+      Lo que sí entra es lo que el ojo confirmó: los 22 reemplazos vistos corrigen la
+      etiqueta rodal a rodal — el rodal no-eucalipto reemplazado pasa a especie
+      <strong>desconocida</strong> (el eucalipto rebrota de cepa y sigue prohibido). Pequeño y
+      en la dirección prudente: donde se vio el cambio, ya no se afirma la especie de 2010.
+    </p>
+  </div>
+
+  <h2>Del píxel a la copa</h2>
+  <p class="sub">Un clasificador de especie árbol a árbol, entrenado gratis con el inventario — y aplicado solo donde su validación lo avala.</p>
+  <div class="prose">
+    <p>
+      La mayor fuente de incertidumbre del producto era el <strong>arbolado disperso</strong>: el
+      tercio del arbolado en franja que crece fuera de los rodales del inventario y cuya
+      especie nadie cartografía. Para atacarlo, el mapa de alturas se segmentó en
+      <strong>1,18 millones de copas individuales</strong> y a cada copa se le asignó un recorte
+      de ortofoto de 16×16 m a 25 cm. Un clasificador (textura y color más una red
+      neuronal preentrenada) aprende a distinguir eucalipto, pino y frondosa con
+      <strong>24.000 copas etiquetadas sin coste</strong>: las que crecen dentro de rodales puros
+      del inventario — filtrados por la fase anterior, que certificó qué rodales siguen
+      siendo lo que eran en 2010.
+    </p>
+    <p>
+      La validación repite el estándar más duro del proyecto: zonas enteras de 5×5 km
+      fuera del entrenamiento. Resultado: <strong>AUC 0,86</strong> para el eucalipto — supera el
+      listón prefijado de 0,85 — pero con la misma patología territorial que hundió al
+      clasificador de satélite: en dos zonas del este, donde la ortofoto es de otra
+      pasada de vuelo, oscura y sin contraste, el clasificador falla (y el ojo humano
+      también). La respuesta es la de siempre: <strong>se aplica solo en las zonas donde la
+      validación lo avala</strong> (el 45 % del arbolado disperso) y el resto conserva la
+      cota ancha. Ahí donde se aplica, la fracción prohibida del disperso pasa de
+      «entre 0 y 72 %» a <strong>54–58 %, medida y corregida por el error del clasificador</strong>.
+      El efecto en el titular: las cotas pasan de [297–588] a <strong>[353–574] ha</strong> — un
+      intervalo un 24 % más estrecho, y con la cota inferior 57 ha más alta: buena parte
+      del arbolado disperso que la prudencia contaba como «quizá exento» es eucalipto y
+      pino medidos. Un control de calidad con moraleja: un tejado a dos aguas también
+      «mide» 10 m para el LiDAR, y algunas casas salían delineadas como copa. Cruzando
+      con las huellas de edificio del Catastro (WFS INSPIRE), <strong>589 «copas» del disperso
+      resultaron ser tejados</strong> (el 1,8 %) y quedaron fuera del mapa y de la fracción de
+      especie — el error agregado ya lo pagaba la tasa de falsos positivos, pero el mapa
+      tiene que poder mirarse casa a casa sin sonrojo.
+    </p>
+  </div>
+
+  <h2>Del ranking al trabajo de campo</h2>
+  <p class="sub">Una lista de parroquias dice dónde mirar. Un inspector necesita saber dónde aparcar.</p>
+  <div class="prose">
+    <p>
+      El ranking ordena cuarenta parroquias, pero una parroquia son cientos de hectáreas.
+      El producto baja hasta el sitio concreto: <strong>464 puntos de inspección</strong> con
+      coordenadas, cada uno con la mancha de arbolado que lo justifica y su nivel de certeza
+      declarado — 69 eucaliptales seguros (dosel por encima de 35 m, la regla que se validó
+      14 de 15), 103 rodales del inventario de especie prohibida <em>y</em> certificados como
+      persistentes, y 292 grupos de arbolado disperso clasificado copa a copa.
+    </p>
+    <p>
+      Dos detalles que parecen menores y no lo son. El punto <strong>nunca es el centro
+      geométrico</strong> del rodal: ese cae en cualquier claro, camino o tejado de dentro, y
+      una ficha que señala una casa destruye la confianza en el mapa entero. Se ancla siempre
+      en arbolado medido. Y el concello de cada punto se decide <strong>por superficie de la
+      mancha</strong>, no por dónde cae el punto: un rodal a caballo de dos municipios cambiaba
+      de ayuntamiento al mover el ancla seiscientos metros, y el dossier es por concello.
+    </p>
+    <p>
+      Salen dos formatos. Un <strong>visor web</strong> de un solo fichero —sin servidor, sin
+      instalación— con la ortofoto de fondo, las parroquias por color y los puntos clicables.
+      Y un <strong>dossier PDF por concello</strong> para imprimir y llevar en el coche:
+      portada con el resumen y el marco legal, y después una ficha por punto con su recorte
+      de ortofoto, la mancha dibujada, la barra de escala y las coordenadas en UTM y en
+      latitud/longitud para el GPS. En la portada, en grande, lo que no se puede olvidar: es
+      un orden de visita, no un expediente.
+    </p>
+  </div>
+
+  <h2>De la comarca a la provincia: Pontevedra entera, medida y validada</h2>
+  <p class="sub">El mismo código, doce veces la superficie — y una validación propia antes de publicar una sola cifra.</p>
+
+  <div class="stats">
+    <div class="stat"><div class="v">38.601 ha</div><div class="k">de franja medidas — la provincia entera, 60 concellos</div></div>
+    <div class="stat"><div class="v">12.709 ha</div><div class="k">con arbolado sobre el umbral (32,9 %)</div></div>
+    <div class="stat"><div class="v">4.493–8.288 ha</div><div class="k">de especie prohibida por la Ley 3/2007 (cotas)</div></div>
+    <div class="stat"><div class="v">20,1 %</div><div class="k">tasa de falsos positivos, validada en territorio nuevo</div></div>
+  </div>
+
+  <div class="prose">
+    <p>
+      Escalar no exigió datos nuevos: la capa oficial de franjas <strong>cubre Galicia
+      entera</strong>, y el resto es máquina — 3.197 bloques LiDAR en unos cinco días de un
+      portátil corriente, desatendido, sin un solo fichero corrupto. Por el camino salieron
+      dos trampas de escala (un cruce de capas que se degrada con multipolígonos provinciales
+      y un caso borde de franja que roza el límite de bloque); las dos se arreglaron
+      verificando que los resultados del piloto salían idénticos byte a byte.
+    </p>
+    <p>
+      La regla de la casa se mantuvo: <strong>sin validación fresca no se publican
+      cifras</strong>. La tasa de error estaba medida en el interior; Redondela o Sanxenxo son
+      costa densa, otro paisaje. Se sortearon 150 puntos nuevos en 140 bloques y se anotaron a
+      ciegas contra ortofoto (134 a mano; 16 negativos claros los descartó un prefiltro
+      automático cuya asimetría —no deja escapar árboles— se midió en el piloto, y así se
+      declara). Resultado: <strong>tasa de falsos positivos del 20,1 %</strong>
+      [12,8–28,0] y sensibilidad del 90,1 % — compatible con la calibración original y mejor
+      que la del piloto. Y los 9 puntos del estrato de más de 35 m: los 9, árboles. El miedo a
+      que el paisaje costero rompiera el producto no se materializó.
+    </p>
+  </div>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr>
+        <th>Concello</th><th class="n">Franja medida</th><th class="n">Con arbolado</th>
+        <th class="n">Prohibido, cota inf.</th><th class="n">Cota sup.</th>
+      </tr></thead>
+      <tbody>
+        <tr><td>Ponteareas</td><td class="n">2.016 ha</td><td class="n">825 ha</td><td class="n">350 ha</td><td class="n">593 ha</td></tr>
+        <tr><td>A Estrada</td><td class="n">3.367 ha</td><td class="n">900 ha</td><td class="n">253 ha</td><td class="n">538 ha</td></tr>
+        <tr><td>Salvaterra de Miño</td><td class="n">1.191 ha</td><td class="n">547 ha</td><td class="n">248 ha</td><td class="n">388 ha</td></tr>
+        <tr><td>Lalín</td><td class="n">2.926 ha</td><td class="n">804 ha</td><td class="n">120 ha</td><td class="n">382 ha</td></tr>
+        <tr><td>O Porriño</td><td class="n">832 ha</td><td class="n">391 ha</td><td class="n">200 ha</td><td class="n">297 ha</td></tr>
+        <tr><td>Mos</td><td class="n">1.020 ha</td><td class="n">384 ha</td><td class="n">168 ha</td><td class="n">286 ha</td></tr>
+        <tr><td>Tomiño</td><td class="n">796 ha</td><td class="n">335 ha</td><td class="n">171 ha</td><td class="n">254 ha</td></tr>
+        <tr><td>A Cañiza</td><td class="n">1.133 ha</td><td class="n">445 ha</td><td class="n">148 ha</td><td class="n">274 ha</td></tr>
+        <tr class="total"><td>Total provincial (60 concellos)</td><td class="n">38.601 ha</td><td class="n">12.709 ha</td><td class="n">4.493 ha</td><td class="n">8.288 ha</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="prose">
+    <p>
+      A Cañiza, primera del piloto, queda <strong>octava</strong> en la provincia: el interior
+      de A Paradanta ni siquiera era el peor sitio, y eso solo se sabe midiendo. La parroquia
+      que encabeza es O Hío, en Cangas — costera. El ranking provincial compone tasa de error ×
+      fracción de especie del inventario forestal, con el suelo estructural de los 35 m; el
+      clasificador de especie por copa y el análisis de persistencia siguen validados solo en
+      la comarca piloto, y así se declara.
+    </p>
+  </div>
+
+  <h2>Hoja de ruta: de la provincia al país</h2>
+  <p class="sub">Cada fase, con su validación por delante.</p>
+
+  <ol class="fases">
+    <li>
+      <b class="t">Galicia entera, con el mismo código</b>
+      <p>Pontevedra está hecha; quedan tres provincias. A Coruña ya está preparada y medida:
+      57.267 ha de franja y 5.926 bloques (~8 días del mismo portátil). Galicia entera son
+      ~15.500 bloques: tres semanas en un portátil, o un día en treinta máquinas de nube por
+      decenas de euros. La salida cabe en 110 GB y el coste de datos sigue siendo cero.</p>
+      <p>Entregable: este mismo ranking para ~3.700 parroquias — una capa de priorización para
+      toda la campaña de inspección. Dos límites que se declaran: los concellos sin plan
+      municipal aprobado no tienen franja publicada, y cada territorio nuevo exige su propia
+      muestra anotada antes de publicar cifras — en Pontevedra ese peaje fueron 150 puntos y
+      una tarde de anotación.</p>
+    </li>
+    <li>
+      <b class="t">De la foto a la película: cumplimiento sostenido</b>
+      <p>El PNOA tiene una cobertura LiDAR anterior (2015–2021): comparar las dos separa
+      «estaba y sigue» de «apareció» y de «se limpió». Y la vigilancia por satélite ya tiene
+      su diagnóstico: la serie anual de Sentinel-2 fija bien el incendio pero pierde la corta,
+      que rebrota en un año — el siguiente paso son <strong>compuestas mensuales</strong>, que
+      cazan la corta antes del rebrote.</p>
+      <p>Entregable: reincidencia y respuesta a inspección, que es lo que una administración
+      necesita para medir si su política funciona. Cada añadido se valida como se validó
+      el piloto: con muestra anotada y tasa de error publicada.</p>
+    </li>
+    <li>
+      <b class="t">Especie de verdad, con verdad de terreno</b>
+      <p>La segmentación de copas y el clasificador por textura ya están construidos y
+      aplicados donde validan. Lo que estrecharía más: la banda infrarroja del PNOA para
+      rescatar las zonas donde la ortofoto visible no da, el Mapa Forestal de España a
+      escala 25 m cuando su servicio vuelva a estar accesible, una campaña de campo
+      pequeña como verdad de referencia, y varios anotadores — está medido que el
+      criterio del anotador pesa tanto como el tamaño de la muestra en la anchura del
+      intervalo.</p>
+    </li>
+    <li>
+      <b class="t">Institucionalizar: del CSV al servicio</b>
+      <p>Informes automáticos por concello, un visor para los servicios de inspección y de
+      prevención, y replicación donde la ley es análoga: Asturias y el norte de Portugal
+      mantienen obligaciones de faixa casi idénticas sobre territorio casi idéntico.</p>
+    </li>
+  </ol>
+
+  <h2>Fuentes, licencias y reproducibilidad</h2>
+  <div class="prose">
+    <p>
+      Franjas de protección: Xunta de Galicia (IDEG). LiDAR y ortofoto: PNOA, IGN/CNIG,
+      CC-BY 4.0. Inventario Forestal Nacional (IFN4 2010) servido por la IDE de la Xunta.
+      Sentinel-2: Copernicus/ESA vía AWS. Todo el pipeline son scripts de Python
+      documentados, deterministas (semillas fijadas) y con sus comprobaciones integradas;
+      cualquier número de esta memoria se regenera desde los datos crudos.
+    </p>
+    <p class="foot">
+      Proyecto financiado por una mini-beca privada de X. Mihura · trabajo de agosto de 2026 ·
+      zona piloto A Paradanta y provincia de Pontevedra · los valores de superficie prohibida
+      son cotas de un indicador de riesgo, no superficie de infracción acreditada.
+    </p>
+  </div>
+</div>
+
+<div class="tip" id="tip"></div>
+
+<script>
+(function () {
+  var css = getComputedStyle(document.documentElement);
+  function tok(n) { return css.getPropertyValue(n).trim(); }
+
+  var TOP = [
+    { p: "Valeixe (Santa Cristina)", c: "A Cañiza", lo: 40.4, hi: 58.5, mid: 49.4, faixa: 257 },
+    { p: "Mourentán (San Cristovo)", c: "Arbo", lo: 31.6, hi: 42.5, mid: 37.0, faixa: 160 },
+    { p: "Parada das Achas (Santiago)", c: "A Cañiza", lo: 20.3, hi: 33.0, mid: 26.6, faixa: 157 },
+    { p: "A Cañiza (Santa Teresa)", c: "A Cañiza", lo: 15.8, hi: 30.8, mid: 23.3, faixa: 122 },
+    { p: "As Achas (San Sebastián)", c: "A Cañiza", lo: 15.0, hi: 28.6, mid: 21.8, faixa: 138 },
+    { p: "Albeos (San Xoán)", c: "Crecente", lo: 16.3, hi: 26.6, mid: 21.5, faixa: 141 },
+    { p: "Oroso (Santa María)", c: "A Cañiza", lo: 14.8, hi: 25.9, mid: 20.4, faixa: 132 },
+    { p: "O Couto (San Bartolomeu)", c: "A Cañiza", lo: 14.5, hi: 25.7, mid: 20.1, faixa: 103 },
+    { p: "Crecente (San Pedro)", c: "Crecente", lo: 14.5, hi: 23.1, mid: 18.8, faixa: 77 },
+    { p: "Barcia de Mera (San Martiño)", c: "Covelo", lo: 11.8, hi: 23.3, mid: 17.6, faixa: 102 }
+  ];
+  var CUM = [10.7,18.6,24.4,29.4,34.1,38.7,43.1,47.5,51.5,55.3,58.6,61.8,64.9,67.8,70.7,
+             73.5,76.3,79.0,81.7,83.4,85.1,86.7,88.3,89.8,91.0,92.2,93.4,94.4,95.3,96.2,
+             97.0,97.9,98.6,99.1,99.5,99.7,99.8,99.9,100.0,100.0];
+
+  var tip = document.getElementById("tip");
+  function showTip(html, ev) {
+    tip.innerHTML = html; tip.style.display = "block";
+    var x = Math.min(ev.clientX + 14, window.innerWidth - 280);
+    tip.style.left = x + "px"; tip.style.top = (ev.clientY + 14) + "px";
+  }
+  function hideTip() { tip.style.display = "none"; }
+
+  /* ---- fig 1: intervalos por parroquia ---- */
+  (function () {
+    var W = 820, rowH = 34, padL = 232, padR = 56, padT = 26, padB = 8;
+    var H = padT + TOP.length * rowH + padB;
+    var maxV = 60, sx = function (v) { return padL + (W - padL - padR) * v / maxV; };
+    var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" style="width:100%;height:auto" role="img" aria-label="Intervalo de hectáreas prohibidas por parroquia">';
+    [0, 15, 30, 45, 60].forEach(function (g) {
+      s += '<line class="grid" x1="' + sx(g) + '" y1="' + padT + '" x2="' + sx(g) + '" y2="' + (H - padB) + '"/>';
+      s += '<text class="mono mut" x="' + sx(g) + '" y="' + (padT - 10) + '" font-size="11" text-anchor="middle">' + g + (g === 60 ? " ha" : "") + '</text>';
+    });
+    TOP.forEach(function (d, i) {
+      var y = padT + i * rowH + rowH / 2;
+      s += '<text x="' + (padL - 12) + '" y="' + (y + 4) + '" font-size="13" text-anchor="end">' + d.p + '</text>';
+      s += '<g class="fila" data-i="' + i + '">';
+      s += '<rect x="' + padL + '" y="' + (y - rowH / 2) + '" width="' + (W - padL - padR) + '" height="' + rowH + '" fill="transparent"/>';
+      s += '<rect x="' + sx(d.lo) + '" y="' + (y - 6) + '" width="' + (sx(d.hi) - sx(d.lo)) + '" height="12" rx="4" fill="' + tok("--band") + '"/>';
+      s += '<rect x="' + (sx(d.mid) - 2) + '" y="' + (y - 9) + '" width="4" height="18" rx="2" fill="' + tok("--accent") + '"/>';
+      s += '<text class="mono mut" x="' + (sx(d.hi) + 8) + '" y="' + (y + 4) + '" font-size="11.5">' + Math.round(d.lo) + '–' + Math.round(d.hi) + '</text>';
+      s += '</g>';
+    });
+    s += '</svg>';
+    var el = document.getElementById("fig1"); el.innerHTML = s;
+    el.querySelectorAll(".fila").forEach(function (g) {
+      var d = TOP[+g.dataset.i];
+      g.addEventListener("mousemove", function (ev) {
+        showTip("<b>" + d.p + "</b> · " + d.c + "<br>arbolado prohibido: <span class='mono'>" +
+          d.lo + "–" + d.hi + " ha</span> (punto medio " + d.mid +
+          ")<br>franja medida: <span class='mono'>" + d.faixa + " ha</span>", ev);
+      });
+      g.addEventListener("mouseleave", hideTip);
+    });
+  })();
+
+  /* ---- fig 2: curva de concentracion ---- */
+  (function () {
+    var W = 820, H = 300, padL = 52, padR = 20, padT = 18, padB = 40;
+    var sx = function (n) { return padL + (W - padL - padR) * n / 40; };
+    var sy = function (v) { return padT + (H - padT - padB) * (1 - v / 100); };
+    var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" style="width:100%;height:auto" role="img" aria-label="Curva de concentración del incumplimiento">';
+    [0, 25, 50, 75, 100].forEach(function (g) {
+      s += '<line class="grid" x1="' + padL + '" y1="' + sy(g) + '" x2="' + (W - padR) + '" y2="' + sy(g) + '"/>';
+      s += '<text class="mono mut" x="' + (padL - 8) + '" y="' + (sy(g) + 4) + '" font-size="11" text-anchor="end">' + g + '%</text>';
+    });
+    [10, 20, 30, 40].forEach(function (n) {
+      s += '<text class="mono mut" x="' + sx(n) + '" y="' + (H - padB + 22) + '" font-size="11" text-anchor="middle">' + n + '</text>';
+    });
+    s += '<text class="mut" x="' + sx(20) + '" y="' + (H - 4) + '" font-size="12" text-anchor="middle">parroquias, de más a menos incumplimiento estimado</text>';
+    var pts = "M" + sx(0) + " " + sy(0);
+    CUM.forEach(function (v, i) { pts += " L" + sx(i + 1) + " " + sy(v); });
+    s += '<path d="' + pts + '" fill="none" stroke="' + tok("--accent") + '" stroke-width="2.5" stroke-linejoin="round"/>';
+    [[10, 55.3], [20, 83.4]].forEach(function (m) {
+      s += '<circle cx="' + sx(m[0]) + '" cy="' + sy(m[1]) + '" r="5" fill="' + tok("--accent") + '" stroke="' + tok("--bg") + '" stroke-width="2"/>';
+      s += '<text class="mono" x="' + (sx(m[0]) + 9) + '" y="' + (sy(m[1]) - 8) + '" font-size="12.5" font-weight="500">' + m[0] + ' parr. → ' + m[1] + '%</text>';
+    });
+    s += '<rect id="f2hit" x="' + padL + '" y="' + padT + '" width="' + (W - padL - padR) + '" height="' + (H - padT - padB) + '" fill="transparent"/>';
+    s += '<line id="f2x" x1="0" y1="' + padT + '" x2="0" y2="' + (H - padB) + '" stroke="' + tok("--muted") + '" stroke-width="1" stroke-dasharray="3 3" style="display:none"/>';
+    s += '</svg>';
+    var el = document.getElementById("fig2"); el.innerHTML = s;
+    var svg = el.querySelector("svg"), hit = el.querySelector("#f2hit"), vl = el.querySelector("#f2x");
+    hit.addEventListener("mousemove", function (ev) {
+      var r = svg.getBoundingClientRect();
+      var xr = (ev.clientX - r.left) * (W / r.width);
+      var n = Math.max(1, Math.min(40, Math.round((xr - padL) / ((W - padL - padR) / 40))));
+      vl.setAttribute("x1", sx(n)); vl.setAttribute("x2", sx(n)); vl.style.display = "block";
+      showTip("<b>" + n + " parroquia" + (n > 1 ? "s" : "") + "</b> (" + Math.round(100 * n / 40) +
+        " % del total)<br>acumulan el <span class='mono'>" + CUM[n - 1] + " %</span> del incumplimiento estimado", ev);
+    });
+    hit.addEventListener("mouseleave", function () { vl.style.display = "none"; hideTip(); });
+  })();
+})();
+</script>

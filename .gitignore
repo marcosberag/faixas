@@ -1,0 +1,52 @@
+# OJO: git NO admite comentarios al final de línea. Un `# nota` detrás de un
+# patrón pasa a formar parte del patrón y la regla deja de filtrar en silencio.
+# Los comentarios van SIEMPRE en línea propia.
+
+# ─── Datos crudos ─────────────────────────────────────────────────────────────
+# Se descargan con los scripts del propio repo (descarga_lidar.py, descarga_ifn.py,
+# descarga_catastro.py, descarga_orto25.py, descarga_s2.py). Cientos de GB.
+datos/crudo/
+
+# ─── Derivados pesados, regenerables por el pipeline ──────────────────────────
+# 3.197 CHM de 1×1 km, ~28 GB
+datos/procesado/lidar/
+# cache de ortofoto a 0,25 m
+datos/procesado/orto25/
+# escenas y visuales de Sentinel-2
+datos/procesado/s2/
+# huellas BU:Building por celda
+datos/procesado/catastro_celdas/
+
+# 1,18 M de copas segmentadas; 0,6 s/bloque regenerarlas
+datos/procesado/copas/PNOA-*.csv
+# parches de 16×16 m y embeddings MobileNetV3 (543 MB)
+datos/procesado/copas/*.npy
+# clasificador entrenado
+datos/procesado/copas/*.joblib
+
+# Chips de las muestras de validación: los regenera chips_producto.py
+datos/procesado/validacion*/chips/
+datos/procesado/validacion*/chips_ctx/
+datos/procesado/validacion*/chips_chm/
+datos/procesado/validacion*/hojas/
+
+# Rásteres, nubes de puntos y geopaquetes (9.875 TIF, 363 MB de GPKG)
+*.tif
+*.tiff
+*.laz
+*.las
+*.zip
+*.gpkg
+!datos/procesado/validacion*/muestra.gpkg
+
+# ─── Entorno y ruido ──────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+envs/
+*.log
+*.pid
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
