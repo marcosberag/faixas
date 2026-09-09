@@ -89,13 +89,32 @@ def baja_bloque(nombre, intentos=6):
     return False
 
 
+def bloques_que_tocan(marcos, geoms):
+    """Bloques que intersecan alguna de `geoms`, sin disolverlas.
+
+    OJO, trampa medida y repetida tres veces en este proyecto: NO hacer
+    union_all() antes. Un multipoligono provincial de medio millon de vertices
+    deja el indice espacial inutil y cada bloque paga la geometria entera
+    (2 h de CPU sin terminar, frente a minutos troceando). sjoin trabaja pieza
+    a pieza y usa los indices de los dos lados.
+    """
+    piezas = gpd.GeoDataFrame(geometry=geoms, crs=marcos.crs)
+    piezas = piezas.explode(index_parts=False).reset_index(drop=True)
+    piezas = piezas[piezas.geometry.notna() & ~piezas.geometry.is_empty]
+    j = gpd.sjoin(marcos, piezas, predicate="intersects", how="inner")
+    return set(j.bloque)
+
+
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
+    ap.add_argument("--zona", default="paradanta",
+                    help="sufijo de faixas_{capa}_{zona}_ok.gpkg e ifn_especies_{zona}.gpkg")
     ap.add_argument("--solo-puros", action="store_true")
     ap.add_argument("--trozo", default="0/1",
                     help="i/n: procesa los pendientes con indice %% n == i")
     args = ap.parse_args()
     trozo_i, trozo_n = (int(v) for v in args.trozo.split("/"))
+    suf = "" if args.zona == "paradanta" else "_" + args.zona
     ORTO25.mkdir(parents=True, exist_ok=True)
 
     bloques = sorted(p.stem.replace("_chm", "") for p in LIDAR.glob("*_chm.tif"))
@@ -103,24 +122,39 @@ if __name__ == "__main__":
         {"bloque": bloques},
         geometry=[box(*bounds_bloque(b)) for b in bloques], crs="EPSG:25829")
 
-    # rodales puros persistentes (los del entrenamiento), erosionados 10 m
-    ifn = gpd.read_file(PROC / "ifn_especies_paradanta.gpkg")
-    per = pd.read_csv(PROC / "metricas" / "persistencia_ifn.csv",
-                      encoding="utf-8-sig")
-    d = ifn.merge(per[["OBJECTID_12", "estado"]], on="OBJECTID_12")
-    oc = d[["O1", "O2", "O3"]].fillna(0)
-    d["pureza"] = oc.O1 / oc.sum(axis=1)
-    puros = d[(d.pureza >= 0.8) & (d.estado == "persistente")
-              & ~d.NOMBRE_SP1.str.startswith("Acacia")]
-    zona_puros = puros.geometry.buffer(-10).union_all()
-    quiere = set(marcos[marcos.intersects(zona_puros)].bloque)
+    ifn = gpd.read_file(PROC / f"ifn_especies_{args.zona}.gpkg")
+    quiere = set()
+
+    # rodales puros persistentes (los del entrenamiento), erosionados 10 m.
+    # La persistencia es la fase 5 y puede no estar hecha todavia en una zona
+    # nueva: entonces se avisa y se baja solo lo de faixa, que no depende de
+    # ella. Al relanzar despues, la cache es reanudable y completa los puros.
+    ruta_per = PROC / "metricas" / f"persistencia_ifn{suf}.csv"
+    if ruta_per.exists():
+        per = pd.read_csv(ruta_per, encoding="utf-8-sig")
+        d = ifn.merge(per[["OBJECTID_12", "estado"]], on="OBJECTID_12")
+        oc = d[["O1", "O2", "O3"]].fillna(0)
+        d["pureza"] = oc.O1 / oc.sum(axis=1)
+        puros = d[(d.pureza >= 0.8) & (d.estado == "persistente")
+                  & ~d.NOMBRE_SP1.str.startswith("Acacia")]
+        erosion = puros.geometry.buffer(-10)
+        quiere |= bloques_que_tocan(marcos, erosion)
+        print(f"{len(puros)} rodales puros persistentes -> {len(quiere)} bloques",
+              flush=True)
+    elif args.solo_puros:
+        raise SystemExit(
+            f"no existe {ruta_per.name}: los puros del entrenamiento salen de la "
+            f"fase 5 (persistencia), que en la zona {args.zona} no esta hecha")
+    else:
+        print(f"AVISO: sin {ruta_per.name} (fase 5 pendiente en {args.zona}): "
+              "se baja solo lo de faixa. Relanzar cuando exista para completar "
+              "los bloques de entrenamiento.", flush=True)
 
     if not args.solo_puros:
         faixas = gpd.GeoDataFrame(pd.concat(
-            [gpd.read_file(PROC / f"faixas_{n}_paradanta_ok.gpkg")
-             for n in ("nucleos", "illadas")], ignore_index=True),
-            crs=ifn.crs).union_all()
-        quiere |= set(marcos[marcos.intersects(faixas)].bloque)
+            [gpd.read_file(PROC / f"faixas_{n}_{args.zona}_ok.gpkg")
+             for n in ("nucleos", "illadas")], ignore_index=True), crs=ifn.crs)
+        quiere |= bloques_que_tocan(marcos, faixas.geometry)
 
     hechos = {p.stem for p in ORTO25.glob("*.tif")}
     pendientes = [b for k, b in enumerate(sorted(quiere - hechos))

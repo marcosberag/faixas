@@ -39,10 +39,12 @@ vigencia, que es la parte de servicio de vigilancia.
 Uso:
     python scripts/detecta_eventos.py
 """
+import argparse
 import pathlib
 import sys
 
 import geopandas as gpd
+import shapely
 import numpy as np
 import pandas as pd
 
@@ -58,17 +60,54 @@ MIN_ANHOS = 6        # anhos con dato para opinar
 MIN_PX = 6           # celdas de 10 m: por debajo, el rodal es una esquirla
 ANHO_LIDAR = 2024
 
+def ha_en_faixa(ifn, faixas):
+    """Hectareas de cada rodal dentro de faixa, SIN disolver las faixas.
+
+    Dos trampas juntas:
+
+    1. `faixas.union_all()` y luego intersecar rodal a rodal es la trampa de
+       escala ya medida tres veces en este proyecto: un multipoligono provincial
+       de medio millon de vertices deja el indice espacial inutil y cada rodal
+       paga la geometria entera. Se trocea y se cruza con sjoin.
+    2. Pero NO se pueden sumar las areas de interseccion pieza a pieza: las
+       capas de nucleos y de illadas SE SOLAPAN, y sumar contaria dos veces la
+       zona comun. Por eso se unen antes las (pocas) piezas que tocan cada
+       rodal, y se interseca contra esa union.
+    """
+    piezas = faixas.explode(index_parts=False).reset_index(drop=True)
+    piezas = piezas[piezas.geometry.notna() & ~piezas.geometry.is_empty]
+    geoms = piezas.geometry.values
+
+    izq = ifn[["geometry"]].reset_index(drop=True).reset_index(names="i_rod")
+    par = gpd.sjoin(izq, gpd.GeoDataFrame(geometry=piezas.geometry,
+                                          crs=ifn.crs),
+                    predicate="intersects", how="inner")
+    ha = np.zeros(len(ifn))
+    if par.empty:
+        return ha
+    rod = ifn.geometry.values
+    for i, grupo in par.groupby("i_rod"):
+        trozo = shapely.union_all(geoms[grupo.index_right.values])
+        ha[i] = shapely.intersection(rod[i], trozo).area / 1e4
+    return ha
+
+
 if __name__ == "__main__":
-    serie = pd.read_csv(PROC / "s2" / "serie_ndvi_rodal.csv", encoding="utf-8-sig")
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--zona", default="paradanta")
+    args = ap.parse_args()
+    suf = "" if args.zona == "paradanta" else "_" + args.zona
+
+    serie = pd.read_csv(PROC / "s2" / f"serie_ndvi_rodal{suf}.csv",
+                        encoding="utf-8-sig")
     anhos = sorted(int(c[5:]) for c in serie.columns if c.startswith("ndvi_"))
-    ifn = gpd.read_file(PROC / "ifn_especies_paradanta.gpkg")
+    ifn = gpd.read_file(PROC / f"ifn_especies_{args.zona}.gpkg")
 
     # hectareas de cada rodal DENTRO de faixa: es el peso que importa
     faixas = gpd.GeoDataFrame(pd.concat(
-        [gpd.read_file(PROC / f"faixas_{n}_paradanta_ok.gpkg")
+        [gpd.read_file(PROC / f"faixas_{n}_{args.zona}_ok.gpkg")
          for n in ("nucleos", "illadas")], ignore_index=True), crs=ifn.crs)
-    union = faixas.union_all()
-    ifn["ha_faixa"] = ifn.geometry.intersection(union).area / 1e4
+    ifn["ha_faixa"] = ha_en_faixa(ifn, faixas)
 
     d = serie.merge(ifn[["OBJECTID_12", "ha_faixa"]], on="OBJECTID_12")
     d["prohibida"] = d.sp.map(LEGAL)
@@ -118,7 +157,7 @@ if __name__ == "__main__":
 
     cols = ["OBJECTID_12", "sp", "prohibida", "n_px", "ha_faixa",
             "estado", "anho_evento", "caida", "etiqueta"]
-    r[cols].round(3).to_csv(PROC / "metricas" / "persistencia_ifn.csv",
+    r[cols].round(3).to_csv(PROC / "metricas" / f"persistencia_ifn{suf}.csv",
                             index=False, encoding="utf-8-sig")
 
     en_fx = r[r.ha_faixa > 0.01]

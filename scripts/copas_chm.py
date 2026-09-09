@@ -77,7 +77,10 @@ def copas_bloque(ruta_chm):
 if __name__ == "__main__":
     COPAS.mkdir(parents=True, exist_ok=True)
     bloques = sorted(LIDAR.glob("*_chm.tif"))
-    hechos = {p.stem for p in COPAS.glob("*.csv")}
+    # OJO: solo los CSV por bloque. En la carpeta conviven los agregados
+    # (entrenamiento, disperso_clasificado, oos_predicciones, indice_*), que
+    # no son bloques y no tienen columna `x`: colarlos revienta el recuento.
+    hechos = {p.stem for p in COPAS.glob("PNOA-*.csv")}
     pendientes = [b for b in bloques
                   if b.stem.replace("_chm", "") not in hechos]
     print(f"{len(bloques)} bloques, {len(pendientes)} pendientes")
@@ -94,5 +97,7 @@ if __name__ == "__main__":
             print(f"  {k}/{len(pendientes)}  {media:.1f} s/bloque  "
                   f"{total:,} copas nuevas", flush=True)
 
-    n = sum(len(pd.read_csv(p, usecols=["x"])) for p in COPAS.glob("*.csv"))
-    print(f"\n{n:,} copas en la comarca -> {COPAS.relative_to(RAIZ)}")
+    csvs = sorted(COPAS.glob("PNOA-*.csv"))
+    n = sum(len(pd.read_csv(c, usecols=["x"])) for c in csvs)
+    print()
+    print(f"{n:,} copas en {len(csvs):,} bloques -> {COPAS.relative_to(RAIZ)}")
