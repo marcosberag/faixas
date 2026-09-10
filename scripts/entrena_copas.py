@@ -170,5 +170,6 @@ if __name__ == "__main__":
     joblib.dump({"modelo": final, "clases": list(final.classes_),
                  "rasgos": list(X.columns)},
                 COPAS / f"modelo_especie_copas{suf}.joblib")
-    print(f"\n-> {(COPAS / 'oos_predicciones.csv').relative_to(RAIZ)}")
+    print()
+    print(f"-> {(COPAS / ('oos_predicciones' + suf + '.csv')).relative_to(RAIZ)}")
     print(f"-> {(COPAS / ('modelo_especie_copas' + suf + '.joblib')).relative_to(RAIZ)}")
