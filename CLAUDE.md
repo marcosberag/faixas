@@ -750,9 +750,10 @@ s/bloque y **5 MB/bloque** (los 2.919 pendientes son 14,6 GB y 16 h en serie, o
 
 No-regresión verificada con el piloto en todo lo tocado: `serie_ndvi_rodal.csv`
 (658 rodales), `persistencia_ifn.csv` (70 eventos), `edificios_catastro.gpkg`
-(263 celdas, 13.452 edificios) y `entrenamiento.csv` (24.000 copas) salen
-idénticos. **`aplica_copas.py` es el único cuya lógica cambió sin verificar**
-(pisaría `disperso_clasificado.csv`): comprobar la no-regresión antes de usarlo.
+(263 celdas, 13.452 edificios), `entrenamiento.csv` (24.000 copas) y —con copia
+de seguridad, porque pisa ficheros del piloto— `disperso_clasificado.csv` y
+`metricas_parroquia_especie_copas.csv` de `aplica_copas.py` salen idénticos,
+con sus 8 zonas validadas, sus 589 tejados y su 59,9 %.
 
 ### Resultado de la fase 5 en Pontevedra (10-09-2026)
 
@@ -789,6 +790,35 @@ zona, frente a 444 en el piloto—. Más diversidad y más grupos para el
 GroupKFold, pero menos densidad por zona. Se mantiene el valor validado en esta
 pasada a propósito; si el AUC provincial se queda corto, subirlo es lo primero
 que probar, y entonces hay que revalidar.
+
+### Estado de la fase 6 provincial al 10-09-2026
+
+Hecho: copas (12,87 M en 3.197 bloques), ortofoto a 0,25 m (3.197 bloques,
+14 GB), parches (23.211 de 64x64, 789 descartados por borde negro), embeddings
+MobileNetV3 (140 s en CPU) y entrenamiento.
+
+**AUC eucalipto 0,866 OOS**, sobre el listón de 0,85 y sobre el 0,860 del
+piloto. **Pero la inestabilidad por zonas no desaparece con la escala, se
+confirma**: de 106 zonas con las dos clases, 60 pasan de 0,80 (57 %), mediana
+0,820, y las peores caen a 0,04-0,37. Entre ellas está **113_933, que es una de
+las dos que el piloto ya tenía diagnosticadas** como ortofoto de otra pasada,
+oscura y con el contraste aplastado. El criterio de integración (aplicar solo
+donde AUC ≥ 0,80) sigue siendo el correcto y `aplica_copas.py` ya lo aplica.
+
+**PENDIENTE: el Catastro provincial.** 667 de 3.197 celdas. El WFS
+(`ovc.catastro.meh.es`) empezó a 3,6 s/celda con dos procesos, se degradó a
+42,7 y acabó devolviendo `HTTPError` sostenido incluso con uno solo: es
+limitación por IP, no saturación puntual, y no se levantó en media hora. **No
+insistir**: retomarlo más tarde con un único proceso. Sin él no corre
+`aplica_copas.py --zona pontevedra`, que es el último paso.
+
+Los cuatro fallos de la noche tienen la misma forma y conviene recordarla: **el
+trabajo terminaba bien y el proceso moría en la contabilidad**. El recuento
+final de `copas_chm.py`, un timeout que no debía ser fatal en
+`descarga_catastro.py`, un contador de MB que hacía `stat` sobre los ficheros
+temporales de los otros procesos en `descarga_orto25.py`, y un `print` con la
+ruta sin sufijo en `entrena_copas.py`. Los caminos de éxito escalaron de 263 a
+3.197 bloques; los de error, no.
 
 ## Cuestiones abiertas
 
