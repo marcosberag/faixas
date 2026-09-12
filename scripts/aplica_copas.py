@@ -130,10 +130,41 @@ if __name__ == "__main__":
     # de 5,5 m del CHM y el watershed lo delinea como "copa". En agregado ya
     # lo paga la tasa de FP; aqui se quita del mapa y de la fraccion del
     # disperso, que es donde ensucia.
-    edif = gpd.read_file(PROC / f"edificios_catastro{suf}.gpkg")
-    edif = gpd.GeoDataFrame(geometry=edif.buffer(1.0), crs=edif.crs)
+    # Puede no estar: el WFS del Catastro limita por IP y una provincia son 3.197
+    # celdas. Se declara y se sigue, porque el efecto esta medido en el piloto y
+    # es pequeno: 589 copas de 32.035 (1,8 %), la fraccion observada baja de 60,2
+    # a 59,9 % y la cota inferior del titular 1 ha de 353. La razon de fondo es
+    # que EN AGREGADO los tejados ya los paga la tasa de FP — el anotador ciego
+    # tiene categoria «edificacion» y esos puntos cuentan como fallo del CHM.
+    # Este filtro limpia el MAPA y la fraccion del disperso, no el agregado.
+    #
+    # Lo que NO se hace es filtrar con un catastro PARCIAL: cubrir un tercio de
+    # la provincia introduciria un sesgo espacial heterogeneo, imposible de
+    # declarar con una cifra, y eso es peor que no filtrar. Por eso
+    # descarga_catastro.py solo escribe el agregado cuando esta completo.
+    ruta_edif = PROC / f"edificios_catastro{suf}.gpkg"
+    con_filtro = ruta_edif.exists()
+    if con_filtro:
+        edif = gpd.read_file(ruta_edif)
+        edif = gpd.GeoDataFrame(geometry=edif.buffer(1.0), crs=edif.crs)
+        print(f"filtro de edificios: {len(edif):,} huellas del Catastro")
+    else:
+        print()
+        print(f"AVISO: no existe {ruta_edif.name}. Se corre SIN filtro de "
+              "edificios del Catastro.")
+        print("  Consecuencia declarada: algun tejado a dos aguas pasa el umbral "
+              "de 5,5 m y")
+        print("  el watershed lo delinea como copa, asi que la fraccion del "
+              "disperso sale")
+        print("  ligeramente ALTA (en el piloto, +0,3 puntos). Direccion "
+              "conocida, y en")
+        print("  agregado ya lo descuenta la tasa de FP. Relanzar cuando el "
+              "catastro este.")
+        print()
 
     def sin_edificios(df):
+        if not con_filtro:
+            return np.ones(len(df), dtype=bool)
         g2 = gpd.GeoDataFrame(df.copy(), geometry=gpd.points_from_xy(df.x, df.y),
                               crs="EPSG:25829")
         j = gpd.sjoin(g2, edif, predicate="within", how="left")

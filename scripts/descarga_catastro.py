@@ -71,6 +71,10 @@ def baja_celda(x0, y0, intentos=4):
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--zona", default="paradanta")
+    ap.add_argument("--parcial", action="store_true",
+                    help="escribe el agregado aunque falten celdas. Uselo solo a "
+                         "sabiendas: filtrar con cobertura parcial mete un sesgo "
+                         "espacial heterogeneo, peor que no filtrar")
     ap.add_argument("--trozo", default="0/1",
                     help="i/n: descarga las celdas con indice %% n == i. Con n>1 "
                          "NO agrega: relanzar sin --trozo cuando esten todas")
@@ -144,7 +148,20 @@ if __name__ == "__main__":
             "terminen todos.")
 
     rutas = [CELDAS / f"{x}_{y}.gpkg" for x, y in todas]
-    partes = [gpd.read_file(r) for r in rutas if r.exists()]
+    hay = [r for r in rutas if r.exists()]
+
+    # El agregado solo se escribe COMPLETO. Un GPKG con un tercio de la provincia
+    # es indistinguible de uno entero para quien lo lea, y filtrar tejados en un
+    # tercio del territorio mete un sesgo espacial que no se puede declarar con
+    # una cifra: peor que no filtrar. aplica_copas.py sabe correr sin el fichero.
+    if len(hay) < len(rutas) and not args.parcial:
+        raise SystemExit(
+            f"faltan {len(rutas) - len(hay)} de {len(rutas)} celdas: NO se escribe "
+            f"edificios_catastro{suf}.gpkg. Un agregado parcial pasaria por "
+            "completo y filtrar solo parte del territorio sesga el mapa. Relanzar "
+            "para completarlo, o --parcial a sabiendas.")
+
+    partes = [gpd.read_file(r) for r in hay]
     todo = gpd.GeoDataFrame(pd.concat(partes, ignore_index=True),
                             crs="EPSG:25829")
     if "gml_id" in todo.columns:
