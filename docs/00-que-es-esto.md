@@ -157,17 +157,18 @@ un área en m² sale de contar píxeles. Sin reproyecciones y sin sorpresas.
 | Término | Qué es |
 |---|---|
 | **FCC** | Fracción de Cabida Cubierta. Porcentaje de suelo cubierto por copa vista desde arriba. |
-| **Segmentación de copa** | Separar la masa de vegetación en árboles individuales. A 5 pts/m² es dudoso; por confirmar. |
-| **Umbral de altura** | El valor de CHM a partir del cual decimos "esto es un árbol". A calibrar, no fijado a priori. |
+| **Segmentación de copa** | Separar la masa de vegetación en árboles individuales. Se hace en la fase 6 por *watershed* sobre el CHM; a 5 pts/m² cuenta ápices, no troncos. |
+| **Umbral de altura** | El valor de CHM a partir del cual decimos "esto es un árbol". Calibrado en la fase 2 contra ortofoto: **5,5 m**, y solo vale a 1 m de píxel. |
 
 ---
 
-## Qué vamos a hacer en realidad
+## Qué hacemos en realidad
 
 Sin jerga, por orden:
 
-1. **Bajar los polígonos** de las franjas de 50 m de la Xunta para cuatro concellos de
-   prueba. *(Bloqueado: ver [walkthrough](02-walkthrough.md). El servicio no los suelta.)*
+1. **Bajar los polígonos** de las franjas de 50 m de la Xunta. *(El servicio oficial no
+   los suelta; el visor del PBA publica el shapefile de toda Galicia. Ver
+   [walkthrough](02-walkthrough.md).)*
 2. **Bajar el LiDAR** del IGN de esa misma zona, en bloques de 1×1 km.
 3. Por cada bloque: **decidir qué puntos son suelo** (SMRF), construir el **MDT**,
    construir el **MDS**, y restar para obtener el **CHM**.
@@ -177,6 +178,11 @@ Sin jerga, por orden:
 6. **Agregar** por parroquia y por concello, y ordenar.
 7. **Validar a mano** contra ortofoto sobre una muestra aleatoria, y publicar la tasa de
    falsos positivos que salga.
+8. **Separar la especie prohibida de la exenta**: Inventario Forestal (2010) por rodal,
+   comprobando con satélite que el rodal no ha cambiado desde entonces, y un
+   clasificador por copa allí donde se ha podido validar. Lo que no se mide se da como
+   rango, no se inventa.
+9. **Volver a validar** en cada territorio nuevo antes de publicar cifras.
 
 El resultado es un **ranking de dónde mirar primero**, no una lista de infractores.
 
@@ -191,5 +197,8 @@ El resultado es un **ranking de dónde mirar primero**, no una lista de infracto
 - **No afirmamos incumplimiento.** La ley admite excepciones que el LiDAR no puede ver
   (árbol singular, ornamental, aislado sin riesgo) y exime a las frondosas no listadas.
   Ver [marco legal](03-marco-legal.md).
-- **No detectamos especie todavía**, y eso es un problema mayor de lo que parecía. Un
-  castañar es legal dentro de la franja y da la misma señal en el CHM que un pinar.
+- **No identificamos la especie de cada árbol en todo el territorio.** Un castañar es
+  legal dentro de la franja y da la misma señal en el CHM que un pinar, así que la especie
+  sale del Inventario Forestal por rodal y de un clasificador por copa aplicado solo donde
+  valida. Donde ninguna de las dos llega (sobre todo el arbolado suelto), el resultado se
+  da como rango entre «todo exento» y «como el monte de alrededor».

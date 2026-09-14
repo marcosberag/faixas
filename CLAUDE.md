@@ -151,7 +151,9 @@ en serie y ~28 GB. No hay que optimizar nada.
 a `envs\pdal\Library\bin\pdal.exe` directo (`micromamba run` se come el stderr). El resto
 del pipeline sigue en el Python del sistema.
 
-**Stack**: PDAL, GDAL, rasterio, GeoPandas, NumPy, SciPy, laspy.
+**Stack**: PDAL, GDAL, rasterio, GeoPandas, NumPy, SciPy, laspy; y desde la fase 6
+scikit-image (watershed), scikit-learn (HistGradientBoosting, GroupKFold) y PyTorch +
+torchvision (solo el embedding MobileNetV3). Lista completa en `requirements.txt`.
 
 ## Decisiones de diseño que NO se cambian
 
@@ -175,7 +177,7 @@ Estas ya están tomadas y forman parte del compromiso de la propuesta:
 IC95 [17,0 – 31,2]. Sensibilidad 89,4 %, AUC 0,916, 12,4 % de dudosos excluidos.
 `metricas_faixas.py` ya lo consume solo desde `validacion/calibracion_resumen.csv`.
 
-## Fase 3 — especie (18-08-2026, en marcha)
+## Fase 3 — especie (18-08-2026, integrada)
 
 **Fuente: IFN4 2010 vía IDE de la Xunta**, `UsosSolo/IFN_2010_EspeciesArboreas`.
 Devuelve geometrías (al revés que el servicio de faixas) y ya en EPSG:25829. 658
@@ -206,7 +208,8 @@ en una comarca de pinar y eucaliptal, lo que delata que la pregunta no se pudo
 contestar, no que no haya pinos. Los otros 62 se quedaron sin tipo al pasar a
 `--sin-tipo` a mitad. Resultado negativo aprovechable: **la especie no se tipifica por
 fotointerpretación sobre ortofoto a 0,125 m/px**, así que la fase 3 necesita verdad de
-referencia de otra fuente (MFE del MITECO es la candidata). El sesgo existe y su
+referencia de otra fuente (se resolvió con el IFN4 2010 de la Xunta: el MFE del MITECO
+tenía el servicio roto). El sesgo existe y su
 dirección se conoce —sobrestima el incumplimiento—; su tamaño no.
 
 **Concordancia intra-anotador (retest ciego de 126 puntos):** kappa 0,88 en los
@@ -481,7 +484,7 @@ anotador humano (su retest: 90-94 %). Pero el error es asimétrico: 0 árboles
 humanos entre sus 25 «no» — sirve como prefiltro que descarta negativos claros
 (~la mitad de la carga) y deja al humano solo los «árbol» y dudosos.
 
-## Fase 7 — de piloto a producto (21-08-2026, EN MARCHA)
+## Fase 7 — de piloto a producto (21-08-2026): A hecha y validada; B hecha solo en el piloto
 
 Decisión del usuario: **A+B a la vez** — escalar a la provincia de Pontevedra
 (tiempo de máquina, desatendido) y convertir el CSV en herramienta usable
@@ -605,7 +608,7 @@ descartando negativos claros para reducir a la mitad la carga del anotador.
   chips de la fase 2), la mancha dibujada, barra de escala y coordenadas en
   UTM29 y lat/lon para el GPS. El encuadre se ajusta a la mancha (200–700 m).
 
-### Estado al 28-08-2026 — LA PROVINCIA ESTÁ MEDIDA; FALTA ANOTAR
+### 28/30-08-2026 — la provincia medida y validada
 
 **La corrida LiDAR terminó el 27-08 por la noche: 3.197/3.197 bloques, 0
 corruptos, ~5 días de máquina.** Windows mató el proceso 3 veces (Application
@@ -652,7 +655,7 @@ puntos por anotar, ids ajenos a la muestra).
 - Concordancia prefiltro-humano en los 134 compartidos: de mis 59 «árbol» el
   humano confirma 45 (76 %); mis 75 «dudoso» se reparten 20 árbol / 39 no /
   8 edif / 8 dudoso. Claude sobre-marca árbol: el lado seguro.
-- **Titular provincial FINAL: [4.493 – 8.288] ha prohibidas** (sube desde
+- **Titular provincial al 30-08 (sin fase 6): [4.493 – 8.288] ha prohibidas** (sube desde
   [3.635–7.113] porque la tasa de FP fresca descuenta menos). Orden estable:
   Ponteareas (350–593), A Estrada (253–538), Salvaterra (248–388); O Hío
   (Cangas) 1ª parroquia.
@@ -663,9 +666,9 @@ puntos por anotar, ids ajenos a la muestra).
 - `anotador_prefiltrado.py` genera el anotador reducido desde
   `claude_prefiltro.csv` (reutiliza la página de `anotador.py`).
 
-Pendiente de propagar: memoria/artifact, visor y dossiers siguen con las
-cifras del piloto; decidir si se regeneran con la provincia (visor y
-puntos_inspeccion necesitarían generalizarse a `--zona`).
+Propagado a README y `salidas/memoria.html` (14-09). **Siguen con el piloto el
+visor y los dossiers**: `puntos_inspeccion.py`, `visor.py` y `dossier_concello.py`
+no aceptan `--zona` todavía.
 
 Referencia de la cadena que ya corrió:
 
@@ -680,19 +683,17 @@ python scripts/fusiona_prefiltro.py    --dir validacion_pontevedra
 python scripts/valida_producto.py      --dir validacion_pontevedra
 ```
 
-Lo único que NO puede hacer la máquina sola: **anotar los ~150 puntos**. Y sin
-esa tasa de FP propia no se publican cifras provinciales (la del 33,5 % es de
-A Paradanta, interior; Redondela y Sanxenxo son costa densa).
-
-Lo que NO se traslada a la provincia y hay que declararlo: el clasificador de
-copas de la fase 6 y la validación de persistencia están hechos solo en
-A Paradanta. El ranking provincial sale de FP × fracción IFN, sin fase 6.
+(Histórico, superado: hasta el 30-08 faltaba anotar los 150 puntos, y hasta el
+14-09 el ranking provincial salía de FP × fracción IFN sin fase 6. Lo que sigue
+sin trasladarse y se declara: la **validación** de la persistencia —las 65 hojas
+contra PNOA histórico— está hecha solo en A Paradanta; en la provincia se aplica
+el detector, no se revalida.)
 
 Aún sin hacer, por si sobra tiempo: banda infrarroja del PNOA para rescatar las
 dos zonas del este donde el clasificador de copas no valida, y auditoría de los
 «exenta» con el prefiltro de Claude.
 
-## Fases 5 y 6 a escala provincial (09/10-09-2026, EN MARCHA)
+## Fases 5 y 6 a escala provincial (09 al 14-09-2026, hechas)
 
 Decisión del usuario: llevar persistencia y clasificador de copas a Pontevedra,
 que en el ranking provincial no estaban (salía de FP × fracción IFN).
@@ -805,12 +806,14 @@ las dos que el piloto ya tenía diagnosticadas** como ortofoto de otra pasada,
 oscura y con el contraste aplastado. El criterio de integración (aplicar solo
 donde AUC ≥ 0,80) sigue siendo el correcto y `aplica_copas.py` ya lo aplica.
 
-**PENDIENTE: el Catastro provincial.** 667 de 3.197 celdas. El WFS
+**Catastro provincial (abandonado el 12-09 en 954 de 3.197 celdas; no bloquea,
+ver el resultado del 14-09).** Al escribir esto iba por 667. El WFS
 (`ovc.catastro.meh.es`) empezó a 3,6 s/celda con dos procesos, se degradó a
 42,7 y acabó devolviendo `HTTPError` sostenido incluso con uno solo: es
 limitación por IP, no saturación puntual, y no se levantó en media hora. **No
-insistir**: retomarlo más tarde con un único proceso. Sin él no corre
-`aplica_copas.py --zona pontevedra`, que es el último paso.
+insistir**: retomarlo más tarde con un único proceso. (Se creyó que sin él no
+corría `aplica_copas.py --zona pontevedra`; el 12-09 se midió que el filtro no es
+bloqueante y la fase se cerró sin él, declarándolo.)
 
 Los cuatro fallos de la noche tienen la misma forma y conviene recordarla: **el
 trabajo terminaba bien y el proceso moría en la contabilidad**. El recuento
@@ -831,14 +834,15 @@ que el piloto (0,304 / 0,167). **Fracción observada prohibida del disperso
 validado: 47,8 %** (piloto: 59,9 %): fuera de A Paradanta el arbolado suelto
 es menos eucaliptal. 195 parroquias ajustadas.
 
-**TITULAR PROVINCIAL con la fase 6: [4.770 – 7.969] ha prohibidas**, desde
-[4.493 – 8.288] sin ella. **Anchura −16 %** (3.795 → 3.198 ha); en el piloto
+**TITULAR PROVINCIAL con la fase 6: [4.770 – 8.141] ha prohibidas**, desde
+[4.493 – 8.515] sin ella. **Anchura −16 %** (4.022 → 3.371 ha); en el piloto
 fue −24 %, coherente con que aquí solo se cubre el 24 % del disperso. Cota
-inferior +277 ha, superior −319.
+inferior +277 ha, superior −374. (Cifras tras la corrección de `p_mal_d` de
+abajo; antes de ella eran [4.770 – 7.969] con fase 6 y [4.493 – 8.288] sin ella.)
 
-**El ranking se reordena, no se escala** (Spearman 0,991 por concello): el
-podio no cambia —Ponteareas [371–576], A Estrada [280–535], Salvaterra
-[248–388]—, pero **Lalín baja de 4º a 6º** (su cota superior cae de 382 a 342:
+**El ranking se reordena, no se escala** (Spearman 0,990 por concello): el
+podio no cambia —Ponteareas [371–586], A Estrada [280–550], Salvaterra
+[248–395]—, pero **Lalín baja de 4º a 6º** (su cota superior cae de 401 a 357:
 disperso medido y resulta menos prohibido de lo que decía la cota ciega) y O
 Porriño y Mos suben un puesto. Salvaterra y Tomiño no se mueven ni un
 decimal: sin zonas validadas encima, la fase 6 no les toca.
@@ -847,10 +851,19 @@ En `metricas/ranking_final{,_concello}_pontevedra.csv` (regenerados) y
 `metricas_parroquia_especie_copas_pontevedra.csv`. Copia del ranking previo
 (sin fase 6) en el historial de git, commit 8846bfc.
 
-**Decisión de publicación pendiente:** cuál de los dos titulares va en el
-README y el hilo. El de la fase 6 es la cadena completa del piloto, con dos
-avisos ya escritos en la salida (sin Catastro: fracción del disperso +0,3
-puntos, dirección conocida; y `CAP` en 8.000).
+**Decidido (14-09, commit 63fee41): el titular publicado es el de la fase 6**,
+con los dos avisos al lado (sin Catastro: fracción del disperso +0,3 puntos,
+dirección conocida; y aplicado solo donde el clasificador valida).
+
+**CORRECCIÓN del 14-09-2026: `p_mal_d` por zona.** `especie_faixas.py` calculaba
+la cota alta del disperso (`p_mal_d`, fracción prohibida del IFN donde se anotó
+árbol) SIEMPRE con `validacion/`, la muestra del piloto: Pontevedra heredaba el
+72,2 % de A Paradanta en silencio. Con `validacion_pontevedra/` sale **78,0 %**
+(46 puntos árbol en rodal). Ahora cada zona usa su carpeta y, si no la tiene, la
+del piloto con aviso — el mismo patrón que la tasa de FP de `ranking_final.py`.
+Recorrida la cadena provincial (especie 10 min, aplica_copas 5 min): cota
+inferior idéntica, superior 7.969 → **8.141 ha**, Spearman 0,9996 por concello
+(A Cañiza 7.ª y Tomiño 8.º se intercambian). Piloto verificado idéntico.
 
 Tres fallos más de escala en esta última pasada, mismo patrón que los cuatro de
 la noche del 9: `rasgos()` no cabía en RAM con 88.624 parches (troceado por
@@ -858,23 +871,25 @@ filas, idéntico bit a bit), y dos veces murió el proceso por cerrarse la sesi�
 de Claude Code — **los procesos en background son hijos de la sesión**; para
 corridas de horas, lanzarlos desde una terminal propia.
 
-## Cuestiones abiertas
+## Cuestiones abiertas (al 14-09-2026)
 
-- **Umbral de altura** para considerar "arbolado". Sin fijar. La maquinaria de
-  calibración está lista; falta anotar los 400 puntos y correr `calibra_umbral.py`.
-  Cuando exista `validacion/calibracion_resumen.csv`, `metricas_faixas.py` lo usa solo.
-- **Clasificación de especie — prioridad subida a casi necesaria.** La disposición
-  adicional tercera de la Ley 3/2007 lista 7 especies arbóreas (pinos, eucalipto,
-  acacias) y su punto 3 **exime expresamente a las frondosas no listadas**: castaños y
-  robles pueden estar dentro de la franja legalmente. Por tanto "arbolado sobre umbral"
-  no es un indicador de incumplimiento, sino un proxy sesgado allá donde haya frondosa
-  autóctona. Basta separar perennifolias de la lista frente a caducifolias — no hace
-  falta identificar especie —, así que probar primero la banda infrarroja del propio
-  PNOA (RGBI) y luego estacionalidad con Sentinel-2. Si no da tiempo, declarar el sesgo
-  en portada, no en nota al pie. Detalle en `docs/03-marco-legal.md`.
-- **Segmentación de copa individual** a 5 pts/m²: viabilidad por confirmar. Pendiente
-  consulta al grupo SILVANET (UPM), que trabaja en cartografía de combustibles y
-  análisis estructural de vegetación con LiDAR.
+Cerradas y por qué, para no reabrirlas: el **umbral** es 5,5 m (fase 2); la **especie**
+entra por IFN + persistencia + clasificador por copa donde valida (fases 3, 5 y 6); la
+**segmentación de copa** se hizo por watershed (fase 6); el **casco urbano** pesa 1–2 %
+y en el piloto lo limpia el Catastro.
+
+Abiertas:
+
+- **Visor, puntos de inspección y dossiers para la provincia.** `puntos_inspeccion.py`,
+  `visor.py` y `dossier_concello.py` no aceptan `--zona`; siguen con el piloto.
+- **Catastro provincial**: 954 de 3.197 celdas. Relanzar con un único proceso cuando el
+  WFS lo permita y rehacer `aplica_copas.py --zona pontevedra` con el filtro.
+- **`CAP` = 8.000 copas por clase** en `muestra_copas.py`: primera palanca si el AUC
+  provincial se queda corto, revalidando.
+- **Zonas donde la ortofoto visible no da** (p. ej. 113_933): probar la banda infrarroja
+  del PNOA.
+- **Consulta a SILVANET (UPM)** sobre segmentación de copa a 5 pts/m², como contraste.
+- **Publicación en abierto**, que es el único compromiso de la beca.
 
 ## Prioridades
 
@@ -890,12 +905,12 @@ corridas de horas, lanzarlos desde una terminal propia.
    del IDE de la Xunta. El MFE25 del MITECO es la fuente canónica pero su WMS devuelve
    `NullReferenceException` y sus descargas se pintan con JS; la Xunta sirve lo mismo
    por ArcGIS REST, **con geometrías y en EPSG:25829**. Ver `descarga_ifn.py`.
-6. ~~Sentinel-2 multitemporal~~ **montado, SIN VALIDAR** (18-08-2026). Ver abajo.
+6. ~~Sentinel-2 multitemporal~~ **montado (18-08) y RECHAZADO al validarlo con la
+   comarca (19-08)**: AUC 0,746 fuera de zona. Ver su sección.
 7. ~~Fase 4: escalar a los 263 bloques~~ **hecha** (20-08-2026, `procesa_comarca.py`):
    streaming descarga→CHM→borrado por el límite de disco, 0 fallos, mediana 120 s/bloque
    enchufado (~480 s con batería: vigilar), 2.848 ha medidas (99,9 %), 41,0 % sobre
    5,5 m, 16,2 ha sobre 35 m (eucaliptal seguro; columna `ha_sobre_35m` nueva).
-   La validación de la fenología S2 con la comarca entera es lo siguiente.
 
 8. **Entregable montado y validado fuera de muestra** (19-08-2026,
    `ranking_final.py` + `valida_producto.py`): 2.848 ha de franja medidas, 1.167 ha
@@ -908,6 +923,13 @@ corridas de horas, lanzarlos desde una terminal propia.
    pero desplazada sobre el 24,2 % de la fase 2 — y `ranking_final.py` usa la tasa
    fuera de muestra automáticamente si existe `resumen_producto.csv`. Sensibilidad
    89,8 % y suelo del eucalipto (14/15) aguantan.
+
+9. ~~Fase 7A: Pontevedra~~ **hecha y validada** (30-08-2026): 3.197 bloques, 150
+   puntos frescos, FP 20,1 %. Ranking provincial sin fase 6.
+10. ~~Fases 5 y 6 en la provincia~~ **hechas** (14-09-2026): persistencia 98,2 %,
+   clasificador AUC 0,866, integrado en 45 zonas. **Titular publicado:
+   [4.770 – 8.141] ha**, con `p_mal_d` de la muestra provincial.
+11. Pendiente: visor, puntos y dossiers con `--zona`; publicación en abierto.
 
 **Trampa del `anotacion.csv` (19-08-2026, casi pérdida de datos):** el
 `validacion/anotacion.csv` final de la fase 2 NO es `anotacion_pase1.csv`: es

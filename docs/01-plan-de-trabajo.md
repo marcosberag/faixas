@@ -3,7 +3,14 @@
 Plazo: **aproximadamente un mes**. Entregable: ranking de parroquias y concellos por
 superficie de franja con arbolado no permitido, más el código abierto y reproducible.
 
-Redactado el 16 de agosto de 2026. Ver el [estado real del código](02-walkthrough.md).
+Redactado el 16 de agosto de 2026 y puesto al día el 14 de septiembre. Ver el
+[estado real del código](02-walkthrough.md).
+
+> **Estado de cierre (14-09-2026).** Todas las fases del plan están hechas, y el
+> proyecto fue más allá de lo previsto: la provincia de Pontevedra entera en vez de la
+> comarca piloto. Resultado: 38.601 ha de franja medidas en 54 concellos, con tasa de
+> falsos positivos del 20,1 % medida fuera de muestra. El satélite estacional se
+> validó y se **rechazó**. Lo que queda está en [Cuestiones abiertas](#cuestiones-abiertas).
 
 ---
 
@@ -80,7 +87,7 @@ no para afirmar nada sobre Lugo o A Coruña.
 
 ## Fases
 
-### Fase 0 — Desbloquear las geometrías 🔴 crítica
+### Fase 0 — Desbloquear las geometrías ✅ completada
 
 Nada avanza sin esto. Por orden de coste:
 
@@ -95,6 +102,10 @@ y `CONCELLO`, y área total contrastada contra una medición independiente.
 
 **Si se atasca más de dos o tres días**, tirar de la opción 4 y seguir. Un error de
 frontera de un metro es asumible; quedarse sin pipeline no lo es.
+
+**Cómo acabó (16-08-2026):** no hizo falta la opción 4. Las vías 1 y 2 fallaron (no hay
+WFS ni descarga en datos abiertos) y la 3 dio el shapefile completo de Galicia en el visor
+del PBA, contrastado con el servicio oficial con IoU 0,9996.
 
 ---
 
@@ -169,7 +180,7 @@ adicional y una primera cota del sesgo de especie.
 
 ---
 
-### Fase 3 — Distinguir especie 🔵 en marcha
+### Fase 3 — Distinguir especie ✅ completada (la vía satélite, rechazada)
 
 **La verdad de referencia ya está resuelta (18-08-2026): IFN4 2010 vía el IDE de la
 Xunta**, con geometrías y en EPSG:25829. Clasificación literal contra la disposición
@@ -177,7 +188,12 @@ adicional tercera, ocupación como factor continuo. Resultado: **44–72 % del a
 en faixa es especie prohibida**, y **3 de 5 parroquias cambian de puesto** al corregir.
 Detalle en la [sección 12 del walkthrough](02-walkthrough.md#12-fase-3-separar-lo-prohibido-de-lo-exento).
 
-**La parte de teledetección está montada y sin validar.** Sentinel-2 estacional desde
+**La parte de teledetección se montó, se validó con la comarca entera y se rechazó
+(19-08-2026):** AUC 0,746 fuera de zona y entre 0,30 y 0,93 según la zona. La especie
+entra por el IFN, la regla de los 35 m, la persistencia (fase 5) y el clasificador por
+copa donde valida (fase 6). Lo que sigue es cómo estaba el 18-08.
+
+Sentinel-2 estacional desde
 los COG de AWS (sin registro), con el proxy fenológico comprobado antes contra el IFN:
 reproduce el corte legal con 99,37 % de acuerdo *en esta comarca*. La señal sale
 inequívoca por especie. Pero con tres bloques la validación cruzada es imposible —solo
@@ -188,7 +204,7 @@ Eso convierte la fase 4 en prerrequisito de la 3, no al revés: lo que falta no 
 cómputo sobre los mismos datos, son sitios con robledal y pinar dentro de la misma
 faixa.
 
-
+#### Cómo se planteó la fase (16-08-2026, histórico)
 
 Ya no es opcional. Sin esto, el indicador confunde un castañar legal con un pinar ilegal.
 
@@ -236,17 +252,32 @@ sesgo de forma explícita y visible, no en una nota al pie.
 
 ---
 
-### Fase 4 — Escalar y agregar 🟡 media
+### Fase 4 — Escalar y agregar ✅ completada
 
 Los cuatro concellos, agregado por parroquia y concello, ranking, y el repo publicable.
+Hecho el 19-20-08-2026: 263 bloques sin un fallo, 2.848 ha de franja, [353–574] ha de
+especie prohibida, y validación del producto con 250 puntos nuevos (FP 33,5 %).
+
+---
+
+### Fases que no estaban en el plan
+
+- **Fase 5 — persistencia del IFN** (19-08): serie anual de Sentinel-2 y validación
+  contra PNOA histórico. El 97,4 % del monte en franja no ha cambiado desde 2010
+  (98,2 % en la provincia); el listado de cortas no pasa la validación y no se publica.
+- **Fase 6 — especie por copa** (20-08): segmentación sobre el CHM y clasificador con
+  AUC 0,86 fuera de zona, aplicado solo en las zonas donde valida.
+- **Fase 7 — de piloto a producto** (21-08 → 14-09): la provincia de Pontevedra entera,
+  con validación fresca propia (150 puntos, FP 20,1 %), y en el piloto puntos de
+  inspección, visor web y dossier PDF por concello.
 
 ---
 
 ### Fuera de plazo
 
-- Segmentación de copa individual a 5 pts/m². Viabilidad sin confirmar; pendiente de
-  consulta al grupo **SILVANET** (UPM). No está en la ruta crítica: la métrica principal
-  es superficie, no número de pies.
+- ~~Segmentación de copa individual a 5 pts/m²~~ Hecha en la fase 6 por la vía práctica
+  (watershed sobre el CHM, cuenta ápices). La consulta al grupo **SILVANET** (UPM) sigue
+  sin hacerse y valdría para contrastar el método.
 - Descontar el casco urbano del interior de los polígonos.
 - Cualquier cosa a nivel de parcela.
 
@@ -260,7 +291,8 @@ Los cuatro concellos, agregado por parroquia y concello, ranking, y el repo publ
 | ~~El LiDAR pesa o tarda más de lo previsto~~ | — | **Cerrado en fase 1.** 170 s/bloque, 12,4 h y 28 GB la comarca |
 | ~~NPC01 da clasificación de suelo mala en pendiente~~ | — | **Cerrado en fase 1.** SMRF coincide con NPC01: mediana +5 cm, σ 26 cm, discrepancia > 2 m en el 0,2 % |
 | ~~El polígono incluye el casco urbano~~ | Bajo | **Acotado en fase 1.** Los edificios son el 1–2 % de la superficie sobre umbral: la capa ya recorta su huella |
-| No da tiempo a clasificar especie | **Alto** | Publicar con el sesgo declarado en portada. Sigue siendo el riesgo nº 1 |
+| ~~No da tiempo a clasificar especie~~ | — | **Cerrado en fases 3, 5 y 6.** IFN por rodal, persistencia validada y clasificador por copa donde valida; lo no medido va como rango |
+| Las tasas de error del piloto no valen en otro paisaje | Alto | **Medido:** cada territorio nuevo lleva su propia muestra anotada antes de publicar cifras (Pontevedra: 150 puntos) |
 | El umbral calibrado se aplica a otra resolución | Medio | Fijado 1 m; dejarlo escrito en la calibración. 0,5 m da un 17 % menos |
 | Lectura pública como "lista de infractores" | Alto | Framing de triaje en todo material; ver más abajo |
 
@@ -287,8 +319,11 @@ No se reabren salvo motivo de peso:
 
 | Cuestión | Estado |
 |---|---|
-| Umbral de altura | Abierta. Se calibra en fase 2 con la muestra de validación. |
-| Clasificación de especie | **Reclasificada como casi necesaria.** Probar RGBI del PNOA primero. |
-| Segmentación de copa individual | Abierta. Fuera de ruta crítica. Consultar a SILVANET. |
-| Descontar casco urbano | Abierta. Documentar como mínimo. |
+| ~~Umbral de altura~~ | **Cerrada:** 5,5 m a 1 m de píxel (fase 2). |
+| ~~Clasificación de especie~~ | **Cerrada:** IFN + persistencia + clasificador por copa donde valida. El RGBI del PNOA sigue siendo la vía para rescatar las zonas donde la ortofoto visible no da. |
+| ~~Segmentación de copa individual~~ | **Cerrada** por la vía práctica (fase 6). Queda la consulta a SILVANET como contraste. |
+| ~~Descontar casco urbano~~ | **Cerrada:** 1–2 % de la superficie sobre umbral; en el piloto, además, filtro de edificios del Catastro (589 copas eran tejados). En la provincia el Catastro se quedó en 954 de 3.197 celdas y la fase 6 corre sin él, declarado. |
+| Visor y dossiers para la provincia | Abierta. `puntos_inspeccion.py`, `visor.py` y `dossier_concello.py` solo trabajan con el piloto. |
+| Tamaño de la muestra de entrenamiento por copa (`CAP` = 8.000 por clase) | Abierta. Si el AUC provincial se queda corto, subirlo es lo primero, revalidando. |
+| Publicación | Abierta. Compromiso de la beca: publicar en abierto y reproducible. |
 | Extender fuera de Galicia | **Cerrada: replicable el método, no el producto.** Verificado sobre tres comunidades el 17-08-2026. El LiDAR del PNOA es nacional; la obligación no. Cataluña son 25 m, solo urbanizaciones aisladas, y pide **aclarar** la masa en vez de eliminar especies — otra métrica, no otro umbral —, con el mapa en manos de cada ayuntamiento. Madrid no tiene franja perimetral obligatoria. Detalle en [marco legal, §5](03-marco-legal.md#5-escalabilidad-fuera-de-galicia). |

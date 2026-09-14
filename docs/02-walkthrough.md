@@ -1,7 +1,9 @@
 # Walkthrough: estado real del código
 
 Qué hay escrito, qué funciona, qué está roto y cómo reproducirlo.
-Última verificación: **17 de agosto de 2026**.
+Última verificación: **14 de septiembre de 2026**. Las secciones 1 a 13 cuentan el
+piloto hasta la fase 3 con todo detalle; la 14 recoge lo que el código de las fases 4
+a 7 obliga a saber, y la 15 la pasada de limpieza del 14-09.
 
 ---
 
@@ -36,10 +38,10 @@ Qué hay escrito, qué funciona, qué está roto y cómo reproducirlo.
 | Filtro de edificios del Catastro | ✅ 13.452 huellas; **589 «copas» eran tejados** | `scripts/descarga_catastro.py` |
 | Fase 7A: escalar a Pontevedra | ✅ **3.197/3.197 bloques, 0 corruptos** (~5 días de máquina); cadena completa corrida | `scripts/prepara_provincia.py`, `procesa_comarca.py --malla` |
 | Validación provincial fuera de muestra | ✅ **FP 20,1 % [12,8–28,0]**, sens. 90,1 %, ≥35 m 9/9 árbol (150 puntos, 16 delegados al prefiltro de Claude) | `scripts/valida_producto.py --dir validacion_pontevedra`, `anotador_prefiltrado.py` |
-| Ranking provincial (sin fase 6) | ✅ [4.493–8.288] ha prohibidas en 38.601 ha de franja; Ponteareas 1º | `scripts/ranking_final.py --zona pontevedra` |
+| Ranking provincial al 30-08 (sin fase 6, cota del disperso del piloto) | ✅ [4.493–8.288] ha prohibidas en 38.601 ha de franja; Ponteareas 1º | `scripts/ranking_final.py --zona pontevedra` |
 | Fase 5 en la provincia: persistencia por tiles | ✅ **98,2 % persistente**; 4 tiles MGRS compuestos por separado; 2018 = incendios de 2017, 2026 = sequía | `scripts/serie_s2_anual.py --zona pontevedra`, `detecta_eventos.py --zona pontevedra` |
 | Fase 6 en la provincia: clasificador de copas | ✅ **AUC eucalipto 0,866 OOS**, 407 zonas de entrenamiento; aplicado en 45 zonas validadas (24 % del disperso), fracción prohibida 47,8 % obs. (36 % corregida) | `copas_chm.py`, `muestra_copas.py --zona`, `parches_copas.py --zona`, `entrena_copas.py --zona --cnn`, `aplica_copas.py --zona` |
-| **Ranking provincial FINAL** | ✅ **[4.770–7.969] ha prohibidas** (−16 % de anchura); podio estable, Lalín de 4º a 6º. Sin filtro de Catastro (WFS limita por IP; efecto medido: 1 ha) | `scripts/ranking_final.py --zona pontevedra` |
+| **Ranking provincial FINAL** | ✅ **[4.770–8.141] ha prohibidas** (−16 % de anchura frente a [4.493–8.515] sin fase 6); podio estable, Lalín de 4º a 6º. Cota alta del disperso con la muestra provincial (§15). Sin filtro de Catastro (WFS limita por IP; efecto medido: 1 ha) | `scripts/ranking_final.py --zona pontevedra` |
 | Fase 7B: producto usable | ✅ 464 puntos de inspección, visor web y dossier PDF por concello (piloto; pendiente `--zona`) | `scripts/puntos_inspeccion.py`, `visor.py`, `dossier_concello.py` |
 
 ---
@@ -1227,6 +1229,91 @@ propio CHM.
 
 ---
 
+## 14. Fases 4 a 7: lo que hay que saber del código
+
+Los resultados y su discusión están en el README y en `CLAUDE.md`. Aquí va lo que
+condiciona cómo se toca el código.
+
+### Orquestación y reanudación
+
+- `procesa_comarca.py` trabaja en **streaming** (descarga → CHM → borra el LAZ) porque
+  el crudo no cabe en disco. Reanuda saltando lo que ya tiene CHM, renueva la sesión del
+  CNIG cada 25 bloques, no se para por un bloque fallido y tiene guardias de disco
+  (< 3 GB) y de batería (< 20 % sin enchufar). Con batería el bloque tarda 420 s en vez
+  de 120.
+- **Escritura atómica** del CHM (temporal + `os.replace`): sin ella, un corte a mitad de
+  escritura dejaba un TIFF truncado que la reanudación daba por bueno para siempre.
+- **Los procesos en segundo plano son hijos de la sesión de Claude Code**: si la sesión
+  se cierra, mueren. Corridas de horas, desde una terminal propia.
+  `vigila_pontevedra.ps1` relanza la corrida si Windows la mata.
+
+### `--zona`: un mismo código para piloto y provincia
+
+- Con `--zona paradanta` (defecto) los ficheros no llevan sufijo; con cualquier otra,
+  `_{zona}`. Así el piloto no cambia de nombre y se puede comprobar por no-regresión.
+- **Las carpetas `lidar/`, `copas/` y `catastro_celdas/` son compartidas** (A Paradanta
+  está dentro de Pontevedra). Todo se filtra por `malla_lidar_{zona}.csv`; un `glob`
+  sin filtrar mezcla zonas en silencio.
+- **Cada zona valida en su carpeta**: `validacion_producto/` en el piloto (nombre
+  histórico) y `validacion_{zona}/` en las demás. De ahí salen la tasa de FP
+  (`ranking_final.py`) y, desde el 14-09, la cota alta del disperso
+  (`especie_faixas.py`, ver §15).
+- `puntos_inspeccion.py`, `visor.py` y `dossier_concello.py` **aún no aceptan `--zona`**.
+
+### Trampas de escala (de 263 a 3.197 bloques)
+
+| Trampa | Síntoma | Arreglo |
+|---|---|---|
+| `overlay`/`intersects` contra un multipolígono provincial disuelto | horas de CPU sin terminar: el índice espacial no filtra | trocear en piezas de una parte (`dissolve().explode()`) y recomponer; apareció en 6 scripts |
+| Núcleos e illadas se solapan | áreas sumadas cuentan dos veces la zona común | unir las piezas que tocan cada rodal antes de intersecar |
+| Ventana de rasterio de menos de 1 px | `WindowError` | se salta: el bloque vecino mide ese trozo |
+| Bloque sin copas | CSV sin cabecera que rompe la lectura | declarar las columnas del DataFrame vacío |
+| Concatenar 12,9 M de copas antes de filtrar | varios GB para tirar el 90 % | cruzar bloque a bloque (mismo orden, `sjoin` conserva el izquierdo) |
+| Sentinel-2 en un único compuesto | NaN en tres cuartos de la provincia, sin error | componer por tile MGRS y acumular suma y cuenta por rodal |
+| `rasgos()` con 88.624 parches | `MemoryError` | trocear en bloques de 8.000; idéntico bit a bit |
+| Dissolve provincial | esquirlas línea/punto que `overlay` rechaza | filtrar a polígonos (área cero) |
+
+Casi todas comparten forma: **el trabajo terminaba bien y el proceso moría en la
+contabilidad o en un caso límite** que el piloto no tenía.
+
+### Validación con prefiltro (provincia)
+
+`anotador_prefiltrado.py` quita del anotador humano los «no» claros de
+`claude_prefiltro.csv`; `fusiona_prefiltro.py` reconstruye `anotacion.csv` con los 150
+puntos en el orden de `muestra.csv` (delegados con `ms=0`). **El orden de filas no es
+cosmético**: los bordes del IC bootstrap dependen de él. Tres guardias abortan si el
+humano anotó un delegado, si faltan puntos o si hay ids ajenos a la muestra.
+
+### Catastro
+
+El WFS limita por IP. `descarga_catastro.py` **no escribe el agregado si faltan
+celdas** (`--parcial` para forzarlo): filtrar con un tercio de la provincia metería un
+sesgo espacial imposible de declarar con una cifra. `aplica_copas.py` corre sin él
+avisando de que la fracción del disperso sale ligeramente alta.
+
+---
+
+## 15. Limpieza del 14-09-2026
+
+- **La cota alta del disperso venía del piloto también en la provincia.**
+  `especie_faixas.py` leía siempre `validacion/` para calcular `p_mal_d` (fracción
+  prohibida del IFN donde se anotó árbol), así que Pontevedra heredaba el 72,2 % de A
+  Paradanta. Con su propia muestra sale **78,0 %** (46 puntos árbol dentro de rodal). Ahora cada zona usa
+  `validacion_{zona}/` y, si no existe, la del piloto con aviso. Mismo patrón que la
+  tasa de FP. Efecto en la provincia: la cota inferior no cambia y la superior pasa de 7.969 a
+  **8.141 ha**; el orden apenas se mueve (Spearman 0,9996 por concello). No-regresión: la salida del piloto sale
+  idéntica.
+- **«60 concellos» era erróneo**: la capa de franjas de Pontevedra tiene 54, y son los
+  54 del ranking.
+- Docstring de `ranking_final.py`: decía que la cota alta añade «el disperso entero»;
+  en realidad lo multiplica por `p_mal_d`.
+- Imports sin uso eliminados en siete scripts.
+- Estados obsoletos corregidos en README, `CLAUDE.md` y `docs/00` y `01` («fase 3 en
+  marcha», «Sentinel-2 sin validar», «umbral sin fijar», y la frase falsa de que casi
+  la mitad del arbolado del piloto era frondosa exenta, que seguía en el README).
+
+---
+
 ## Scripts
 
 | Archivo | Qué hace |
@@ -1235,6 +1322,8 @@ propio CHM.
 | `scripts/carga_faixas.py` | Carga los shapefiles del PBA, filtra la zona piloto y contrasta con la API. |
 | `scripts/repara_faixas.py` | `make_valid` sobre las geometrías rotas; comprueba el ancho de 50 m. |
 | `scripts/verifica_faixas.py` | IoU contra el `/export` oficial de la Xunta. |
+| `scripts/justifica_piloto.py` | Comprueba a posteriori, con la capa de toda Galicia, si A Paradanta es buena zona piloto. |
+| `scripts/mapa_geometrias.py` | Mapa de las geometrías descargadas, dibujado en local sin el servicio. |
 | `scripts/mapa_faixas.py` | Panorámica de la comarca y zoom, con barra de rótulo. |
 | `scripts/mapa_zoom_post.py` | Zoom para divulgación: limpio y con atribución + escala. |
 | `scripts/malla_lidar.py` | Malla de bloques de 1 km cruzada con las franjas, y ranking. |
@@ -1286,4 +1375,5 @@ propio CHM.
 | `scripts/visor.py` | Visor web autocontenido (`salidas/visor/index.html`): ortofoto, ranking por parroquia y puntos clicables. |
 | `scripts/dossier_concello.py` | Dossier PDF de inspección por concello: portada, ranking y una ficha con ortofoto por punto. |
 | `scripts/anotador_prefiltrado.py` | Anotador reducido por el prefiltro de Claude: descarta sus «no» claros y deja el resto al humano. |
+| `scripts/fusiona_prefiltro.py` | Reconstruye `anotacion.csv` con la anotación humana y los «no» delegados al prefiltro, en el orden de la muestra. |
 | `scripts/vigila_pontevedra.ps1` | Vigilante de la corrida provincial: relanza `procesa_comarca.py` si Windows lo mata (Application Hang tras mover el portátil). |

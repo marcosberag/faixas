@@ -24,18 +24,20 @@ portátil de ocho años, con datos que cuestan 0 €.
 
 | | |
 |---|---|
-| Franja de protección medida | **38.601 ha**, en 60 concellos |
+| Franja de protección medida | **38.601 ha**, en 54 concellos (todos los de la provincia con franja publicada) |
 | Con arbolado (umbral calibrado, 5,5 m) | 12.709 ha |
-| Con arbolado de especie prohibida | **[4.770 – 7.969] ha** |
+| Con arbolado de especie prohibida | **[4.770 – 8.141] ha** |
 | Tasa de falsos positivos, fuera de muestra | **20,1 %**, IC95 [12,8 – 28,0] |
 | Sensibilidad | 90,1 % [83,6 – 96,5] |
 
-Encabezan Ponteareas (371–576 ha), A Estrada (280–535) y Salvaterra de Miño (248–388).
+Encabezan Ponteareas (371–586 ha), A Estrada (280–550) y Salvaterra de Miño (248–395).
 
 El rango incorpora el clasificador de especie por copa allí donde valida fuera de zona
 (45 zonas de 5×5 km, el 24 % del arbolado disperso de la provincia): sin él sería
-[4.493 – 8.288] ha. Corre sin el filtro de tejados del Catastro, que en el piloto movía
-la fracción del disperso 0,3 puntos, en dirección conocida (al alza); se declara.
+[4.493 – 8.515] ha. Corre sin el filtro de tejados del Catastro, que en el piloto movía
+la fracción del disperso 0,3 puntos, en dirección conocida (al alza); se declara. La
+cota alta del arbolado disperso sale de la muestra anotada de la propia provincia
+(78,0 % prohibido donde hay rodal), no de la del piloto (72,2 %).
 
 El rango no es imprecisión sin cuantificar: **sale de una tasa de error medida**, sobre
 150 puntos fotointerpretados a ciegas en territorio que el modelo no había visto. Cada
@@ -81,8 +83,9 @@ recorte por franja → CSV.
 | Control de rasterización | −0,04 % |
 
 Sobre las 104 ha de franja cubiertas, el 35,9 % tiene vegetación por encima del umbral
-calibrado. **Ese número no es incumplimiento**: la ley exime a las frondosas no listadas
-y casi la mitad del arbolado detectado lo es. Detalle y avisos en el
+calibrado. **Ese número no es incumplimiento**: la ley exime a las frondosas no listadas,
+y en la franja del piloto un tercio del arbolado de monte lo es (fase 3). Detalle y
+avisos en el
 [walkthrough](docs/02-walkthrough.md#9-métricas-y-tres-avisos-sobre-cómo-leerlas).
 
 **Fase 2 completada.** 400 puntos fotointerpretados a ciegas contra ortofoto, con
@@ -114,7 +117,7 @@ distinguible». **La especie no se puede tipificar por fotointerpretación sobre
 ortofoto a esta escala.** La fase 3 necesitó una verdad de referencia que no viniera
 del ojo.
 
-**Fase 3 en marcha.** Cruce con el Inventario Forestal Nacional (IFN4, 2010), que la
+**Fase 3 completada.** Cruce con el Inventario Forestal Nacional (IFN4, 2010), que la
 Xunta publica como servicio ArcGIS REST en EPSG:25829. Cada rodal se clasifica contra
 la disposición adicional tercera **especie a especie** —agrupar por género o por
 «perennifolia contra caducifolia» da la respuesta equivocada en los dos sentidos— y la
@@ -135,7 +138,7 @@ corregir, con una correlación de Spearman de 0,70 entre los dos órdenes. As Ac
 de 19,3 % de faixa arbolada a 2,7 % de faixa con arbolado prohibido. El ranking sin
 corregir manda al inspector al sitio equivocado.
 
-**Sentinel-2 estacional: montado y sin validar.** Se comprobó primero que el atajo era
+**Sentinel-2 estacional: montado, validado con la comarca y rechazado.** Se comprobó primero que el atajo era
 legítimo —el proxy perennifolia/caducifolia reproduce el corte legal con **99,37 %** de
 acuerdo aquí, aunque no valdría en un alcornocal— y la señal sale inequívoca: *Quercus
 robur* pierde 0,257 de NDVI del verano al invierno, *Pinus pinaster* 0,009 y
@@ -198,18 +201,18 @@ corruptos, y validación fresca fuera de muestra en el territorio nuevo:
 
 | | medido |
 |---|---|
-| Cobertura | **38.601 ha de franja — la provincia entera, 60 concellos** |
+| Cobertura | **38.601 ha de franja — la provincia entera, 54 concellos** |
 | Arbolado sobre 5,5 m | 12.709 ha (32,9 %) |
-| **Especie prohibida (cotas)** | **[4.770 – 7.969] ha** (sin fase 6: [4.493 – 8.288]) |
+| **Especie prohibida (cotas)** | **[4.770 – 8.141] ha** (sin fase 6: [4.493 – 8.515]) |
 | Tasa de FP provincial (150 puntos frescos) | **20,1 % [12,8–28,0]** |
 | Sensibilidad | 90,1 % [83,6–96,5] |
 | Puntos ≥35 m que son árbol | **9 de 9** |
 
-Encabezan Ponteareas (371–576 ha), A Estrada (280–535) y Salvaterra de Miño
-(248–388). A Cañiza, primera del piloto, queda octava. De los 150 puntos de
+Encabezan Ponteareas (371–586 ha), A Estrada (280–550) y Salvaterra de Miño
+(248–395). A Cañiza, primera del piloto, queda séptima. De los 150 puntos de
 validación, 16 negativos claros se delegaron al prefiltro de Claude (con la
 asimetría medida en el piloto y declarada como límite). Detalle, comandos y
-las dos trampas de escala en la [fase 7](#del-piloto-al-producto-fase-7).
+las trampas de escala en la [fase 7](#del-piloto-al-producto-fase-7).
 
 ## Zona piloto
 
@@ -226,7 +229,7 @@ resto de la comunidad**. Justificación completa en
 ## Uso
 
 ```bash
-pip install requests pillow numpy scipy matplotlib geopandas pyogrio rasterio "laspy[lazrs]"
+pip install -r requirements.txt
 ```
 
 PDAL va aparte, en un entorno conda propio: en Windows no hay wheel de `pip`. Con
@@ -312,7 +315,7 @@ python scripts/fiabilidad_anotador.py
 python scripts/descarga_ifn.py     # IFN4 2010 del IDE de la Xunta, en EPSG:25829
 python scripts/especie_faixas.py   # clasifica contra la ley y corrige el ranking
 python scripts/descarga_s2.py      # NDVI de invierno y verano (COG de AWS, sin registro)
-python scripts/fenologia_especie.py  # caída estacional. OJO: aún sin validar
+python scripts/fenologia_especie.py  # caída estacional: validado y RECHAZADO (AUC 0,746)
 ```
 
 ### Validar el producto final (fase 4)
@@ -396,6 +399,17 @@ python scripts/procesa_comarca.py --malla datos/procesado/malla_lidar_pontevedra
 python scripts/metricas_faixas.py  --zona pontevedra
 python scripts/especie_faixas.py   --zona pontevedra
 python scripts/ranking_final.py    --zona pontevedra
+# fases 5 y 6 en la provincia (en este orden: la 6 entrena solo con rodales persistentes)
+python scripts/serie_s2_anual.py   --zona pontevedra
+python scripts/detecta_eventos.py  --zona pontevedra
+python scripts/copas_chm.py
+python scripts/descarga_orto25.py  --zona pontevedra
+python scripts/muestra_copas.py    --zona pontevedra
+python scripts/parches_copas.py    --zona pontevedra
+python scripts/embeddings_copas.py --parches datos/procesado/copas/parches_entrenamiento_pontevedra.npy --salida datos/procesado/copas/embeddings_entrenamiento_pontevedra.npy
+python scripts/entrena_copas.py    --zona pontevedra --cnn
+python scripts/aplica_copas.py     --zona pontevedra
+python scripts/ranking_final.py    --zona pontevedra
 ```
 
 Con `--zona paradanta` (el valor por defecto) los ficheros no cambian de nombre,
@@ -416,7 +430,8 @@ provinciales (la tasa de error está medida en A Paradanta, no en la costa):
 ```bash
 python scripts/muestra_producto.py --zona pontevedra --n 150
 python scripts/chips_producto.py --dir validacion_pontevedra
-python scripts/anotador.py --dir validacion_pontevedra --sin-tipo
+python scripts/anotador_prefiltrado.py --dir validacion_pontevedra   # sin los «no» claros del prefiltro
+python scripts/fusiona_prefiltro.py --dir validacion_pontevedra      # humano + delegados -> anotacion.csv
 python scripts/valida_producto.py --dir validacion_pontevedra
 ```
 
@@ -429,7 +444,7 @@ franja, así que una corrida parcial ya es coherente: 1.200 bloques cubren el
 
 **Resultado (30-08-2026), con la corrida completa y la validación fresca:**
 la provincia entera son **38.601 ha de franja medidas, 12.709 ha de arbolado
-y [4.493 – 8.288] ha de especie prohibida**, en 60 concellos. Encabezan
+y [4.493 – 8.288] ha de especie prohibida**, en 54 concellos. Encabezan
 Ponteareas (350–593 ha), A Estrada (253–538) y Salvaterra de Miño (248–388);
 A Cañiza, primera del piloto, queda octava — el interior de A Paradanta ni
 siquiera era el peor sitio. La validación fuera de muestra (150 puntos
@@ -440,7 +455,7 @@ El estrato ≥ 35 m salió **9/9 árbol**. De los 150 puntos, 16 negativos claro
 se delegaron al prefiltro de Claude (asimetría medida en el piloto: cero
 árboles humanos entre sus «no»; en esta muestra no es verificable y se
 declara). Ese ranking salía de FP × fracción IFN con suelo de 35 m, sin la
-fase 6: era [4.493 – 8.288] ha.
+fase 6, y con la cota del disperso heredada del piloto: era [4.493 – 8.288] ha.
 
 **Fases 5 y 6 en la provincia (10 al 14-09-2026).** La persistencia se llevó
 a Pontevedra componiendo Sentinel-2 **tile a tile** (la provincia cae en
@@ -457,19 +472,29 @@ piloto ya tenía diagnosticadas como ortofoto de otra pasada—. Aplicado solo
 donde valida (45 zonas, el 24 % del disperso; error OOS fpr 0,252 / fnr 0,123,
 mejor que el piloto), la fracción prohibida del disperso sale **47,8 %**
 frente al 59,9 % de A Paradanta: fuera de la comarca el arbolado suelto es
-menos eucaliptal. **Titular: [4.770 – 7.969] ha, un 16 % más estrecho.** El
-podio no cambia (Spearman 0,991 por concello) pero Lalín baja de 4º a 6º al
+menos eucaliptal. **Titular: [4.770 – 8.141] ha, un 16 % más estrecho** que sin
+la fase 6 ([4.493 – 8.515]). El podio no cambia (Spearman 0,990 por concello) pero
+Lalín baja de 4º a 6º al
 medirse su disperso. Sin filtro de Catastro: su WFS limita por IP y se quedó
 en 954 de 3.197 celdas; el efecto medido en el piloto es +0,3 puntos en la
 fracción del disperso y 1 ha en el titular, y el agregado ya lo descuenta la
 tasa de FP (el anotador tiene categoría «edificación»).
 
-Dos trampas de escala aparecieron al pasar de 263 a 3.197 bloques, las dos
-con la misma moraleja: `gpd.overlay` contra un multipolígono provincial
-disuelto anula el índice espacial (horas de CPU; se trocea en piezas de una
-parte y se recompone), y una faixa que roza el borde de un bloque con menos
-de un píxel hace reventar la ventana de rasterio (se salta: el bloque vecino
-la mide entera). Cada arreglo, verificado con los CSV del piloto byte a byte.
+**Corrección del 14-09-2026.** Hasta ese día la cota alta del arbolado disperso de la
+provincia se calculaba con la muestra anotada del piloto (72,2 % de especie prohibida
+donde hay rodal), cuando Pontevedra tiene la suya (78,0 %). Corregido: cada zona usa su
+muestra, igual que ya pasaba con la tasa de FP. La cota superior sube de 7.969 a
+8.141 ha; la inferior no cambia y el orden apenas se mueve (Spearman 0,9996 por
+concello; A Cañiza y Tomiño intercambian el 7.º y el 8.º). El piloto sale idéntico.
+
+Al pasar de 263 a 3.197 bloques aparecieron varias trampas de escala. Las dos
+principales: `gpd.overlay` contra un multipolígono provincial disuelto anula el
+índice espacial (horas de CPU; se trocea en piezas de una parte y se recompone,
+y reapareció en seis scripts), y una faixa que roza el borde de un bloque con
+menos de un píxel hace reventar la ventana de rasterio (se salta: el bloque
+vecino la mide entera). Todas, con su arreglo, en la
+[sección 14 del walkthrough](docs/02-walkthrough.md#14-fases-4-a-7-lo-que-hay-que-saber-del-código).
+Cada arreglo, verificado con los CSV del piloto byte a byte.
 
 ```bash
 python scripts/puntos_inspeccion.py   # 464 sitios concretos + la mancha de cada uno
