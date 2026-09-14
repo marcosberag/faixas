@@ -820,6 +820,44 @@ temporales de los otros procesos en `descarga_orto25.py`, y un `print` con la
 ruta sin sufijo en `entrena_copas.py`. Los caminos de éxito escalaron de 263 a
 3.197 bloques; los de error, no.
 
+### RESULTADO de la fase 6 en Pontevedra (14-09-2026): integrada
+
+`aplica_copas.py --zona pontevedra`, sin filtro de Catastro (declarado; ver
+arriba por qué no bloquea). 1.040.803 copas en faixa, 383.854 en el disperso,
+**91.805 (24 %) en las 45 zonas validadas** (piloto: 45 % en 8 zonas — la
+provincia tiene mucho más territorio sin rodal puro donde validar). Error OOS
+en zonas validadas **fpr 0,252 [0,241–0,264], fnr 0,123 [0,114–0,133]**, mejor
+que el piloto (0,304 / 0,167). **Fracción observada prohibida del disperso
+validado: 47,8 %** (piloto: 59,9 %): fuera de A Paradanta el arbolado suelto
+es menos eucaliptal. 195 parroquias ajustadas.
+
+**TITULAR PROVINCIAL con la fase 6: [4.770 – 7.969] ha prohibidas**, desde
+[4.493 – 8.288] sin ella. **Anchura −16 %** (3.795 → 3.198 ha); en el piloto
+fue −24 %, coherente con que aquí solo se cubre el 24 % del disperso. Cota
+inferior +277 ha, superior −319.
+
+**El ranking se reordena, no se escala** (Spearman 0,991 por concello): el
+podio no cambia —Ponteareas [371–576], A Estrada [280–535], Salvaterra
+[248–388]—, pero **Lalín baja de 4º a 6º** (su cota superior cae de 382 a 342:
+disperso medido y resulta menos prohibido de lo que decía la cota ciega) y O
+Porriño y Mos suben un puesto. Salvaterra y Tomiño no se mueven ni un
+decimal: sin zonas validadas encima, la fase 6 no les toca.
+
+En `metricas/ranking_final{,_concello}_pontevedra.csv` (regenerados) y
+`metricas_parroquia_especie_copas_pontevedra.csv`. Copia del ranking previo
+(sin fase 6) en el historial de git, commit 8846bfc.
+
+**Decisión de publicación pendiente:** cuál de los dos titulares va en el
+README y el hilo. El de la fase 6 es la cadena completa del piloto, con dos
+avisos ya escritos en la salida (sin Catastro: fracción del disperso +0,3
+puntos, dirección conocida; y `CAP` en 8.000).
+
+Tres fallos más de escala en esta última pasada, mismo patrón que los cuatro de
+la noche del 9: `rasgos()` no cabía en RAM con 88.624 parches (troceado por
+filas, idéntico bit a bit), y dos veces murió el proceso por cerrarse la sesión
+de Claude Code — **los procesos en background son hijos de la sesión**; para
+corridas de horas, lanzarlos desde una terminal propia.
+
 ## Cuestiones abiertas
 
 - **Umbral de altura** para considerar "arbolado". Sin fijar. La maquinaria de
