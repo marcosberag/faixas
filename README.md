@@ -26,11 +26,16 @@ portátil de ocho años, con datos que cuestan 0 €.
 |---|---|
 | Franja de protección medida | **38.601 ha**, en 60 concellos |
 | Con arbolado (umbral calibrado, 5,5 m) | 12.709 ha |
-| Con arbolado de especie prohibida | **[4.493 – 8.288] ha** |
+| Con arbolado de especie prohibida | **[4.770 – 7.969] ha** |
 | Tasa de falsos positivos, fuera de muestra | **20,1 %**, IC95 [12,8 – 28,0] |
 | Sensibilidad | 90,1 % [83,6 – 96,5] |
 
-Encabezan Ponteareas (350–593 ha), A Estrada (253–538) y Salvaterra de Miño (248–388).
+Encabezan Ponteareas (371–576 ha), A Estrada (280–535) y Salvaterra de Miño (248–388).
+
+El rango incorpora el clasificador de especie por copa allí donde valida fuera de zona
+(45 zonas de 5×5 km, el 24 % del arbolado disperso de la provincia): sin él sería
+[4.493 – 8.288] ha. Corre sin el filtro de tejados del Catastro, que en el piloto movía
+la fracción del disperso 0,3 puntos, en dirección conocida (al alza); se declara.
 
 El rango no es imprecisión sin cuantificar: **sale de una tasa de error medida**, sobre
 150 puntos fotointerpretados a ciegas en territorio que el modelo no había visto. Cada
@@ -195,12 +200,12 @@ corruptos, y validación fresca fuera de muestra en el territorio nuevo:
 |---|---|
 | Cobertura | **38.601 ha de franja — la provincia entera, 60 concellos** |
 | Arbolado sobre 5,5 m | 12.709 ha (32,9 %) |
-| **Especie prohibida (cotas)** | **[4.493 – 8.288] ha** |
+| **Especie prohibida (cotas)** | **[4.770 – 7.969] ha** (sin fase 6: [4.493 – 8.288]) |
 | Tasa de FP provincial (150 puntos frescos) | **20,1 % [12,8–28,0]** |
 | Sensibilidad | 90,1 % [83,6–96,5] |
 | Puntos ≥35 m que son árbol | **9 de 9** |
 
-Encabezan Ponteareas (350–593 ha), A Estrada (253–538) y Salvaterra de Miño
+Encabezan Ponteareas (371–576 ha), A Estrada (280–535) y Salvaterra de Miño
 (248–388). A Cañiza, primera del piloto, queda octava. De los 150 puntos de
 validación, 16 negativos claros se delegaron al prefiltro de Claude (con la
 asimetría medida en el piloto y declarada como límite). Detalle, comandos y
@@ -434,9 +439,30 @@ que la del piloto (33,5 %): el paisaje costero denso no rompió el producto.
 El estrato ≥ 35 m salió **9/9 árbol**. De los 150 puntos, 16 negativos claros
 se delegaron al prefiltro de Claude (asimetría medida en el piloto: cero
 árboles humanos entre sus «no»; en esta muestra no es verificable y se
-declara). El ranking provincial sale de FP × fracción IFN con suelo de 35 m
-— el clasificador de copas de la fase 6 y la persistencia siguen validados
-solo en A Paradanta y no se trasladan.
+declara). Ese ranking salía de FP × fracción IFN con suelo de 35 m, sin la
+fase 6: era [4.493 – 8.288] ha.
+
+**Fases 5 y 6 en la provincia (10 al 14-09-2026).** La persistencia se llevó
+a Pontevedra componiendo Sentinel-2 **tile a tile** (la provincia cae en
+cuatro tiles MGRS; con una sola rejilla las tres escenas menos nubladas
+podían salir del mismo tile y dejar NaN en tres cuartos del territorio sin
+avisar): **98,2 %** del rodal en faixa persiste 2017–2026 (piloto: 97,4 %),
+así que la etiqueta del IFN 2010 vale también aquí. Los 53 eventos de 2018 son
+otra vez los incendios de octubre de 2017; los 21 de 2026, otra vez la sequía
+de agosto, y no se publican como hecho. El clasificador de copas se reentrenó
+con 24.000 copas de 407 zonas (piloto: 51): **AUC eucalipto 0,866** fuera de
+zona, y la inestabilidad por zonas no se diluye con la escala —60 de 106
+zonas evaluables pasan de 0,80, y entre las peores está una de las dos que el
+piloto ya tenía diagnosticadas como ortofoto de otra pasada—. Aplicado solo
+donde valida (45 zonas, el 24 % del disperso; error OOS fpr 0,252 / fnr 0,123,
+mejor que el piloto), la fracción prohibida del disperso sale **47,8 %**
+frente al 59,9 % de A Paradanta: fuera de la comarca el arbolado suelto es
+menos eucaliptal. **Titular: [4.770 – 7.969] ha, un 16 % más estrecho.** El
+podio no cambia (Spearman 0,991 por concello) pero Lalín baja de 4º a 6º al
+medirse su disperso. Sin filtro de Catastro: su WFS limita por IP y se quedó
+en 954 de 3.197 celdas; el efecto medido en el piloto es +0,3 puntos en la
+fracción del disperso y 1 ha en el titular, y el agregado ya lo descuenta la
+tasa de FP (el anotador tiene categoría «edificación»).
 
 Dos trampas de escala aparecieron al pasar de 263 a 3.197 bloques, las dos
 con la misma moraleja: `gpd.overlay` contra un multipolígono provincial
