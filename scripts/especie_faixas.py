@@ -188,7 +188,18 @@ if __name__ == "__main__":
           f"({100*((1-ifn.f_mal)*ifn.ha).sum()/tot:>5.1f} %)")
 
     # ---- 1. contraste contra lo que se anoto a ojo -------------------------
-    val = PROC / "validacion"
+    # De aqui sale p_mal_d, la cota ALTA del arbolado disperso (seccion 3). Cada
+    # zona la toma de SU muestra anotada, igual que ranking_final.py toma su tasa
+    # de FP: hasta el 14-09-2026 se leia siempre la del piloto, y Pontevedra
+    # heredaba en silencio el 72,2 % de A Paradanta (con su propia muestra sale
+    # 78,0 %). Sin muestra propia se usa la del piloto, pero avisando.
+    val = PROC / ("validacion" if args.zona == "paradanta"
+                  else f"validacion_{args.zona}")
+    if not (val / "anotacion.csv").exists():
+        print(f"\nAVISO: no hay {val.name}/anotacion.csv. La cota alta del disperso"
+              "\n  sale de la muestra del PILOTO (A Paradanta), que no es de esta zona.")
+        val = PROC / "validacion"
+    print(f"\nmuestra anotada para el contraste y la cota del disperso: {val.name}/")
     m = pd.read_csv(val / "muestra.csv", encoding="utf-8-sig")
     a = pd.read_csv(val / "anotacion.csv")
     d = m.merge(a, on="id", validate="one_to_one")

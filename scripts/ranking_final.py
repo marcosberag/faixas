@@ -2,11 +2,15 @@
 
 Ensambla las piezas VALIDADAS del proyecto y solo esas:
 
-  - CHM a 1 m sobre los 263 bloques (fase 4), umbral de arbolado calibrado en
-    5,5 m con tasa de falsos positivos medida (fase 2).
+  - CHM a 1 m de todos los bloques de la zona, umbral de arbolado calibrado en
+    5,5 m (fase 2) y tasa de falsos positivos medida FUERA DE MUESTRA en la
+    propia zona si existe (validacion_producto/ en el piloto,
+    validacion_{zona}/ en las demas; si no, la de calibracion).
   - Especie del IFN4 aplicada como fraccion continua por rodal (fase 3), con el
     arbolado disperso — que el IFN no cartografia — llevado a las cotas, no a
-    una etiqueta inventada.
+    una etiqueta inventada. Si existen, mandan por este orden la version con
+    el clasificador de copas en zonas validadas (fase 6, aplica_copas.py) y la
+    de reemplazos de dosel confirmados (fase 5, verdades_en_ranking.py).
   - Regla estructural de los 35 m: en Galicia solo el eucalipto los pasa, asi
     que `ha_sobre_35m` es un suelo de especie prohibida que no depende de nada.
 
@@ -17,9 +21,11 @@ publicado como resultado negativo en docs/02-walkthrough.md, seccion 13.
 COMO SE COMPONEN LAS COTAS
 ---------------------------
 Sea A el arbolado detectado (ha sobre 5,5 m), FP la tasa de falsos positivos del
-producto (0,242, IC95 [0,170-0,312], y es un TECHO: el ruido del anotador solo
-puede inflarla), y [p_lo, p_hi] la fraccion prohibida segun el IFN — p_lo cuenta
-como prohibido solo lo medido en rodal, p_hi anhade el disperso entero.
+producto con su IC95 (es un TECHO: el ruido del anotador solo puede inflarla), y
+[p_lo, p_hi] la fraccion prohibida — p_lo cuenta como prohibido solo lo medido
+en rodal (disperso todo exento); p_hi supone que el disperso tiene la fraccion
+prohibida del monte donde se anoto arbol (p_mal_d, de especie_faixas.py); y
+donde la fase 6 valida, el disperso entra con su fraccion medida y corregida.
 
   ha_prohibida_min = max( A x (1 - FP_hi) x p_lo , ha_sobre_35m )
   ha_prohibida_max =      A x (1 - FP_lo) x p_hi
@@ -31,7 +37,8 @@ medio de las cotas y se publican siempre las dos: el orden es para priorizar
 inspeccion, los numeros no son superficie de infraccion.
 
 Uso:
-    python scripts/ranking_final.py
+    python scripts/ranking_final.py                      # A Paradanta
+    python scripts/ranking_final.py --zona pontevedra
 """
 import pathlib
 
