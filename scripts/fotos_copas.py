@@ -24,7 +24,6 @@ from skimage.segmentation import find_boundaries, watershed
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
-from matplotlib.lines import Line2D  # noqa: E402
 
 RAIZ = pathlib.Path(__file__).resolve().parent.parent
 PROC = RAIZ / "datos" / "procesado"

@@ -66,7 +66,7 @@ from rasterio.vrt import WarpedVRT
 from shapely.geometry import box
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from especie_faixas import LEGAL, frac_prohibida  # noqa: E402
+from especie_faixas import frac_prohibida  # noqa: E402
 
 RAIZ = pathlib.Path(__file__).resolve().parent.parent
 PROC = RAIZ / "datos" / "procesado"

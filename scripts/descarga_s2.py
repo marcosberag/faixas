@@ -73,7 +73,6 @@ import requests
 from rasterio.enums import Resampling
 from rasterio.transform import from_origin
 from rasterio.vrt import WarpedVRT
-from rasterio.windows import from_bounds
 
 RAIZ = pathlib.Path(__file__).resolve().parent.parent
 PROC = RAIZ / "datos" / "procesado"

@@ -20,7 +20,6 @@ import pathlib
 import sys
 import time
 
-import numpy as np
 import pandas as pd
 import rasterio
 from PIL import Image

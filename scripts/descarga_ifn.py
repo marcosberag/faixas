@@ -44,7 +44,6 @@ import pathlib
 import time
 
 import geopandas as gpd
-import pandas as pd
 import requests
 from shapely.geometry import Polygon, MultiPolygon
 

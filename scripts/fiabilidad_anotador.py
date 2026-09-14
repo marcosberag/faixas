@@ -71,7 +71,7 @@ import numpy as np
 import pandas as pd
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from calibra_umbral import UMBRALES, barrido  # noqa: E402
+from calibra_umbral import barrido  # noqa: E402
 
 RAIZ = pathlib.Path(__file__).resolve().parent.parent
 VAL = RAIZ / "datos" / "procesado" / "validacion"
