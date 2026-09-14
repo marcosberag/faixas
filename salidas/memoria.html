@@ -383,7 +383,7 @@
   <div class="stats">
     <div class="stat"><div class="v">38.601 ha</div><div class="k">de franja medidas — la provincia entera, 60 concellos</div></div>
     <div class="stat"><div class="v">12.709 ha</div><div class="k">con arbolado sobre el umbral (32,9 %)</div></div>
-    <div class="stat"><div class="v">4.493–8.288 ha</div><div class="k">de especie prohibida por la Ley 3/2007 (cotas)</div></div>
+    <div class="stat"><div class="v">4.770–7.969 ha</div><div class="k">de especie prohibida por la Ley 3/2007 (cotas; sin el clasificador de copas, 4.493–8.288)</div></div>
     <div class="stat"><div class="v">20,1 %</div><div class="k">tasa de falsos positivos, validada en territorio nuevo</div></div>
   </div>
 
@@ -416,17 +416,40 @@
         <th class="n">Prohibido, cota inf.</th><th class="n">Cota sup.</th>
       </tr></thead>
       <tbody>
-        <tr><td>Ponteareas</td><td class="n">2.016 ha</td><td class="n">825 ha</td><td class="n">350 ha</td><td class="n">593 ha</td></tr>
-        <tr><td>A Estrada</td><td class="n">3.367 ha</td><td class="n">900 ha</td><td class="n">253 ha</td><td class="n">538 ha</td></tr>
+        <tr><td>Ponteareas</td><td class="n">2.016 ha</td><td class="n">825 ha</td><td class="n">371 ha</td><td class="n">576 ha</td></tr>
+        <tr><td>A Estrada</td><td class="n">3.367 ha</td><td class="n">900 ha</td><td class="n">280 ha</td><td class="n">535 ha</td></tr>
         <tr><td>Salvaterra de Miño</td><td class="n">1.191 ha</td><td class="n">547 ha</td><td class="n">248 ha</td><td class="n">388 ha</td></tr>
-        <tr><td>Lalín</td><td class="n">2.926 ha</td><td class="n">804 ha</td><td class="n">120 ha</td><td class="n">382 ha</td></tr>
-        <tr><td>O Porriño</td><td class="n">832 ha</td><td class="n">391 ha</td><td class="n">200 ha</td><td class="n">297 ha</td></tr>
-        <tr><td>Mos</td><td class="n">1.020 ha</td><td class="n">384 ha</td><td class="n">168 ha</td><td class="n">286 ha</td></tr>
+        <tr><td>O Porriño</td><td class="n">832 ha</td><td class="n">391 ha</td><td class="n">215 ha</td><td class="n">302 ha</td></tr>
+        <tr><td>Mos</td><td class="n">1.020 ha</td><td class="n">384 ha</td><td class="n">197 ha</td><td class="n">282 ha</td></tr>
+        <tr><td>Lalín</td><td class="n">2.926 ha</td><td class="n">804 ha</td><td class="n">123 ha</td><td class="n">342 ha</td></tr>
         <tr><td>Tomiño</td><td class="n">796 ha</td><td class="n">335 ha</td><td class="n">171 ha</td><td class="n">254 ha</td></tr>
-        <tr><td>A Cañiza</td><td class="n">1.133 ha</td><td class="n">445 ha</td><td class="n">148 ha</td><td class="n">274 ha</td></tr>
-        <tr class="total"><td>Total provincial (60 concellos)</td><td class="n">38.601 ha</td><td class="n">12.709 ha</td><td class="n">4.493 ha</td><td class="n">8.288 ha</td></tr>
+        <tr><td>A Cañiza</td><td class="n">1.133 ha</td><td class="n">445 ha</td><td class="n">150 ha</td><td class="n">273 ha</td></tr>
+        <tr class="total"><td>Total provincial (60 concellos)</td><td class="n">38.601 ha</td><td class="n">12.709 ha</td><td class="n">4.770 ha</td><td class="n">7.969 ha</td></tr>
       </tbody>
     </table>
+  </div>
+
+  <div class="prose">
+    <p>
+      <strong>Las fases 5 y 6 también se llevaron a la provincia</strong> (10 al 14 de
+      septiembre). La persistencia se compuso <em>tile a tile</em> de Sentinel-2 —Pontevedra
+      cae en cuatro tiles, y con una sola rejilla las tres escenas menos nubladas podían salir
+      del mismo y dejar sin dato tres cuartos del territorio sin avisar—: el <strong>98,2 %</strong>
+      del monte en franja no ha cambiado desde 2017, así que la etiqueta de especie del
+      inventario de 2010 vale también aquí. El clasificador de copas se reentrenó con 24.000
+      copas de 407 zonas y dio <strong>AUC 0,866</strong> fuera de zona; la inestabilidad por
+      zonas no se diluye con la escala (60 de 106 zonas pasan de 0,80, y entre las peores está
+      una que el piloto ya tenía diagnosticada como ortofoto de otra pasada), así que se aplica
+      solo donde valida: 45 zonas, el 24 % del arbolado disperso. Allí el disperso sale un
+      <strong>47,8 % prohibido</strong> observado —36 % corregido por el error del
+      clasificador— frente al 59,9 % de A Paradanta: fuera de la comarca el arbolado suelto es
+      bastante menos eucaliptal. El titular pasa de 4.493–8.288 a
+      <strong>4.770–7.969 ha, un 16 % más estrecho</strong>; el podio no cambia, pero Lalín
+      baja de cuarto a sexto al medirse su disperso. Corre sin el filtro de tejados del
+      Catastro (su servicio limita por IP): el efecto medido en el piloto es de 0,3 puntos en
+      la fracción del disperso y una hectárea en el titular, al alza, y en agregado ya lo
+      descuenta la tasa de falsos positivos.
+    </p>
   </div>
 
   <div class="prose">

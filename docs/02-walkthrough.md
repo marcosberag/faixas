@@ -36,7 +36,10 @@ Qué hay escrito, qué funciona, qué está roto y cómo reproducirlo.
 | Filtro de edificios del Catastro | ✅ 13.452 huellas; **589 «copas» eran tejados** | `scripts/descarga_catastro.py` |
 | Fase 7A: escalar a Pontevedra | ✅ **3.197/3.197 bloques, 0 corruptos** (~5 días de máquina); cadena completa corrida | `scripts/prepara_provincia.py`, `procesa_comarca.py --malla` |
 | Validación provincial fuera de muestra | ✅ **FP 20,1 % [12,8–28,0]**, sens. 90,1 %, ≥35 m 9/9 árbol (150 puntos, 16 delegados al prefiltro de Claude) | `scripts/valida_producto.py --dir validacion_pontevedra`, `anotador_prefiltrado.py` |
-| Ranking provincial | ✅ **[4.493–8.288] ha prohibidas** en 38.601 ha de franja; Ponteareas 1º | `scripts/ranking_final.py --zona pontevedra` |
+| Ranking provincial (sin fase 6) | ✅ [4.493–8.288] ha prohibidas en 38.601 ha de franja; Ponteareas 1º | `scripts/ranking_final.py --zona pontevedra` |
+| Fase 5 en la provincia: persistencia por tiles | ✅ **98,2 % persistente**; 4 tiles MGRS compuestos por separado; 2018 = incendios de 2017, 2026 = sequía | `scripts/serie_s2_anual.py --zona pontevedra`, `detecta_eventos.py --zona pontevedra` |
+| Fase 6 en la provincia: clasificador de copas | ✅ **AUC eucalipto 0,866 OOS**, 407 zonas de entrenamiento; aplicado en 45 zonas validadas (24 % del disperso), fracción prohibida 47,8 % obs. (36 % corregida) | `copas_chm.py`, `muestra_copas.py --zona`, `parches_copas.py --zona`, `entrena_copas.py --zona --cnn`, `aplica_copas.py --zona` |
+| **Ranking provincial FINAL** | ✅ **[4.770–7.969] ha prohibidas** (−16 % de anchura); podio estable, Lalín de 4º a 6º. Sin filtro de Catastro (WFS limita por IP; efecto medido: 1 ha) | `scripts/ranking_final.py --zona pontevedra` |
 | Fase 7B: producto usable | ✅ 464 puntos de inspección, visor web y dossier PDF por concello (piloto; pendiente `--zona`) | `scripts/puntos_inspeccion.py`, `visor.py`, `dossier_concello.py` |
 
 ---
