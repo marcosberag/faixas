@@ -40,8 +40,27 @@ CLASES = ("eucalipto", "frondosa", "pino")
 LISTON_AUC_EUCA = 0.85
 
 
+RASGOS_TROZO = 8000     # parches por trozo: ~0,4 GB por array intermedio
+
+
 def rasgos(parches, indice):
-    """Matriz de rasgos por parche. Vectorizado salvo el laplaciano."""
+    """Matriz de rasgos por parche. Vectorizado salvo el laplaciano.
+
+    Va por trozos porque cada rasgo se calcula por fila y los intermedios
+    (float32 de N x 64 x 64 x 3, y hay varios a la vez) crecen con N: con los
+    88.624 parches del disperso provincial son 4,3 GB CADA UNO y no caben. El
+    resultado es identico al de una pasada entera: no hay ninguna operacion
+    que cruce filas.
+    """
+    if len(parches) > RASGOS_TROZO:
+        partes = [_rasgos(parches[i:i + RASGOS_TROZO],
+                          indice.iloc[i:i + RASGOS_TROZO].reset_index(drop=True))
+                  for i in range(0, len(parches), RASGOS_TROZO)]
+        return pd.concat(partes, ignore_index=True)
+    return _rasgos(parches, indice)
+
+
+def _rasgos(parches, indice):
     x = parches.astype("float32") / 255.0
     hsv = rgb_to_hsv(x)
     val = hsv[..., 2]
