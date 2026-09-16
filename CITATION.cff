@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "Si usas este código o estos datos, cita el repositorio como se indica abajo."
+type: software
+title: "faixas: estimación por LiDAR del arbolado no permitido en las franjas de protección contra incendios de Galicia"
+abstract: "Pipeline reproducible en Python que cruza la capa oficial de franjas de protección (Ley 3/2007 de Galicia) con el LiDAR del PNOA, el Inventario Forestal Nacional y ortofoto para estimar, por parroquia y concello, la superficie de franja con arbolado de especie prohibida. Provincia de Pontevedra entera, con tasa de falsos positivos medida fuera de muestra (20,1 %, IC95 12,8-28,0). Herramienta de triaje para priorizar inspección, no determinación de incumplimiento."
+authors:
+  - family-names: "Bermejo Agenjo"
+    given-names: "Marcos"
+version: "1.0.0"
+date-released: "2026-09-16"
+repository-code: "https://github.com/marcosberag/faixas"
+license: Apache-2.0
+keywords:
+  - LiDAR
+  - PNOA
+  - incendios forestales
+  - Galicia
+  - franjas de gestión de biomasa
+  - Ley 3/2007
+  - teledetección
+  - Sentinel-2

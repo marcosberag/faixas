@@ -455,8 +455,8 @@ gratis del IFN**: 24.000 copas de rodales puros (O1 ≥ 80 %) y PERSISTENTES
   (−24 % de anchura, cota inferior +57 ha). Mourentán sube a 32–42 (disperso
   eucaliptal medido); Arbo adelanta a Covelo. Advertencias declaradas: el IC no
   recoge heterogeneidad entre zonas ni el ruido de etiqueta del IFN.
-- **Filtro de edificios del Catastro (21-08-2026), a raíz de la casa del usuario
-  delineada como «copa» de 10 m**: un tejado a dos aguas pasa el umbral de 5,5 m
+- **Filtro de edificios del Catastro (21-08-2026), a raíz de una casa de la zona
+  (no es la del autor) delineada como «copa» de 10 m**: un tejado a dos aguas pasa el umbral de 5,5 m
   (SMRF lo marca no-suelo) y el watershed lo segmenta. `descarga_catastro.py`
   baja las huellas BU:Building del WFS INSPIRE por celdas de **1×1 km** (el
   servicio rechaza 2×2: «Area of extension out of limits»; y hay DOS variantes
@@ -467,8 +467,8 @@ gratis del IFN**: 24.000 copas de rodales puros (O1 ≥ 80 %) y PERSISTENTES
   agregado ya lo pagaba la tasa de FP; esto limpia el mapa y la fracción del
   disperso. Bajo el criterio del usuario (FN fatal, FP barato) es gratis: un
   tejado no es un eucalipto que se pueda perder. Titular: cota inferior 354→353.
-  `fotos_verificacion.py` regenera la 2×2 y el panel de la casa
-  (`salidas/diag_casa_usuario_filtrada.png`: huellas cian, tejados con ×).
+  `fotos_verificacion.py` regenera la 2×2 y el panel del tejado
+  (`salidas/diag_tejado_como_copa_filtrada.png`: huellas cian, tejados con ×).
 
 Scripts: `copas_chm.py`, `muestra_copas.py`, `descarga_orto25.py` (0,25 m,
 cache por bloque, `--trozo i/n` para paralelizar), `parches_copas.py`,
@@ -889,7 +889,46 @@ Abiertas:
 - **Zonas donde la ortofoto visible no da** (p. ej. 113_933): probar la banda infrarroja
   del PNOA.
 - **Consulta a SILVANET (UPM)** sobre segmentación de copa a 5 pts/m², como contraste.
-- **Publicación en abierto**, que es el único compromiso de la beca.
+- **Publicación en abierto**, que es el único compromiso de la beca. Preparada el
+  16-09 (abajo); falta el acto de hacer público el repo, que es del autor.
+- **A Coruña ya está preparada** (`prepara_provincia.py` + `malla_lidar.py`):
+  `faixas_{nucleos,illadas}_a_coruna_ok.gpkg` y `malla_lidar_a_coruna.csv`. 57.267 ha
+  de franja y 5.926 bloques, ~8 días de portátil enchufado. Sin LiDAR aún.
+
+## Publicación (16-09-2026)
+
+**Condiciones reales de la beca**, leídas en X (anuncio del 07-08 en
+`x.com/XMihura/status/2085671573877313976`; seleccionados el 16-08): Mini-becas
+Mihura 2026, una suscripción de Claude Max de 100 $ para el mes **del 15-08 al
+15-09-2026**. La condición es «documentar y compartir públicamente lo que has
+hecho de forma sencilla e informal (un hilo, un repo de github, un vídeo corto)»
+enseñando «el output, qué has probado, qué ha funcionado y qué ha salido mal».
+Mihura amplifica con su cuenta. Los resultados negativos del proyecto son parte
+del entregable, no material a esconder.
+
+**El primer hilo** (30-08, 7 tweets, la comarca, 34.700 reproducciones) está en
+`x.com/Eclektiq1/status/2094164582021337173` y prometía «Pontevedra entera, las
+cifras cuando pasen su validación». **El segundo** está redactado en
+`salidas/hilo/hilo_pontevedra.md` (16 tweets, todos ≤ 280 según
+`scripts/cuenta_tweets.py`), con las figuras 16–20 de
+`scripts/material_hilo_pontevedra.py`: mapa provincial coloreado por parroquia,
+ranking de concellos con el piloto resaltado, curva de concentración comarca
+frente a provincia (la mitad del problema en el 22 % de las parroquias a las
+dos escalas), top 10 de parroquias y la tasa de FP medida tres veces.
+
+Hecho en el repo para publicar: `CITATION.cff`, cita con URL en
+`LICENSE-DATOS.md` y README, sección de financiación con las condiciones de la
+beca, memoria con las cifras provinciales en cabecera, fila obsoleta de
+`fenologia_especie.py` en el walkthrough corregida. **La casa de la figura del
+tejado NO es la del autor** (que no es de allí): las figuras pasan a llamarse
+`diag_tejado_como_copa*.png` y se quita la etiqueta «casa del usuario» de
+código y docs. No hacía falta anonimizarla.
+
+Queda para el autor, por ser actos hacia fuera: `gh repo edit --visibility
+public --accept-visibility-change-consequences`, enlazar Zenodo a GitHub y
+crear la release v1.0.0 (da DOI con fecha), y publicar el hilo con el repo ya
+público. El historial de git empieza el 09-09-2026 aunque el trabajo es de
+agosto: la fecha pública la dan la release y el hilo del 30-08.
 
 ## Prioridades
 
@@ -929,7 +968,9 @@ Abiertas:
 10. ~~Fases 5 y 6 en la provincia~~ **hechas** (14-09-2026): persistencia 98,2 %,
    clasificador AUC 0,866, integrado en 45 zonas. **Titular publicado:
    [4.770 – 8.141] ha**, con `p_mal_d` de la muestra provincial.
-11. Pendiente: visor, puntos y dossiers con `--zona`; publicación en abierto.
+11. ~~Publicación en abierto~~ **preparada** (16-09-2026): repo listo, hilo
+   redactado; falta hacerlo público y publicar el hilo (actos del autor).
+12. Pendiente: visor, puntos y dossiers con `--zona`; A Coruña (ya preparada).
 
 **Trampa del `anotacion.csv` (19-08-2026, casi pérdida de datos):** el
 `validacion/anotacion.csv` final de la fase 2 NO es `anotacion_pase1.csv`: es

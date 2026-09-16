@@ -17,7 +17,11 @@ siempre que cites la autoría y enlaces a la licencia.
 
 > Bermejo Agenjo, M. (2026). *faixas: estimación por LiDAR del arbolado no
 > permitido en las franjas de protección contra incendios de Galicia.*
-> Financiado por una mini-beca privada (X. Mihura). CC BY 4.0.
+> Financiado por una mini-beca privada (Mini-becas Mihura 2026). CC BY 4.0.
+> https://github.com/marcosberag/faixas
+
+Hay un `CITATION.cff` en la raíz con los mismos datos en formato legible por
+GitHub y Zenodo.
 
 ---
 

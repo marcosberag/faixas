@@ -1343,7 +1343,7 @@ avisando de que la fracción del disperso sale ligeramente alta.
 | `scripts/descarga_ifn.py` | Baja las especies arbóreas del IFN4 (2010) desde el IDE de la Xunta. |
 | `scripts/especie_faixas.py` | Clasifica cada rodal contra la disp. ad. 3ª y corrige el ranking. |
 | `scripts/descarga_s2.py` | Compone NDVI de invierno y verano desde los COG de Sentinel-2 en AWS. |
-| `scripts/fenologia_especie.py` | Calibra la caída estacional de NDVI. **Sin validar**: ver sección 13. |
+| `scripts/fenologia_especie.py` | Calibra la caída estacional de NDVI. **Validado con la comarca y rechazado** (AUC 0,746 fuera de zona): ver sección 13. |
 | `scripts/procesa_comarca.py` | Fase 4: los 263 bloques en streaming (descarga → CHM → borra el LAZ), reanudable. |
 | `scripts/ranking_final.py` | El entregable: ranking por franja con arbolado prohibido, con cotas. |
 | `scripts/muestra_producto.py` | Muestra de validación del producto: 250 puntos de los 260 bloques nuevos. |
@@ -1377,3 +1377,5 @@ avisando de que la fracción del disperso sale ligeramente alta.
 | `scripts/anotador_prefiltrado.py` | Anotador reducido por el prefiltro de Claude: descarta sus «no» claros y deja el resto al humano. |
 | `scripts/fusiona_prefiltro.py` | Reconstruye `anotacion.csv` con la anotación humana y los «no» delegados al prefiltro, en el orden de la muestra. |
 | `scripts/vigila_pontevedra.ps1` | Vigilante de la corrida provincial: relanza `procesa_comarca.py` si Windows lo mata (Application Hang tras mover el portátil). |
+| `scripts/material_hilo_pontevedra.py` | Figuras 16–20 del hilo provincial: mapa por parroquia, ranking de concellos con el piloto, curva de concentración, top 10 de parroquias y la tasa de FP medida tres veces. |
+| `scripts/cuenta_tweets.py` | Cuenta los caracteres de cada tweet de un guion de `salidas/hilo/` al estilo de X (emoji 2, URL 23) y avisa si alguno pasa de 280. |

@@ -3,7 +3,7 @@
 Redactado sobre el guion original y pasado por crítica adversarial (datos contra
 CLAUDE.md/guion, framing legal, pegada). Todos los tweets ≤ 280 (conteo estilo X,
 emoji = 2). Cambios clave respecto al guion: gancho que siembra la tesis, 2+3
-fusionados, la casa propia adelantada a la posición 6, el detector contado sin
+fusionados, la casa-árbol adelantada a la posición 6, el detector contado sin
 sobreventa, «en regla» y «no da abasto» eliminados.
 
 **Antes de publicar:**

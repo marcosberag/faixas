@@ -2,8 +2,8 @@
 
   salidas/hilo/14_sat_lidar_clasificacion.png
       la misma escena en 2x2: ortofoto y CHM, solos y con la clasificacion
-  salidas/diag_casa_usuario_filtrada.png
-      la casa que salia delineada como "copa" de 10 m: huella del Catastro,
+  salidas/diag_tejado_como_copa_filtrada.png
+      una casa de la zona que salia delineada como "copa" de 10 m: huella del Catastro,
       copas descartadas por el filtro (x) y las que quedan (circulos)
 
 Uso:
@@ -107,7 +107,7 @@ if __name__ == "__main__":
     plt.close(fig)
     print("  14_sat_lidar_clasificacion.png")
 
-    # ---- la casa del usuario: el tejado ya no es un arbol -------------------
+    # ---- el tejado que salia como copa: ya no es un arbol -------------------
     x0, y0, L2 = 557570, 4669170, 140
     ext2 = (x0 - L2/2, x0 + L2/2, y0 - L2/2, y0 + L2/2)
     orto2 = crop_orto(x0, y0, L2)
@@ -149,8 +149,8 @@ if __name__ == "__main__":
                  "(cian)\nse descartan (x); los arboles conservan su circulo",
                  fontsize=12.5)
     fig.text(0.01, 0.006, ATTR, fontsize=9, color="#666")
-    fig.savefig(RAIZ / "salidas" / "diag_casa_usuario_filtrada.png", dpi=140,
+    fig.savefig(RAIZ / "salidas" / "diag_tejado_como_copa_filtrada.png", dpi=140,
                 facecolor="white", bbox_inches="tight", pad_inches=0.15)
     plt.close(fig)
-    print("  diag_casa_usuario_filtrada.png")
+    print("  diag_tejado_como_copa_filtrada.png")
     print(f"  descartadas en el encuadre de la casa: {len(descartadas)}")

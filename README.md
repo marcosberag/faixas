@@ -546,7 +546,22 @@ validación y las métricas. **No versiona los derivados pesados** —los 3.197 
 (~28 GB), los chips, las escenas de Sentinel-2 y los geopaquetes— porque los
 regeneran los propios scripts de descarga. Ver [`.gitignore`](.gitignore).
 
+## Cómo citar
+
+Hay un [`CITATION.cff`](CITATION.cff) en la raíz (GitHub muestra el botón «Cite
+this repository»). En texto:
+
+> Bermejo Agenjo, M. (2026). *faixas: estimación por LiDAR del arbolado no
+> permitido en las franjas de protección contra incendios de Galicia.*
+> https://github.com/marcosberag/faixas
+
 ## Financiación
 
-Mini-beca privada (X. Mihura), aproximadamente un mes de trabajo. El único
-compromiso adquirido es publicar el resultado en abierto y de forma reproducible.
+[Mini-becas Mihura 2026](https://x.com/XMihura/status/2085671573877313976):
+una suscripción de Claude Max durante el mes del 15 de agosto al 15 de
+septiembre de 2026, con la condición de documentar y compartir públicamente
+el resultado, incluido lo que salió mal. Este repositorio y el
+[hilo de resultados](salidas/hilo/hilo_pontevedra.md) son ese entregable.
+Lo que salió mal está contado con números a lo largo del README: el
+clasificador estacional de Sentinel-2, el detector de cortas, el Catastro
+provincial y las trampas de escala.
