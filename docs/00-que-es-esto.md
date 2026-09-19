@@ -9,11 +9,11 @@ que aparece en el resto del repo. Si vienes de fuera del proyecto, empieza aquí
 
 En Galicia, la ley obliga a mantener una franja de 50 m alrededor de cada casa y cada
 núcleo de población sin determinadas especies de árboles (pinos, eucaliptos, acacias).
-La Xunta publica un mapa de **dónde** existe esa obligación. Nadie publica un mapa de
-**dónde se cumple**. Hoy se comprueba mandando inspectores a pie, parcela por parcela.
+La Xunta publica un mapa de **dónde** existe esa obligación. El cumplimiento requiere comprobación presencial; este proyecto estima
+dónde conviene priorizarla.
 
-Este proyecto intenta estimar el segundo mapa a partir de datos públicos, para que la
-inspección pueda priorizar dónde ir.
+El resultado es un mapa de prioridad para la inspección, construido con datos
+públicos de altura y especie del arbolado.
 
 ---
 
@@ -179,7 +179,8 @@ Sin jerga, por orden:
 7. **Validar a mano** contra ortofoto sobre una muestra aleatoria, y publicar la tasa de
    falsos positivos que salga.
 8. **Separar la especie prohibida de la exenta**: Inventario Forestal (2010) por rodal,
-   comprobando con satélite que el rodal no ha cambiado desde entonces, y un
+   buscando con satélite eventos de reemplazo entre 2017 y 2026 (sin cubrir
+   completamente el hueco desde 2010), y un
    clasificador por copa allí donde se ha podido validar. Lo que no se mide se da como
    rango, no se inventa.
 9. **Volver a validar** en cada territorio nuevo antes de publicar cifras.
@@ -197,8 +198,8 @@ El resultado es un **ranking de dónde mirar primero**, no una lista de infracto
 - **No afirmamos incumplimiento.** La ley admite excepciones que el LiDAR no puede ver
   (árbol singular, ornamental, aislado sin riesgo) y exime a las frondosas no listadas.
   Ver [marco legal](03-marco-legal.md).
-- **No identificamos la especie de cada árbol en todo el territorio.** Un castañar es
-  legal dentro de la franja y da la misma señal en el CHM que un pinar, así que la especie
+- **No identificamos la especie de cada árbol en todo el territorio.** Un castañar está
+  exento de la obligación de gestión de biomasa analizada y da la misma señal en el CHM que un pinar, así que la especie
   sale del Inventario Forestal por rodal y de un clasificador por copa aplicado solo donde
   valida. Donde ninguna de las dos llega (sobre todo el arbolado suelto), el resultado se
   da como rango entre «todo exento» y «como el monte de alrededor».

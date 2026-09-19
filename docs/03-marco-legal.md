@@ -85,11 +85,12 @@ excepciones que nuestro método no puede evaluar.
 > presente ley a las frondosas no incluidas en el listado del número 1."
 
 **Las frondosas no listadas están exentas.** Castaños, robles, abedules, fresnos: pueden
-quedarse dentro de la franja legalmente y sin límite.
+quedarse exentos de esta obligación de gestión de biomasa. Esto no evalúa
+otras normas o condiciones aplicables a cada emplazamiento.
 
 Consecuencia directa: **"arbolado por encima de un umbral de altura" NO es un indicador
 de incumplimiento.** Un castañar dentro de la franja da exactamente la misma señal en un
-CHM que un pinar, y uno es legal y el otro no. En Galicia, con presencia real de
+CHM que un pinar, aunque el tratamiento de sus especies en esta norma difiere. En Galicia, con presencia real de
 castaño y roble en el entorno de los núcleos, el sesgo no es marginal.
 
 Esto reabre una cuestión que `CLAUDE.md` daba por posiblemente aplazable. Ver el

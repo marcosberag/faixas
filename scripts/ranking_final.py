@@ -1,6 +1,6 @@
 """El entregable: ranking de parroquias y concellos por franja con arbolado prohibido.
 
-Ensambla las piezas VALIDADAS del proyecto y solo esas:
+Ensambla las piezas validadas y los supuestos declarados del proyecto:
 
   - CHM a 1 m de todos los bloques de la zona, umbral de arbolado calibrado en
     5,5 m (fase 2) y tasa de falsos positivos medida FUERA DE MUESTRA en la
@@ -11,8 +11,9 @@ Ensambla las piezas VALIDADAS del proyecto y solo esas:
     una etiqueta inventada. Si existen, mandan por este orden la version con
     el clasificador de copas en zonas validadas (fase 6, aplica_copas.py) y la
     de reemplazos de dosel confirmados (fase 5, verdades_en_ranking.py).
-  - Regla estructural de los 35 m: en Galicia solo el eucalipto los pasa, asi
-    que `ha_sobre_35m` es un suelo de especie prohibida que no depende de nada.
+  - Regla estructural de los 35 m: el modelo atribuye ese arbolado a eucalipto
+    y usa `ha_sobre_35m` como suelo. Es un supuesto de especie; la validacion
+    visual arbol/no arbol no confirma esa atribucion.
 
 El clasificador Sentinel-2 NO entra: la validacion cruzada por zonas dio AUC
 0,746 con precision del 45,8 % al eximir, y varianza espacial 0,30-0,93. Esta
@@ -21,7 +22,7 @@ publicado como resultado negativo en docs/02-walkthrough.md, seccion 13.
 COMO SE COMPONEN LAS COTAS
 ---------------------------
 Sea A el arbolado detectado (ha sobre 5,5 m), FP la tasa de falsos positivos del
-producto con su IC95 (es un TECHO: el ruido del anotador solo puede inflarla), y
+producto con su IC95 (condicionado a las etiquetas de referencia), y
 [p_lo, p_hi] la fraccion prohibida — p_lo cuenta como prohibido solo lo medido
 en rodal (disperso todo exento); p_hi supone que el disperso tiene la fraccion
 prohibida del monte donde se anoto arbol (p_mal_d, de especie_faixas.py); y
@@ -30,9 +31,10 @@ donde la fase 6 valida, el disperso entra con su fraccion medida y corregida.
   ha_prohibida_min = max( A x (1 - FP_hi) x p_lo , ha_sobre_35m )
   ha_prohibida_max =      A x (1 - FP_lo) x p_hi
 
+Estas cotas no constituyen un IC95 conjunto ni incluyen toda la incertidumbre.
 El producto de terminos supone independencia entre el error del CHM y la especie
 (un falso positivo no es mas ni menos probable bajo pinar que bajo robledal);
-es la hipotesis mas debil disponible y queda declarada. Se ORDENA por el punto
+es un supuesto del modelo que queda declarado. Se ORDENA por el punto
 medio de las cotas y se publican siempre las dos: el orden es para priorizar
 inspeccion, los numeros no son superficie de infraccion.
 
@@ -127,7 +129,7 @@ if __name__ == "__main__":
     con.to_csv(MET / f"ranking_final_concello{suf}.csv", index=False,
                encoding="utf-8-sig")
 
-    print(f"tasa de FP aplicada: {fp:.1%} (IC95 [{fp_lo:.1%}-{fp_hi:.1%}], techo)")
+    print(f"tasa de FP aplicada: {fp:.1%} (IC95 [{fp_lo:.1%}-{fp_hi:.1%}])")
     print(f"  origen: {origen_fp}")
     print(f"fraccion de especie: {origen_esp}")
     print(f"franja medida: {t.ha_medida.sum():,.0f} ha - "

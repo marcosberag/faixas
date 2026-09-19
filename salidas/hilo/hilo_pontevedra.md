@@ -1,4 +1,4 @@
-# Hilo Pontevedra — el entregable de la minibeca (16-09-2026)
+# Hilo Pontevedra — el entregable de la minibeca (revisado 19-09-2026)
 
 Segundo hilo. El primero (30-08, 7 tweets, la comarca) cerraba con «Pontevedra
 entera, las cifras cuando pasen su validación»: este es ese hilo. Es también el
@@ -12,8 +12,8 @@ X: emoji = 2, URL = 23).
 
 **Antes de publicar:**
 
-- El repo tiene que estar **público** antes del tweet 15, y el enlace comprobado
-  en una ventana de incógnito.
+- Repositorio **público**, comprobado sin autenticación el 19-09-2026.
+  Este guion es un borrador; su presencia en el repo no implica publicación en X.
 - Tweet 3: se publica **citando** el primer tweet del hilo anterior
   (`x.com/Eclektiq1/status/2094164582021337173`), no pegando el enlace en el texto.
 - Las imágenes con ortofoto o satélite llevan el © horneado: las 16–20 son
@@ -27,9 +27,9 @@ X: emoji = 2, URL = 23).
 
 **1 · gancho — `16_mapa_pontevedra_ranking.png`**
 
-> en Pontevedra hay entre 4.770 y 8.141 hectáreas de franja con eucaliptos, pinos o acacias a menos de 50 m de las casas, donde la ley los prohíbe
+> en Pontevedra estimo entre 4.770 y 8.141 hectáreas de franja con especies de árboles sujetas a retirada
 >
-> nadie tenía ese mapa. lo he hecho para la provincia entera con datos públicos, un portátil de 8 años y el error medido 🧵
+> un mapa para decidir dónde inspeccionar primero: 54 concellos, datos públicos y un portátil de 8 años. las cotas incluyen errores medidos y supuestos declarados 🧵
 
 *Alt: mapa de la provincia de Pontevedra dibujada por sus miles de franjas de
 protección, coloreadas de claro a rojo oscuro según las hectáreas de arbolado
@@ -38,18 +38,18 @@ A Paradanta, el primer hilo. Rotulados Ponteareas, A Estrada y Salvaterra.*
 
 **2 · para quien llega nuevo — `02_zoom_franja.jpg`**
 
-> para quien llega nuevo: en Galicia, por ley, a menos de 50 m de una casa no puede haber eucaliptos, pinos ni acacias, los que convierten un fuego en catástrofe
+> en Galicia hay franjas de 50 m donde la ley exige gestionar la biomasa y retirar determinadas especies, con excepciones
 >
-> la Xunta publica dónde rige la norma. si se cumple lo miran inspectores a pie. este mapa dice por dónde empezar
+> la Xunta publica esas franjas. cruzarlas con datos de arbolado ayuda a decidir dónde comprobar primero su estado
 
 *Alt: ortofoto de aldeas gallegas con las franjas de 50 m dibujadas en naranja
 rodeando las casas, muchas llenas de arbolado.*
 
 **3 · cómo, en un tweet — `14_sat_lidar_clasificacion.png` + cita del hilo anterior**
 
-> cómo: el láser aéreo del ign, público y gratis, da la altura de cada árbol. el inventario forestal y un clasificador entrenado con él ponen la especie. los tejados se quitan con el catastro
+> cómo: el láser aéreo del ign permite estimar la altura del arbolado. el inventario forestal y un clasificador aportan información de especie
 >
-> el método, paso a paso y con sus tasas de error, lo conté en el hilo de la comarca 👇
+> esta imagen muestra el piloto, con filtro de tejados del catastro. el ranking provincial se calculó sin ese filtro
 
 *Alt: panel de cuatro vistas de la misma aldea: ortofoto, mapa de alturas LiDAR
 y las dos con círculos de colores sobre cada árbol clasificado por especie.*
@@ -66,18 +66,18 @@ A Paradanta en naranja, con A Cañiza en el puesto 7 y Covelo en el 36.*
 
 **5 · las parroquias — `19_ranking_parroquias_pontevedra.png`**
 
-> por parroquia, la primera es O Hío, en Cangas, en plena costa: entre 46 y 76 hectáreas de franja con arbolado prohibido
+> por parroquia, encabeza O Hío, en Cangas: entre 46 y 76 hectáreas de franja con especies sujetas a retirada
 >
-> cada barra es una horquilla, no un número. la horquilla no es una disculpa: es la parte del error que se pudo medir, y se declara
+> cada barra combina errores medidos y supuestos sobre lo que falta por conocer. sirve para priorizar la comprobación en campo
 
 *Alt: gráfico de barras horizontales con las diez parroquias prioritarias de la
 provincia, cada una con su concello y el intervalo de hectáreas.*
 
 **6 · la misma curva — `18_curva_concentracion.png`**
 
-> lo que más me sorprendió: en la comarca, la mitad del problema estaba en el 22 % de las parroquias. en la provincia, 14 veces mayor, también en el 22 %
+> lo que más me sorprendió: en ambas escalas, el 22 % de las parroquias concentra la mitad de la superficie estimada
 >
-> la misma curva. quien inspeccione en este orden encuentra la mitad del problema visitando menos de 1 parroquia de cada 4
+> en Pontevedra son 125 de 563. la concentración ayuda a priorizar, aunque todavía falta medir cuánto tiempo de inspección ahorra
 
 *Alt: dos curvas de concentración casi superpuestas, naranja la comarca y azul la
 provincia: porcentaje de parroquias frente a porcentaje del arbolado prohibido
@@ -86,9 +86,9 @@ parroquias. Una diagonal punteada indica el reparto uniforme.*
 
 **7 · cuánto acierta en terreno nuevo — `20_tasa_fp_tres_veces.png`**
 
-> ¿cuánto acierta en terreno nuevo? 150 puntos más anotados a ciegas sobre ortofoto, en sitios que el modelo no había visto, costa incluida
+> ¿cuánto acierta al detectar árbol? validación en 150 puntos nuevos de Pontevedra: 134 revisados a mano y 16 negativos delegados a ia
 >
-> de cada 5 avisos de árbol, 1 no lo es (20,1 %). en la comarca era 1 de cada 3. y de las copas de más de 35 m, 9 de 9 eran árboles
+> la tasa de falsos positivos es del 20,1 %, frente al 33,5 % comarcal. los 16 delegados no tienen comprobación humana independiente
 
 *Alt: dos paneles con puntos e intervalos de confianza: la tasa de falsos
 positivos medida tres veces (24,2 %, 33,5 % y 20,1 %) y la sensibilidad
@@ -116,45 +116,46 @@ positivos medida tres veces (24,2 %, 33,5 % y 20,1 %) y la sensibilidad
 roble, 0,009 en pino, −0,033 en eucalipto. La señal existe pero no validó en
 píxeles mezclados de 10 m.*
 
-**11 · el inventario de 2010 aguanta — `05_serie_ndvi.png`**
+**11 · persistencia y límites del inventario — `05_serie_ndvi.png`**
 
-> el inventario de especies es de 2010. ¿sigue valiendo en 2026? diez veranos de satélite sobre 11.472 rodales: el 98 % del monte en franja no ha cambiado
+> ¿cuánto aguanta el inventario de 2010? en Pontevedra, el 98,2 % del rodal en franja no tiene eventos detectados entre 2017 y 2026
 >
-> y el detector volvió a encontrar solo los incendios de octubre de 2017: 53 rodales quemados, sin que nadie se lo dijera
+> respalda usarlo, pero deja un hueco: 2010–2017. la gráfica es del piloto y muestra también cómo la sequía confunde al detector
 
-*Alt: gráfico de líneas 2017–2026; la mediana de los rodales quemados se desploma
+*Alt: gráfico del piloto de A Paradanta, 2017–2026; la mediana del grupo de eventos de 2018 se desploma
 en 2018 y se recupera despacio; la de los persistentes se mantiene plana; en
 2026 bajan todas por la sequía.*
 
 **12 · los árboles sueltos — `13_disperso_clasificado.png`**
 
-> árboles sueltos, que ningún inventario cartografía: 12,9 M de copas y un clasificador con 24.000 etiquetas gratis del inventario. auc 0,87 con zonas enteras fuera
+> 12,9 millones de copas segmentadas. para clasificar el arbolado fuera de inventario, uso solo las zonas donde el modelo supera la validación
 >
-> solo se aplica donde valida. fuera de la comarca el arbolado suelto es menos eucaliptal: 48 % prohibido, no 60 %
+> ahí marca un 48 % como especie prohibida. el ranking corrige después sus errores. la imagen es un ejemplo del piloto
 
-*Alt: ortofoto con decenas de círculos de colores sobre árboles sueltos: rojo
-eucalipto, naranja pino, verde frondosa exenta.*
+*Alt: ejemplo del piloto: ortofoto con copas dispersas en faixa, clasificadas
+como especie prohibida (círculos rojos) o exenta (verdes).*
 
 **13 · cómo usé la IA**
 
-> cómo usé claude: programar, sí, pero lo más útil fue de segundo anotador. clasificó los 150 puntos a ciegas y sus «no» claros me los ahorré: 16
+> la ia también ayudó a anotar: Claude revisó los 150 puntos y delegué en él 16 negativos claros. los otros 134 los revisé a mano
 >
-> medido antes en 48 chips: cuando falla, sobremarca árbol, nunca al revés. el lado seguro. no sustituye al humano, le quita trabajo
+> el piloto apoyaba ese uso como prefiltro. esos 16 no tienen comprobación humana independiente: el límite queda declarado
 
 **14 · el aviso**
 
-> importante: esto es triaje, no una lista de infractores. la ley admite excepciones que ningún sensor evalúa, y el matorral no se mide
+> el mapa sirve para decidir dónde mirar primero. la inspección comprueba después la especie, el estado actual y las excepciones que contempla la ley
 >
-> el mapa ordena dónde mirar primero. la palabra la sigue teniendo el inspector
+> la utilidad está ahí: ayudar a que el tiempo de campo se dedique donde más falta hace
 
 **15 · el repo y la beca**
 
-> código, anotaciones de validación y memoria, abiertos y reproducibles de punta a punta: github.com/marcosberag/faixas
+> código, resultados y anotaciones de validación, en abierto:
+> https://github.com/marcosberag/faixas
 >
-> esto salió de las minibecas de @XMihura: un mes de claude max a cambio de contar qué funcionó y qué no. gracias
+> gracias a las minibecas de @XMihura por apoyar el proyecto y pedir que se contara también lo que salió mal. aquí queda documentado
 
 **16 · lo siguiente y la llamada**
 
-> lo siguiente: A Coruña ya está preparada, 5.926 bloques. Galicia entera cabe en 3 semanas de portátil
+> y una noticia personal: este proyecto me ha llevado a incorporarme al equipo de SilvIA Earth para trabajar en gestión y prevención de incendios
 >
-> si trabajas en prevención de incendios, en un concello o en la Xunta y esto te sirve: hablemos. los 54 concellos están en el repo con sus cotas, parroquia a parroquia
+> si trabajas en un concello o en el sector forestal, me interesa saber qué necesitarías para usar estos resultados. hablemos

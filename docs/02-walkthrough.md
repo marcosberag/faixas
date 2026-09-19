@@ -39,9 +39,9 @@ a 7 obliga a saber, y la 15 la pasada de limpieza del 14-09.
 | Fase 7A: escalar a Pontevedra | ✅ **3.197/3.197 bloques, 0 corruptos** (~5 días de máquina); cadena completa corrida | `scripts/prepara_provincia.py`, `procesa_comarca.py --malla` |
 | Validación provincial fuera de muestra | ✅ **FP 20,1 % [12,8–28,0]**, sens. 90,1 %, ≥35 m 9/9 árbol (150 puntos, 16 delegados al prefiltro de Claude) | `scripts/valida_producto.py --dir validacion_pontevedra`, `anotador_prefiltrado.py` |
 | Ranking provincial al 30-08 (sin fase 6, cota del disperso del piloto) | ✅ [4.493–8.288] ha prohibidas en 38.601 ha de franja; Ponteareas 1º | `scripts/ranking_final.py --zona pontevedra` |
-| Fase 5 en la provincia: persistencia por tiles | ✅ **98,2 % persistente**; 4 tiles MGRS compuestos por separado; 2018 = incendios de 2017, 2026 = sequía | `scripts/serie_s2_anual.py --zona pontevedra`, `detecta_eventos.py --zona pontevedra` |
+| Fase 5 en la provincia: persistencia por tiles | ✅ **98,2 % sin evento detectado en 2017–2026**; 4 tiles MGRS compuestos por separado; atribuciones a incendios/sequía no verificadas individualmente en la provincia | `scripts/serie_s2_anual.py --zona pontevedra`, `detecta_eventos.py --zona pontevedra` |
 | Fase 6 en la provincia: clasificador de copas | ✅ **AUC eucalipto 0,866 OOS**, 407 zonas de entrenamiento; aplicado en 45 zonas validadas (24 % del disperso), fracción prohibida 47,8 % obs. (36 % corregida) | `copas_chm.py`, `muestra_copas.py --zona`, `parches_copas.py --zona`, `entrena_copas.py --zona --cnn`, `aplica_copas.py --zona` |
-| **Ranking provincial FINAL** | ✅ **[4.770–8.141] ha prohibidas** (−16 % de anchura frente a [4.493–8.515] sin fase 6); podio estable, Lalín de 4º a 6º. Cota alta del disperso con la muestra provincial (§15). Sin filtro de Catastro (WFS limita por IP; efecto medido: 1 ha) | `scripts/ranking_final.py --zona pontevedra` |
+| **Ranking provincial FINAL** | ✅ **[4.770–8.141] ha prohibidas** (−16 % de anchura frente a [4.493–8.515] sin fase 6); podio estable, Lalín de 4º a 6º. Cota alta del disperso con la muestra provincial (§15). Sin filtro de Catastro (WFS limita por IP; efecto medido en el piloto: 1 ha) | `scripts/ranking_final.py --zona pontevedra` |
 | Fase 7B: producto usable | ✅ 464 puntos de inspección, visor web y dossier PDF por concello (piloto; pendiente `--zona`) | `scripts/puntos_inspeccion.py`, `visor.py`, `dossier_concello.py` |
 
 ---
@@ -837,7 +837,8 @@ ecuación:
 | Edificación | 4,2 | 4,6 % |
 
 El CHM a 5,5 m marca 35,9 % de la franja. La fotointerpretación dice 27,7 %. Esa
-diferencia **es** la tasa de falsos positivos, medida por otro camino.
+diferencia es un balance de superficies: falsos positivos menos falsos negativos.
+No equivale a FP / (TP + FP), que es la tasa de falsos positivos del producto.
 
 ### Fiabilidad del anotador: la segunda pasada
 
@@ -908,13 +909,13 @@ volteo medida para su clase y su banda, y se recalibra. 1.000 réplicas:
 
 **El umbral se queda a ±1 m del calibrado en el 98 % de las réplicas.**
 
-Y el desplazamiento de la tasa de FP se lee al revés de lo que parece: **el ruido del
-anotador la sube, nunca la baja.** Un árbol mal marcado como «no» se contabiliza como
-falso positivo aunque el CHM haya acertado — el desacuerdo se le apunta siempre al
-CHM. Como la anotación real ya lleva su dosis de ese ruido, **el 24,2 % publicado es
-un techo, no una cifra optimista**; extrapolando linealmente a un anotador infalible
-saldría en torno al 16 %. Se publica el 24,2 % igualmente: pecar de declarar más
-error del que hay es el lado correcto por el que pecar.
+En este experimento, añadir ruido de anotación aumenta la tasa de FP medida.
+Un árbol etiquetado como «no» puede contar como fallo del CHM aunque este acierte;
+el error contrario también puede ocultar un fallo. Por tanto, la dirección depende
+de las tasas de error por clase y de su relación con las predicciones. **El 24,2 %
+no es un techo demostrado del error verdadero.** La extrapolación exploratoria
+hacia ~16 % con anotador infalible depende del modelo de perturbación y no
+sustituye la tasa publicada.
 
 **Dos trampas que se evitaron por el camino**, ambas detectadas porque el número salía
 plausible y estaba mal:

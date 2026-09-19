@@ -121,23 +121,22 @@
     <div class="stat"><div class="v">0 €</div><div class="k">en datos: LiDAR, ortofoto, franjas e inventario, todo público</div></div>
   </div>
 
+  <p class="sub">Las cotas combinan error del CHM, información de especie y supuestos sobre el disperso. No son un IC95 conjunto ni recogen toda la incertidumbre. La validación provincial incluye 134 anotaciones humanas y 16 negativos delegados a IA sin comprobación humana independiente.</p>
+
   <hr class="rule">
   <h2>El problema</h2>
-  <p class="sub">La ley dice dónde; nadie sabe dónde se cumple.</p>
+  <p class="sub">La ley delimita la obligación; el mapa ayuda a priorizar su comprobación.</p>
   <div class="prose">
     <p>
       La Ley 3/2007 de Galicia obliga a mantener una franja de 50 m alrededor de cada
-      núcleo de población y cada vivienda libre de siete especies arbóreas —pinos,
-      eucaliptos y acacias— que son las que convierten un fuego en una catástrofe.
-      La Xunta publica el mapa de <strong>dónde existe esa obligación</strong>. El mapa de
-      <strong>dónde se cumple</strong> no existe: se verifica mandando inspectores a pie,
-      parcela por parcela, y la plantilla se ha duplicado en 2026 porque no da abasto.
+      núcleo de población y cada vivienda sin los taxones arbóreos de su listado, con las excepciones previstas en la norma.
+      La Xunta publica el mapa de <strong>dónde existe esa obligación</strong>. El cumplimiento requiere <strong>comprobación presencial</strong>, parcela por parcela.
     </p>
     <p>
-      Este proyecto construye ese segundo mapa para una comarca piloto —A Paradanta:
-      Arbo, A Cañiza, Covelo y Crecente— cruzando la capa oficial de franjas con el
+      Este proyecto estima dónde priorizar la inspección. Empezó en A Paradanta:
+      Arbo, A Cañiza, Covelo y Crecente, cruzando la capa oficial de franjas con el
       LiDAR aéreo del PNOA, el inventario forestal y la ortofoto. Todo público, todo
-      gratuito, todo reproducible por scripts.
+      gratuito, con código, anotaciones y resultados publicados para su revisión y reproducción.
     </p>
   </div>
   <div class="aviso"><p>
@@ -146,7 +145,7 @@
     mirar primero; la palabra la sigue teniendo el inspector.
   </p></div>
 
-  <h2>Resultados</h2>
+  <h2>Resultados del piloto: A Paradanta</h2>
   <p class="sub">De 2.848 ha de franja, 1.167 ha tienen arbolado — y entre 353 y 574 ha son de especie prohibida.</p>
 
   <div class="tablewrap">
@@ -208,10 +207,10 @@
     </p>
     <h3>3 · Una lista de «ir ya»: el eucaliptal maduro</h3>
     <p>
-      En Galicia solo el eucalipto supera los 35 m. El mapa de alturas localiza
-      <strong>16,2 ha de arbolado de más de 35 m dentro de franja</strong> — eucaliptal adulto,
-      especie prohibida con certeza casi total y sin necesidad de satélite. Se validó a ojo:
-      14 de 15 puntos comprobados son árboles (el otro, dudoso). Encabezan Mourentán (2,1 ha),
+      El mapa de alturas localiza
+      <strong>16,2 ha de arbolado de más de 35 m dentro de franja</strong>. El modelo
+      lo atribuye a eucalipto como regla estructural. La comprobación visual confirma
+      árbol en 14 de 15 puntos (el otro, dudoso), pero no identifica su especie. Encabezan Mourentán (2,1 ha),
       Valeixe (1,4 ha) y O Freixo (1,1 ha).
     </p>
     <h3>4 · Tres resultados negativos que ahorran dinero a quien venga detrás</h3>
@@ -257,7 +256,7 @@
     </p>
     <h3>Límites que se declaran</h3>
     <ul class="compacta">
-      <li>El inventario forestal de referencia es de <strong>2010</strong>. Su vigencia está medida —el 97,4 % del rodal en franja persiste, acotado [81–99 %]— pero el hueco 2010–2017 solo está comprobado en la muestra, y el arbolado disperso sigue sin inventario. Por eso hay cotas y no un número.</li>
+      <li>El inventario forestal de referencia es de <strong>2010</strong>. Su persistencia está estudiada —el 97,4 % del rodal en franja persiste, acotado [81–99 %]— pero el hueco 2010–2017 solo está comprobado en la muestra, y el arbolado disperso sigue sin inventario. Por eso hay cotas y no un número.</li>
       <li>El <strong>39 % del arbolado en franja es disperso</strong> y ningún inventario lo cartografía; va a las cotas.</li>
       <li>Un solo fotointérprete (con su concordancia consigo mismo medida: kappa 0,88 en casos claros, 0,53 en la zona de decisión).</li>
       <li>Ortofoto de 2023 y LiDAR de 2024: un año de desfase.</li>
@@ -355,9 +354,8 @@
       El ranking ordena cuarenta parroquias, pero una parroquia son cientos de hectáreas.
       El producto baja hasta el sitio concreto: <strong>464 puntos de inspección</strong> con
       coordenadas, cada uno con la mancha de arbolado que lo justifica y su nivel de certeza
-      declarado — 69 eucaliptales seguros (dosel por encima de 35 m, la regla que se validó
-      14 de 15), 103 rodales del inventario de especie prohibida <em>y</em> certificados como
-      persistentes, y 292 grupos de arbolado disperso clasificado copa a copa.
+      declarado — 69 manchas atribuidas a eucalipto por la regla de altura de 35 m,
+      103 rodales del inventario de especie prohibida sin evento detectado, y 292 grupos de arbolado disperso clasificado copa a copa.
     </p>
     <p>
       Dos detalles que parecen menores y no lo son. El punto <strong>nunca es el centro
@@ -436,20 +434,22 @@
       septiembre). La persistencia se compuso <em>tile a tile</em> de Sentinel-2 —Pontevedra
       cae en cuatro tiles, y con una sola rejilla las tres escenas menos nubladas podían salir
       del mismo y dejar sin dato tres cuartos del territorio sin avisar—: el <strong>98,2 %</strong>
-      del monte en franja no ha cambiado desde 2017, así que la etiqueta de especie del
-      inventario de 2010 vale también aquí. El clasificador de copas se reentrenó con 24.000
+      de la superficie de rodal en franja no presenta eventos detectados en 2017–2026.
+      Esto respalda el uso del inventario, pero no verifica todas sus etiquetas ni
+      cubre el hueco 2010–2017. El detector se validó en el piloto. El clasificador de copas se reentrenó con 24.000
       copas de 407 zonas y dio <strong>AUC 0,866</strong> fuera de zona; la inestabilidad por
       zonas no se diluye con la escala (60 de 106 zonas pasan de 0,80, y entre las peores está
       una que el piloto ya tenía diagnosticada como ortofoto de otra pasada), así que se aplica
       solo donde valida: 45 zonas, el 24 % del arbolado disperso. Allí el disperso sale un
       <strong>47,8 % prohibido</strong> observado —36 % corregido por el error del
-      clasificador— frente al 59,9 % de A Paradanta: fuera de la comarca el arbolado suelto es
-      bastante menos eucaliptal. El titular pasa de 4.493–8.515 a
+      clasificador— frente al 59,9 % observado en el piloto. Son resultados sobre
+      las partes clasificadas, no estimaciones de la composición de todo el disperso. El titular pasa de 4.493–8.515 a
       <strong>4.770–8.141 ha, un 16 % más estrecho</strong>; el podio no cambia, pero Lalín
       baja de cuarto a sexto al medirse su disperso. Corre sin el filtro de tejados del
       Catastro (su servicio limita por IP): el efecto medido en el piloto es de 0,3 puntos en
-      la fracción del disperso y una hectárea en el titular, al alza, y en agregado ya lo
-      descuenta la tasa de falsos positivos.
+      la fracción del disperso y una hectárea en el titular, al alza. La tasa de FP
+      recoge las edificaciones de la muestra, pero no valida el efecto del filtro
+      sobre la clasificación de especie provincial.
     </p>
   </div>
 

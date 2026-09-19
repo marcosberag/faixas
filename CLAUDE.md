@@ -1,3 +1,12 @@
+> **Actualización editorial — 19-09-2026.** El repositorio ya es público. Las notas
+> históricas inferiores reflejan decisiones y formulaciones de cada fase; para
+> comunicar los resultados, prevalecen las precisiones del README: 12,9 M son
+> copas segmentadas, 47,8 % es fracción observada en la parte clasificada, 98,2 %
+> significa sin evento detectado en 2017–2026, y los 16 negativos delegados a IA
+> no tienen contraste humano independiente. El experimento de ruido no demuestra
+> un techo universal de FP; las cotas no son un IC95 conjunto. La comprobación
+> árbol/no árbol por encima de 35 m no valida especie. Las fórmulas no cambian.
+
 # Contexto del proyecto — faixas
 
 Pega esto al arrancar Claude Code, o guárdalo como `CLAUDE.md` en la raíz del repo.

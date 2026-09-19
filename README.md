@@ -6,11 +6,11 @@ Galicia tienen arbolado que la ley no permite.
 En Galicia la [Ley 3/2007](https://www.boe.es/buscar/act.php?id=BOE-A-2007-10022) obliga
 a mantener una franja de 50 m alrededor de cada núcleo de población y cada vivienda sin
 determinadas especies arbóreas. La Xunta publica el mapa de **dónde** existe esa
-obligación. No existe el mapa de **dónde se cumple**: hoy se verifica mandando
-inspectores a pie, parcela por parcela.
+obligación. Este proyecto estima dónde priorizar su comprobación mediante
+inspección presencial.
 
-Este proyecto intenta estimar el segundo cruzando la capa oficial de franjas con el
-LiDAR del PNOA, para que la inspección pueda priorizar.
+Para ello cruza la capa oficial de franjas con el LiDAR del PNOA y las fuentes
+de especie descritas a continuación.
 
 **Es una herramienta de triaje, no una lista de infractores.** La propia ley admite
 excepciones que el LiDAR no puede evaluar, y exime a las frondosas no listadas.
@@ -39,10 +39,12 @@ la fracción del disperso 0,3 puntos, en dirección conocida (al alza); se decla
 cota alta del arbolado disperso sale de la muestra anotada de la propia provincia
 (78,0 % prohibido donde hay rodal), no de la del piloto (72,2 %).
 
-El rango no es imprecisión sin cuantificar: **sale de una tasa de error medida**, sobre
-150 puntos fotointerpretados a ciegas en territorio que el modelo no había visto. Cada
-cifra de este repositorio lleva la suya, incluida la del propio fotointérprete consigo
-mismo. Detalle en [Del piloto al producto](#del-piloto-al-producto-fase-7).
+El rango combina el error de detección del CHM, la composición del IFN, supuestos
+sobre el arbolado disperso y la corrección del clasificador de especie. **No es un
+intervalo de confianza conjunto del 95 % ni recoge toda la incertidumbre.** La
+validación provincial usa 150 puntos: 134 anotados por el humano y 16 negativos
+delegados al prefiltro de IA, sin comprobación humana independiente. Detalle en
+[Del piloto al producto](#del-piloto-al-producto-fase-7).
 
 También se publican los métodos que **no** funcionaron, con los números por los que se
 descartaron: un clasificador de especie con Sentinel-2 (AUC 0,746 fuera de muestra, y
@@ -59,6 +61,7 @@ gallega rebrota en un año, así que la regla pierde 12 de cada 16 eventos reale
 | [01 — Plan de trabajo](docs/01-plan-de-trabajo.md) | Fases, riesgos, decisiones cerradas y cuestiones abiertas. |
 | [02 — Walkthrough](docs/02-walkthrough.md) | Estado real del código, cómo reproducirlo y las trampas encontradas. |
 | [03 — Marco legal](docs/03-marco-legal.md) | Qué obliga exactamente la ley, verificado contra el texto consolidado. |
+| [Memoria](salidas/memoria.html) | Resultados del piloto y de Pontevedra, método y limitaciones. Descargar y abrir en el navegador. |
 
 `CLAUDE.md` es el contexto de trabajo para sesiones con Claude Code.
 
@@ -103,13 +106,14 @@ muestreo estratificado por altura y ponderación por superficie.
 
 La fiabilidad del fotointérprete está medida y propagada, no supuesta: el acuerdo
 consigo mismo es del 94 % por debajo de 2 m y del 91 % en la zona de decisión de 2–8 m,
-y reinyectando ese error en la muestra el umbral no se mueve. El error de anotación
-**sube** la tasa de falsos positivos —el desacuerdo se le apunta siempre al CHM—, así
-que **el 24,2 % es un techo**, no una cifra optimista.
+y al reinyectar ese error el umbral queda a ±1 m en el 98 % de las réplicas.
+En el experimento de perturbación, añadir error de anotación
+aumentó la tasa de falsos positivos medida. Esa dirección depende del modelo de
+error usado: **no demuestra que el 24,2 % sea un techo del error verdadero**.
 
 Y una medición independiente del CHM: por fotointerpretación, **el 27,7 % de la franja
-tiene arbolado**. El CHM a 5,5 m marca 35,9 %. Esa diferencia *es* la tasa de falsos
-positivos, medida por otro camino.
+tiene arbolado**. El CHM a 5,5 m marca 35,9 %. La diferencia de superficies refleja falsos positivos menos falsos negativos;
+no equivale a la tasa de falsos positivos del producto, FP / (TP + FP).
 
 **Sobre el sesgo de especie, un resultado negativo:** la subpregunta de tipo de copa
 solo pudo contestarse en 25 de los 87 árboles, y en 15 de ellos la respuesta fue «no
@@ -166,10 +170,10 @@ el 67,9 % del arbolado en faixa cae en píxeles suficientemente puros para clasi
 | Cobertura | **2.848 ha de franja, el 99,9 % de la comarca** |
 | Control de rasterización | −0,05 % |
 | Arbolado sobre el umbral calibrado (5,5 m) | **1.167 ha, el 41,0 %** |
-| Sobre 35 m (eucaliptal maduro seguro) | 16,2 ha |
+| Sobre 35 m (atribución a eucalipto asumida por el modelo) | 16,2 ha |
 
-**El entregable** (`scripts/ranking_final.py`) compone las piezas validadas — y solo
-esas — en el ranking de parroquias y concellos por franja con arbolado prohibido:
+**El entregable** (`scripts/ranking_final.py`) compone las piezas validadas y los
+supuestos declarados en el ranking de parroquias y concellos por franja con arbolado prohibido:
 
 > De las 2.848 ha de franja medidas, 1.167 ha tienen arbolado, y **entre 353 y
 > 574 ha son de especie prohibida**. A Cañiza encabeza por concello (148–239 ha)
@@ -177,7 +181,9 @@ esas — en el ranking de parroquias y concellos por franja con arbolado prohibi
 
 Las cotas componen la tasa de falsos positivos del CHM (con su IC95), la fracción
 prohibida del IFN (con el arbolado disperso llevado a las cotas, no etiquetado) y
-el suelo de los 35 m. El orden es para priorizar inspección; los números **no son
+la regla de los 35 m. La atribución de ese arbolado a eucalipto es un supuesto
+estructural del modelo: comprobar que los puntos son árboles no valida su especie.
+El orden es para priorizar inspección; los números **no son
 superficie de infracción**.
 
 **Validación del producto, fuera de muestra.** 250 puntos frescos fotointerpretados
@@ -189,7 +195,7 @@ a ciegas en 127 de los 260 bloques que la calibración nunca vio:
 | Sensibilidad | 89,4 % | 89,8 % |
 | Puntos >35 m que son árbol | — | 14 de 15 (1 dudoso) |
 
-La sensibilidad y el suelo del eucalipto aguantan; la tasa de FP sale compatible
+La sensibilidad y la detección de arbolado alto aguantan; la tasa de FP sale compatible
 pero desplazada al alza, y **el ranking usa la tasa nueva** — está medida en el
 dominio donde el producto se aplica, y pecar de pesimista es el criterio de la
 casa. Medición independiente: por fotointerpretación el 28,6 % de la franja tiene
@@ -461,24 +467,33 @@ fase 6, y con la cota del disperso heredada del piloto: era [4.493 – 8.288] ha
 a Pontevedra componiendo Sentinel-2 **tile a tile** (la provincia cae en
 cuatro tiles MGRS; con una sola rejilla las tres escenas menos nubladas
 podían salir del mismo tile y dejar NaN en tres cuartos del territorio sin
-avisar): **98,2 %** del rodal en faixa persiste 2017–2026 (piloto: 97,4 %),
-así que la etiqueta del IFN 2010 vale también aquí. Los 53 eventos de 2018 son
-otra vez los incendios de octubre de 2017; los 21 de 2026, otra vez la sequía
-de agosto, y no se publican como hecho. El clasificador de copas se reentrenó
+avisar): **98,2 %** de la superficie de rodal en faixa no presenta eventos detectados
+en 2017–2026 (piloto: 97,4 %). Esto respalda el uso del IFN, pero no comprueba
+el hueco 2010–2017 ni confirma todas sus etiquetas. La validación del detector
+se hizo en el piloto. Los 53 eventos de 2018 son compatibles con las cicatrices
+de los incendios de 2017; la sequía es una explicación posible para los 21 de
+2026. No se han confirmado individualmente esas atribuciones provinciales.
+
+Se segmentaron **12,9 millones de copas** en el conjunto de los bloques, no solo
+fuera de inventario. El CSV del disperso clasificado contiene **88.624 copas**
+tras filtrar los parches, de 91.805 candidatas en zonas elegibles.
+El clasificador de copas se reentrenó
 con 24.000 copas de 407 zonas (piloto: 51): **AUC eucalipto 0,866** fuera de
 zona, y la inestabilidad por zonas no se diluye con la escala —60 de 106
 zonas evaluables pasan de 0,80, y entre las peores está una de las dos que el
 piloto ya tenía diagnosticadas como ortofoto de otra pasada—. Aplicado solo
 donde valida (45 zonas, el 24 % del disperso; error OOS fpr 0,252 / fnr 0,123,
-mejor que el piloto), la fracción prohibida del disperso sale **47,8 %**
-frente al 59,9 % de A Paradanta: fuera de la comarca el arbolado suelto es
-menos eucaliptal. **Titular: [4.770 – 8.141] ha, un 16 % más estrecho** que sin
+mejor que el piloto), la fracción **observada** prohibida del disperso clasificado sale **47,8 %**
+ponderada por área (aproximadamente 36 % tras corregir el error), frente al
+59,9 % observado del piloto. No representa todo el disperso provincial ni una
+comparación calculada excluyendo A Paradanta. **Titular: [4.770 – 8.141] ha, un 16 % más estrecho** que sin
 la fase 6 ([4.493 – 8.515]). El podio no cambia (Spearman 0,990 por concello) pero
 Lalín baja de 4º a 6º al
 medirse su disperso. Sin filtro de Catastro: su WFS limita por IP y se quedó
 en 954 de 3.197 celdas; el efecto medido en el piloto es +0,3 puntos en la
-fracción del disperso y 1 ha en el titular, y el agregado ya lo descuenta la
-tasa de FP (el anotador tiene categoría «edificación»).
+fracción del disperso y 1 ha en el titular. La tasa de FP recoge las edificaciones
+de la muestra, pero no valida por sí
+sola el efecto del filtro sobre la clasificación de especie en toda la provincia.
 
 **Corrección del 14-09-2026.** Hasta ese día la cota alta del arbolado disperso de la
 provincia se calculaba con la muestra anotada del piloto (72,2 % de especie prohibida
@@ -543,8 +558,10 @@ micromamba create -f environment-pdal.yml   # PDAL no tiene wheel en Windows
 
 El repositorio versiona el código, la documentación, las anotaciones de
 validación y las métricas. **No versiona los derivados pesados** —los 3.197 CHM
-(~28 GB), los chips, las escenas de Sentinel-2 y los geopaquetes— porque los
-regeneran los propios scripts de descarga. Ver [`.gitignore`](.gitignore).
+(~28 GB), los chips, las escenas de Sentinel-2 y los geopaquetes— porque se regeneran con los scripts de descarga y procesamiento. Ver
+[`.gitignore`](.gitignore). La reproducción completa desde un clon limpio no
+se ha verificado en esta revisión y depende de la disponibilidad de los servicios
+externos. El filtro provincial de Catastro sigue pendiente.
 
 ## Cómo citar
 
