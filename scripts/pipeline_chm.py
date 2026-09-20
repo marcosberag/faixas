@@ -97,11 +97,27 @@ PROC = RAIZ / "datos" / "procesado" / "lidar"
 
 # PDAL vive en un entorno conda aparte: en Windows no hay wheel de pip y compilar
 # libpdal no compensa. Ver docs/02-walkthrough.md.
-# Se llama al .exe directo en vez de a `micromamba run`, que se come el stderr y
+# Se llama al binario directo en vez de a `micromamba run`, que se come el stderr y
 # convierte cualquier fallo de PDAL en un codigo de salida sin explicacion.
 ENV_PDAL = pathlib.Path.home() / ".local" / "micromamba" / "envs" / "pdal"
-PDAL_EXE = ENV_PDAL / "Library" / "bin" / "pdal.exe"
-PDAL_BIN = ENV_PDAL / "Library" / "bin"
+
+
+def _pdal_exe():
+    """Ruta del ejecutable de PDAL.
+
+    Prioridad: la variable de entorno PDAL_EXE (para instalaciones en rutas no
+    estandar). Si no, layout estandar del env conda segun plataforma: Windows
+    usa Library/bin/pdal.exe; Linux y macOS usan bin/pdal.
+    """
+    override = os.environ.get("PDAL_EXE")
+    if override:
+        return pathlib.Path(override)
+    exe = "pdal.exe" if os.name == "nt" else "pdal"
+    return ENV_PDAL / ("Library/bin" if os.name == "nt" else "bin") / exe
+
+
+PDAL_EXE = _pdal_exe()
+PDAL_BIN = PDAL_EXE.parent
 
 EPSG = "EPSG:25829"
 RES = 1.0  # m de pixel
@@ -118,7 +134,7 @@ def pdal(args, etiqueta):
             f"no encuentro {PDAL_EXE}. Crea el entorno con:\n"
             f"  micromamba create -y -p {ENV_PDAL} -c conda-forge pdal gdal")
     entorno = dict(os.environ)
-    entorno["PATH"] = f"{PDAL_BIN};{entorno.get('PATH','')}"
+    entorno["PATH"] = f"{PDAL_BIN}{os.pathsep}{entorno.get('PATH','')}"
     t0 = time.perf_counter()
     r = subprocess.run([str(PDAL_EXE), *args], env=entorno,
                        capture_output=True, text=True,
