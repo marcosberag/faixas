@@ -116,9 +116,10 @@ CHM a 1 m.
 | 562-4668 | 80,4 | 75,7 s | 55,8 s | 0,4 s | 131,9 s |
 | 549-4679 | 147,5 | 141,8 s | 76,7 s | 0,8 s | 219,3 s |
 
-- Media ~170 s/bloque: **paridad con el i5-8350U documentado** (170 s). El VPS
-  no aporta ventaja en este pipeline (bound a IO/single-core). Descarga:
-  25–26 MB/s (vs 22 documentados).
+- Media ~170 s/bloque: **paridad con el i5-8350U documentado** (170 s): el VPS
+  no muestra ventaja en este pipeline, aunque esta prueba no permite atribuir
+  la causa al I/O o al uso de un solo núcleo. Descarga: 25–26 MB/s (vs 22
+  documentados).
 - Huecos 0,00 % en MDT/MDS/CHM para los 3 bloques.
 - Alturas plausibles: 559-4674 mediana 1,95 m / p90 14,9 / max 44,9 m;
   549-4679 mediana 2,27 m / p90 20,2 / max 50,9 m. Coherente con la regla de
