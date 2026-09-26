@@ -102,8 +102,8 @@ CHM a 1 m.
   falta un shim de una línea (symlink `bin/pdal` → `Library/bin/pdal.exe`) más
   exportar `GDAL_DATA` y `PROJ_DATA` del env conda (el script propaga
   `os.environ`). La sugerencia (5 líneas: aceptar `PDAL_EXE` de entorno y elegir
-  el layout por sistema operativo) está implementada en la rama del fork
-  `fix/pdal-exe-multiplataforma`, commit `6d55c94`, sin mergear.
+  el layout por sistema operativo) está fusionada en `main` vía PR #2
+  (`fix/pdal-exe-multiplataforma`, commit `6d55c94`).
 - El mensaje de error del script cuando no encuentra el ejecutable es excelente
   (claro, con instrucción de creación del entorno). Solo el path era
   Windows-específico.
