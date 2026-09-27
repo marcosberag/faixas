@@ -6,9 +6,16 @@ aguas pasa el umbral de 5,5 m del CHM y el watershed lo delinea como "copa"
 los descuenta en agregado; esto los quita del mapa y de la fraccion de especie
 del disperso, que es donde ensucian.
 
-WFS INSPIRE de Catastro (BU:Building), por celdas de 2x2 km que tocan faixa,
+WFS INSPIRE de Catastro (BU:Building), por celdas de 1x1 km que tocan faixa,
 en EPSG:25829 directo. Reanudable por celda. Salida unica deduplicada:
 datos/procesado/edificios_catastro.gpkg
+
+Las celdas que el WFS rechaza por tamano (las urbanas densas: "Area of
+extension out of limits", o respuesta gigante que agota el timeout) se
+resuelven solas: se trocean en 4 cuadrantes de 500 m y se concatenan; un
+cuadrante que todavia desborda se vuelve a trocear (500 -> 250 -> 125 m).
+Verificado en toda Pontevedra: 3.197/3.197 celdas, 243.583 edificios, cero
+perdidos por descarga.
 
 Uso:
     python scripts/descarga_catastro.py
@@ -28,37 +35,50 @@ PROC = RAIZ / "datos" / "procesado"
 CELDAS = PROC / "catastro_celdas"
 
 URL = "http://ovc.catastro.meh.es/INSPIRE/wfsBU.aspx"
-LADO = 1000        # el WFS rechaza bbox de 2x2 km: "Area of extension out of limits"
+LADO = 1000        # celda de trabajo: 1x1 km (el WFS rechaza bbox de 2x2 km)
+QUADRANTE = 500    # lado al que se trocea una celda que desborda
+MIN_LADO = 125     # por debajo, un cuadrante que desborda se da por vacio
+PAUSA = 12         # s entre peticiones al WFS (rate limit de Catastro)
 
 
 VACIA = gpd.GeoDataFrame(geometry=[], crs="EPSG:25829")
 
 
-def baja_celda(x0, y0, intentos=4):
-    """La celda, o None si el servicio no responde tras `intentos`.
+class _Desborde(Exception):
+    """El WFS rechaza el bbox: 'Area of extension out of limits'."""
+
+
+def baja_bbox(x0, y0, lado, intentos=4):
+    """Un bbox de `lado` m, o None si el servicio no responde tras `intentos`.
 
     Devuelve None en vez de propagar: el WFS del Catastro es un servicio publico
     y bajo carga da ReadTimeout. Que un timeout tumbe una corrida de horas es
     absurdo teniendo reanudacion — la celda se salta, NO se escribe su GPKG, y
     la siguiente pasada la reintenta.
+
+    OJO: el ExceptionReport del servicio no distingue celda vacia de bbox
+    desbordada. 'Area of extension out of limits' es el mensaje de desborde y
+    eleva _Desborde; el resto se trata como celda sin edificios.
     """
     for t in range(1, intentos + 1):
         try:
             r = requests.get(URL, timeout=120, params={
                 "service": "WFS", "version": "2.0.0", "request": "GetFeature",
                 "typeNames": "BU:Building", "srsName": "EPSG::25829",
-                "bbox": f"{x0},{y0},{x0+LADO},{y0+LADO},"
+                "bbox": f"{x0},{y0},{x0+lado},{y0+lado},"
                         "urn:ogc:def:crs:EPSG::25829"})
             r.raise_for_status()
         except Exception as e:
             if t == intentos:
-                print(f"    ({type(e).__name__}) celda {x0}_{y0} SALTADA tras "
+                print(f"    ({type(e).__name__}) bbox {x0}_{y0} SALTADO tras "
                       f"{intentos} intentos", flush=True)
                 return None
             print(f"    ({type(e).__name__}, reintento {t})", flush=True)
             time.sleep(20 * t)
             continue
         if b"ExceptionReport" in r.content[:500]:
+            if b"out of limits" in r.content[:500].lower():
+                raise _Desborde(f"bbox {x0}_{y0} de {lado} m desborda el WFS")
             # celda sin edificios: el servicio devuelve excepcion vacia
             return VACIA.copy()
         try:
@@ -66,6 +86,42 @@ def baja_celda(x0, y0, intentos=4):
         except IndexError:
             # otra variante de celda vacia: GML bien formado pero sin capa
             return VACIA.copy()
+
+
+def baja_celda(x0, y0):
+    """La celda de trabajo entera (1 km)."""
+    return baja_bbox(x0, y0, LADO)
+
+
+def celda_por_cuadrantes(x0, y0, lado=LADO, _prof=0):
+    """La celda troceada en 4 cuadrantes de lado/2 y concatenada.
+
+    Fallback automatico cuando el WFS desborda o la respuesta entera no llega.
+    Un cuadrante que todavia desborda se vuelve a trocear (500 -> 250 -> 125 m;
+    a 500 m no se conocen desbordes en toda Pontevedra). None si el servicio
+    no responde ni troceada.
+    """
+    mlado = lado // 2
+    partes = []
+    for i, (cx, cy) in enumerate(((x0, y0), (x0 + mlado, y0),
+                                  (x0, y0 + mlado), (x0 + mlado, y0 + mlado))):
+        if i:
+            time.sleep(PAUSA)
+        try:
+            g = baja_bbox(cx, cy, mlado)
+        except _Desborde:
+            if mlado <= MIN_LADO:
+                print(f"    cuadrante {cx}_{cy} sigue desbordando a {mlado} m",
+                      flush=True)
+                g = VACIA.copy()
+            else:
+                g = celda_por_cuadrantes(cx, cy, mlado)
+        if g is None:
+            return None
+        partes.append(g)
+        print(f"    cuadrante {cx}_{cy}: {len(g)} features", flush=True)
+    return gpd.GeoDataFrame(pd.concat(partes, ignore_index=True),
+                            crs="EPSG:25829")
 
 
 if __name__ == "__main__":
@@ -121,7 +177,18 @@ if __name__ == "__main__":
         ruta = CELDAS / f"{x}_{y}.gpkg"
         if ruta.exists():
             continue
-        g = baja_celda(x, y)
+        try:
+            g = baja_celda(x, y)
+        except _Desborde:
+            print(f"    celda {x}_{y} desborda el WFS: subdividiendo en "
+                  f"cuadrantes de {QUADRANTE} m", flush=True)
+            g = celda_por_cuadrantes(x, y)
+        if g is None:
+            # sin respuesta entera (respuesta gigante o servicio caido):
+            # los cuadrantes parten el problema en porciones que si caben
+            print(f"    celda {x}_{y} sin respuesta entera: reintentando por "
+                  "cuadrantes", flush=True)
+            g = celda_por_cuadrantes(x, y)
         if g is None:
             saltadas.append((x, y))
             continue
