@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#174d63">
+  <meta name="description" content="Explora las franjas de protección contra incendios de Pontevedra. Estimaciones de arbolado por parroquia y concello para priorizar inspección.">
+  <title>Faixas · Visor de Pontevedra</title>
+  <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" href="visor.css">
+  <script defer src="vendor/leaflet/leaflet.js"></script>
+  <script defer src="visor.js"></script>
+</head>
+<body>
+  <a class="saltar" href="#concello">Ir a la consulta por concello</a>
+  <header>
+    <div class="marca"><span class="simbolo" aria-hidden="true">f.</span><div><h1>Faixas</h1><p>Franjas de protección contra incendios · Pontevedra</p></div></div>
+    <button id="provincia" type="button">Ver provincia</button>
+  </header>
+  <main>
+    <aside aria-label="Consulta y resultados">
+      <div class="consulta">
+        <label for="concello">Explora un concello</label>
+        <select id="concello" disabled><option value="">Toda Pontevedra</option></select>
+        <label class="sr" for="buscar">Buscar parroquia</label>
+        <input id="buscar" type="search" placeholder="Buscar parroquia…" autocomplete="off" disabled>
+      </div>
+      <div id="resumen" class="resumen" aria-live="polite"><p>Cargando resultados provinciales…</p></div>
+      <div class="lista-cab"><h2>Parroquias</h2><span id="cuenta"></span></div>
+      <p class="criterio">Ordenadas por el punto medio de las cotas estimadas.</p>
+      <ol id="ranking" class="ranking" aria-label="Ranking de parroquias"></ol>
+      <details class="ayuda">
+        <summary>Cómo leer este mapa</summary>
+        <p>Estima arbolado de especies incluidas en la norma dentro de las franjas oficiales. Sirve para priorizar inspección. <strong>No acredita una infracción.</strong></p>
+        <p>Las dos cifras son cotas del modelo, no un intervalo de confianza conjunto. El color representa su punto medio en hectáreas; no representa la proporción de franja afectada.</p>
+        <p>LiDAR de 2024, IFN de 2010 y clasificador de copas solo donde valida. Resultados del 14 de septiembre de 2026. La ortofoto de fondo es la que sirve actualmente el IGN y puede ser de otra fecha.</p>
+        <p id="validacion"></p>
+        <p>En la provincia falta el filtro completo de edificios del Catastro. Las manchas son orientativas y están simplificadas. Los puntos señalan arbolado medido; su especie y su estado actual requieren comprobación.</p>
+        <p>El dosel de más de 35 m se atribuye a eucalipto por una regla de altura: es un supuesto del modelo, no una identificación de especie validada. «Persistente» significa sin evento detectado en 2017–2026; no comprueba el hueco 2010–2017.</p>
+        <p>La cobertura corresponde a las franjas publicadas por la Xunta. Un lugar sin datos no equivale a ausencia de riesgo. Los puntos son una selección para inspección y no agotan todo el arbolado detectado. Sus superficies pueden solaparse: no deben sumarse para reconstruir el ranking.</p>
+        <a href="https://github.com/marcosberag/faixas#readme" target="_blank" rel="noopener">Método, código y limitaciones</a>
+      </details>
+      <footer>
+        <details><summary>Descargar datos (CSV)</summary><a href="ranking_final_pontevedra.csv" download>Ranking por parroquia</a><a href="ranking_final_concello_pontevedra.csv" download>Ranking por concello</a><a href="puntos_inspeccion_pontevedra.csv" download>Puntos de inspección</a></details>
+        <p>Elaboración: Marcos Bermejo Agenjo.<br>LiDAR y ortofoto © IGN · franjas e IFN: Xunta de Galicia.<br><a href="https://github.com/marcosberag/faixas/blob/main/LICENSE-DATOS.md" target="_blank" rel="noopener">Datos derivados: CC BY 4.0 y fuentes</a></p>
+      </footer>
+    </aside>
+    <section class="vista" aria-label="Mapa interactivo de Pontevedra">
+      <div id="mapa" role="region" aria-label="Franjas por parroquia; usa también el listado para consultar los resultados"></div>
+      <details class="leyenda"><summary>Leyenda</summary><div>
+        <b>Hectáreas estimadas · punto medio</b>
+        <span><i style="background:#75283d"></i>Más de 40 ha</span>
+        <span><i style="background:#b24f32"></i>25–40 ha</span>
+        <span><i style="background:#ca8b37"></i>15–25 ha</span>
+        <span><i style="background:#b4ae4c"></i>8–15 ha</span>
+        <span><i style="background:#6c997a"></i>Hasta 8 ha</span>
+        <span><i style="background:#84929a"></i>Sin medición</span>
+        <b>Detalle al acercarte</b>
+        <span><i class="punto" style="border-color:#c13754"></i>Dosel &gt;35 m</span>
+        <span><i class="punto" style="border-color:#db7620"></i>Especie según inventario forestal</span>
+        <span><i class="punto" style="border-color:#4160bf"></i>Disperso clasificado</span>
+      </div></details>
+      <p id="estado" class="estado" role="status">Cargando mapa…</p>
+    </section>
+  </main>
+  <noscript>Activa JavaScript para usar el mapa. Puedes descargar el <a href="ranking_final_pontevedra.csv">ranking por parroquia</a> y el <a href="ranking_final_concello_pontevedra.csv">ranking por concello</a>.</noscript>
+</body>
+</html>
