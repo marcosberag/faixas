@@ -215,6 +215,15 @@ leyenda.addTo(mapa);
 """
 
 if __name__ == "__main__":
+    import argparse
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--zona", default="paradanta",
+                    choices=("paradanta", "pontevedra"))
+    args = ap.parse_args()
+    if args.zona != "paradanta":
+        from visor_provincia import genera
+        genera(args.zona)
+        raise SystemExit(0)
     SALIDA.mkdir(parents=True, exist_ok=True)
     html = (PLANTILLA
             .replace("__PARROQUIAS__", json.dumps(parroquias_geojson(),

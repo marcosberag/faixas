@@ -15,7 +15,9 @@ estimadas dentro de cada concello. Consumidos por el visor y los dossiers.
 
 Uso:
     python scripts/puntos_inspeccion.py
+    python scripts/puntos_inspeccion.py --zona pontevedra
 """
+import argparse
 import pathlib
 import sys
 import warnings
@@ -25,9 +27,10 @@ import numpy as np
 import pandas as pd
 import rasterio
 from rasterio import features
+from rasterio.errors import WindowError
 from rasterio.windows import from_bounds
 from scipy import ndimage as ndi
-from shapely.geometry import MultiPolygon, Point, shape
+from shapely.geometry import MultiPolygon, Point, box, shape
 from shapely.ops import unary_union
 
 warnings.filterwarnings("ignore")
@@ -59,25 +62,38 @@ def ancla(xs, ys):
     return float(xs[i]), float(ys[i])
 
 
-def carga_faixas():
+def carga_faixas(zona="paradanta"):
     fx = gpd.GeoDataFrame(pd.concat(
-        [gpd.read_file(PROC / f"faixas_{n}_paradanta_ok.gpkg")
+        [gpd.read_file(PROC / f"faixas_{n}_{zona}_ok.gpkg")
          for n in ("nucleos", "illadas")], ignore_index=True), crs="EPSG:25829")
-    return fx, fx.union_all()
+    # Piezas pequenas: consultar un multipoligono provincial disuelto anula
+    # el indice espacial y rasterizarlo en cada bloque repite millones de vertices.
+    piezas = fx[["geometry"]].explode(index_parts=False).reset_index(drop=True)
+    return fx, piezas
 
 
-def puntos_35m(fx_union):
+def puntos_35m(piezas, zona="paradanta"):
     filas = []
-    for chm_p in sorted(LIDAR.glob("*_chm.tif")):
+    malla = pd.read_csv(PROC / f"malla_lidar_{zona}.csv")
+    rutas = [LIDAR / f"{pathlib.Path(b).stem}_chm.tif" for b in sorted(malla.bloque)]
+    for k, chm_p in enumerate(rutas, 1):
+        if not chm_p.exists():
+            raise FileNotFoundError(f"Falta CHM de la zona: {chm_p}")
         with rasterio.open(chm_p) as s:
             chm = s.read(1)
             tr = s.transform
+            ids = piezas.sindex.query(box(*s.bounds), predicate="intersects")
+        if k % 200 == 0:
+            print(f"  >35 m: {k}/{len(rutas)} bloques", flush=True)
         chm = np.where(np.isfinite(chm) & (chm > -1000), chm, 0)
         alto = chm > 35
         if not alto.any():
             continue
+        if not len(ids):
+            continue
         mask_fx = features.rasterize(
-            [(fx_union, 1)], out_shape=chm.shape, transform=tr,
+            [(g, 1) for g in piezas.geometry.iloc[ids]],
+            out_shape=chm.shape, transform=tr,
             all_touched=False, fill=0).astype(bool)
         alto &= mask_fx
         if not alto.any():
@@ -97,20 +113,29 @@ def puntos_35m(fx_union):
                                 if v == 1])
             filas.append({"tipo": "eucaliptal_35m", "x": x, "y": y,
                           "ha": m2 / 1e4, "certeza": "alta",
-                          "nota": f"dosel >35 m ({m2} m2); solo eucalipto llega",
+                          "nota": f"dosel >35 m ({m2} m2); atribucion a eucalipto "
+                                  "por regla de altura, no especie verificada",
                           "area": poli})
     return filas
 
 
-def puntos_rodal(fx_union):
-    ifn = gpd.read_file(PROC / "ifn_especies_paradanta.gpkg")
+def puntos_rodal(piezas, zona="paradanta"):
+    suf = "" if zona == "paradanta" else f"_{zona}"
+    ifn = gpd.read_file(PROC / f"ifn_especies_{zona}.gpkg")
     ifn["f_mal"] = frac_prohibida(ifn)
-    pers = pd.read_csv(MET / "persistencia_ifn.csv", encoding="utf-8-sig")
+    pers = pd.read_csv(MET / f"persistencia_ifn{suf}.csv", encoding="utf-8-sig")
     ifn = ifn.merge(pers[["OBJECTID_12", "estado"]], on="OBJECTID_12", how="left")
-    sel = ifn[(ifn.f_mal >= 0.5) & (ifn.estado.fillna("persistente") == "persistente")]
+    # Sin serie no se puede afirmar persistencia. No convertir un dato ausente
+    # en un respaldo positivo de la etiqueta IFN.
+    sel = ifn[(ifn.f_mal >= 0.5) & (ifn.estado == "persistente")]
     filas = []
-    for r in sel.itertuples():
-        inter = r.geometry.intersection(fx_union)
+    for k, r in enumerate(sel.itertuples(), 1):
+        ids = piezas.sindex.query(r.geometry, predicate="intersects")
+        if not len(ids):
+            continue
+        inter = piezas.geometry.iloc[ids].intersection(r.geometry).union_all()
+        if k % 300 == 0:
+            print(f"  IFN: {k}/{len(sel)} rodales", flush=True)
         if inter.is_empty or inter.area < 1000:
             continue
         # arbolado real dentro: CHM > umbral en los bloques que toca
@@ -124,9 +149,12 @@ def puntos_rodal(fx_union):
                 if not p.exists():
                     continue
                 with rasterio.open(p) as s:
-                    v = from_bounds(max(x0, bx*1000), max(y0, by*1000),
-                                    min(x1, bx*1000+1000), min(y1, by*1000+1000),
-                                    transform=s.transform)
+                    try:
+                        v = from_bounds(max(x0, bx*1000), max(y0, by*1000),
+                                        min(x1, bx*1000+1000), min(y1, by*1000+1000),
+                                        transform=s.transform)
+                    except WindowError:
+                        continue
                     v = v.round_offsets().round_lengths()
                     if v.width <= 0 or v.height <= 0:
                         continue
@@ -164,10 +192,13 @@ def puntos_rodal(fx_union):
     return filas
 
 
-def puntos_disperso():
-    d = pd.read_csv(PROC / "copas" / "disperso_clasificado.csv",
+def puntos_disperso(zona="paradanta"):
+    suf = "" if zona == "paradanta" else f"_{zona}"
+    d = pd.read_csv(PROC / "copas" / f"disperso_clasificado{suf}.csv",
                     encoding="utf-8-sig")
     d = d[d.pred_prohibida == 1].reset_index(drop=True)
+    if d.empty:
+        return []
     from scipy.spatial import cKDTree
     xy = d[["x", "y"]].to_numpy()
     arbol = cKDTree(xy)
@@ -203,14 +234,19 @@ def puntos_disperso():
 
 
 if __name__ == "__main__":
-    fx, fx_union = carga_faixas()
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--zona", default="paradanta")
+    args = ap.parse_args()
+    suf = "" if args.zona == "paradanta" else f"_{args.zona}"
+    fx, piezas = carga_faixas(args.zona)
     filas = []
-    for fn in (lambda: puntos_35m(fx_union), lambda: puntos_rodal(fx_union),
-               puntos_disperso):
+    for fn in (lambda: puntos_35m(piezas, args.zona),
+               lambda: puntos_rodal(piezas, args.zona),
+               lambda: puntos_disperso(args.zona)):
         f = fn()
         filas += f
         if f:
-            print(f"  {f[0]['tipo']}: {len(f)} puntos")
+            print(f"  {f[0]['tipo']}: {len(f)} puntos", flush=True)
     areas = [f.pop("area") for f in filas]
     g = gpd.GeoDataFrame(pd.DataFrame(filas),
                          geometry=[Point(f["x"], f["y"]) for f in filas],
@@ -221,7 +257,8 @@ if __name__ == "__main__":
     # misma cae el punto (paso con un rodal de 6,9 ha que salto de Arbo a
     # A Canhiza al mover el ancla 640 m). El dossier es POR CONCELLO: una
     # atribucion inestable manda al inspector a la oficina equivocada.
-    fxp = fx[["NOMECONCEL", "PARROQUIA", "geometry"]]
+    fxp = fx[["NOMECONCEL", "PARROQUIA", "geometry"]].explode(
+        index_parts=False).reset_index(drop=True)
     j = g.copy()
     j["NOMECONCEL"], j["PARROQUIA"] = None, None
     for i, a in enumerate(areas):
@@ -238,18 +275,18 @@ if __name__ == "__main__":
     j = j.sort_values(["NOMECONCEL", "ha"], ascending=[True, False])
     j["puesto_concello"] = j.groupby("NOMECONCEL").cumcount() + 1
 
-    j.drop(columns="geometry").round(2).to_csv(MET / "puntos_inspeccion.csv",
+    j.drop(columns="geometry").round(2).to_csv(MET / f"puntos_inspeccion{suf}.csv",
                                                index=False, encoding="utf-8-sig")
-    j.to_file(MET / "puntos_inspeccion.gpkg", driver="GPKG")
+    j.to_file(MET / f"puntos_inspeccion{suf}.gpkg", driver="GPKG")
 
     # la MANCHA de cada punto: para que la ficha ensenhe la extension, no solo
     # una chincheta. Se guarda aparte (un GPKG, una geometria por capa).
     ga = gpd.GeoDataFrame(
         j.drop(columns="geometry").reset_index(drop=True),
         geometry=[areas[i] for i in j.id_punto], crs="EPSG:25829")
-    ga.to_file(MET / "areas_inspeccion.gpkg", driver="GPKG")
-    print(f"\n{len(j)} puntos -> metricas/puntos_inspeccion.csv (+ .gpkg, "
-          "+ areas_inspeccion.gpkg)")
+    ga.to_file(MET / f"areas_inspeccion{suf}.gpkg", driver="GPKG")
+    print(f"\n{len(j)} puntos -> metricas/puntos_inspeccion{suf}.csv (+ .gpkg, "
+          f"+ areas_inspeccion{suf}.gpkg)")
     print("\ntop 5 por concello:")
     for c, gc in j.groupby("NOMECONCEL"):
         print(f"\n  {c}")

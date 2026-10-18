@@ -1,5 +1,9 @@
 # faixas
 
+**[Abrir el visor público de Pontevedra](https://marcosberag.github.io/faixas/)** —
+mapa para móvil y ordenador, consulta por concello y parroquia y rankings descargables.
+La cobertura corresponde a las franjas oficiales disponibles: 563 parroquias de 54 concellos.
+
 Estimación, a partir de datos públicos, de qué franjas de protección contra incendios en
 Galicia tienen arbolado que la ley no permite.
 
@@ -517,6 +521,11 @@ python scripts/visor.py               # salidas/visor/index.html, autocontenido
 python scripts/dossier_concello.py    # un PDF por concello, listo para imprimir
 ```
 
+El visor provincial se genera con `python scripts/puntos_inspeccion.py --zona pontevedra`
+y `python scripts/visor.py --zona pontevedra`. El detalle se carga por concello al
+acercarse al mapa para reducir la descarga en el móvil. Instrucciones para comprobarlo
+y actualizar GitHub Pages en [docs/visor-publicacion.md](docs/visor-publicacion.md).
+
 Los puntos se anclan en **arbolado medido** (nunca en el centro geométrico del
 rodal, que cae en cualquier claro o tejado) y se atribuyen al concello **por
 superficie de la mancha**, no por dónde cae el punto.
@@ -538,6 +547,8 @@ Vuelo LiDAR: junio–julio de 2024. Hay un año de desfase entre ambos.
 
 - **Código** (`scripts/`): [Apache-2.0](LICENSE).
 - **Datos generados, anotaciones y figuras**: [CC BY 4.0](LICENSE-DATOS.md).
+- **Leaflet 1.9.4 incluido en el visor provincial**: BSD-2-Clause; licencia y
+  atribuciones originales en `scripts/web/vendor/leaflet/LICENSE`.
 
 Copyright 2026 Marcos Bermejo Agenjo. La cadena de atribución de las fuentes de
 entrada y las obligaciones de cada una están en [`LICENSE-DATOS.md`](LICENSE-DATOS.md).
