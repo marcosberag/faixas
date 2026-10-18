@@ -78,8 +78,13 @@ def verifica():
     for nombre in ("ranking_final_pontevedra.csv", "ranking_final_concello_pontevedra.csv",
                    "puntos_inspeccion_pontevedra.csv"):
         assert (MET / nombre).read_bytes() == (SITIO / nombre).read_bytes(), nombre
-    for nombre in ("index.html", "visor.css", "visor.js"):
+    html = (RAIZ / "scripts" / "web" / "index.html").read_text(encoding="utf-8")
+    for nombre, etiqueta in (("visor.css", "CSS"), ("visor.js", "JS")):
         assert (SITIO / nombre).read_bytes() == (RAIZ / "scripts" / "web" / nombre).read_bytes()
+        contenido = (SITIO / nombre).read_text(encoding="utf-8").encode("utf-8")
+        version = hashlib.sha256(contenido).hexdigest()[:12]
+        html = html.replace(f"__{etiqueta}_VERSION__", version)
+    assert (SITIO / "index.html").read_text(encoding="utf-8") == html
     hashes = {"leaflet.js": "20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=",
               "leaflet.css": "p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="}
     for nombre, esperado in hashes.items():

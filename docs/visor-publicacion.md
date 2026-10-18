@@ -9,6 +9,8 @@ Python, credenciales ni un servidor de datos en produccion.
 Leaflet 1.9.4 se distribuye localmente en `vendor/leaflet`, con su licencia BSD
 y sus imagenes, para que la carga del mapa no dependa de un CDN externo. Los
 fondos cartograficos siguen solicitandose a OpenStreetMap o al IGN.
+El HTML incluye una version de contenido en las URLs del CSS y JavaScript para
+evitar que el navegador reutilice estilos anteriores despues de un despliegue.
 
 ## Regenerar y publicar
 

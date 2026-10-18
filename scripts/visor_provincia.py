@@ -4,6 +4,7 @@ Entrada: ranking validado y puntos/areas generados con puntos_inspeccion.py
 --zona pontevedra. No recalcula ni modifica las metricas del producto.
 """
 import datetime
+import hashlib
 import json
 import pathlib
 import shutil
@@ -35,6 +36,17 @@ def escribe(ruta, datos):
 
 def geojson(g):
     return json.loads(g.to_crs(4326).to_json(drop_id=True, na="null"))
+
+
+def copia_web(salida):
+    html = (WEB / "index.html").read_text(encoding="utf-8")
+    for nombre, etiqueta in (("visor.css", "CSS"), ("visor.js", "JS")):
+        contenido = (WEB / nombre).read_text(encoding="utf-8").encode("utf-8")
+        version = hashlib.sha256(contenido).hexdigest()[:12]
+        html = html.replace(f"__{etiqueta}_VERSION__", version)
+        shutil.copyfile(WEB / nombre, salida / nombre)
+    (salida / "index.html").write_text(html, encoding="utf-8")
+    shutil.copytree(WEB / "vendor", salida / "vendor", dirs_exist_ok=True)
 
 
 def genera(zona):
@@ -104,9 +116,7 @@ def genera(zona):
                              "ha_prohibida_min", "ha_prohibida_max")},
                 "concellos": manifest_concellos}
     escribe(salida / "manifest.json", manifest)
-    for nombre in ("index.html", "visor.css", "visor.js"):
-        shutil.copyfile(WEB / nombre, salida / nombre)
-    shutil.copytree(WEB / "vendor", salida / "vendor", dirs_exist_ok=True)
+    copia_web(salida)
     for nombre in (f"ranking_final{suf}.csv", f"ranking_final_concello{suf}.csv",
                    f"puntos_inspeccion{suf}.csv"):
         shutil.copyfile(MET / nombre, salida / nombre)
